@@ -9,3 +9,7 @@ class Board:
         self.size = size
         self.num_ships = num_ships
         self.name = name
+
+
+player = Board(5, 5, "Ben")
+print(player.name)
