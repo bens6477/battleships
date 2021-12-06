@@ -46,12 +46,19 @@ class Board:
         Assigns random locations for ships on the player's board.
         """
         current_locations = []
-        for ship in range(num_ships):
+        ships = 0
+        while ships < num_ships:
+            print(ships)
             random_row = random.randrange(board_size)
             random_column = random.randrange(board_size)
-            current_locations.append((random_row, random_column))
-            self.board[random_row][random_column] = 1
-            ship += 1
+            random_pair = (random_row, random_column)
+            if random_pair in current_locations:
+                print('Ship here, choose another location.')
+            elif random_pair not in current_locations:
+                current_locations.append(random_pair)
+                self.board[random_row][random_column] = 1
+                ships += 1
+        
         print(self.board)
         return current_locations
 
