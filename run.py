@@ -1,3 +1,4 @@
+import random
 from pprint import pprint
 
 scores = {"computer": 0, "user": 0}
@@ -19,21 +20,19 @@ class Board:
     
     def create_board(self):
         """
-        Creates a board for the player passed into the function.
+        Creates a new, empty board for the player.
         """
         self.board = []
-        counter = 0
         for row in range(self.board_size):
             self.board.append([])
             for column in range(self.board_size):
-                self.board[row].append(counter)
-                counter += 1
+                self.board[row].append('-')
         
         return self.board
     
     def display_board(self):
         """
-        Displays user board in a clean and formatted structure.
+        Displays player board in a clean and formatted structure.
         """
         board_str = f""
         for row in range(board_size):
@@ -41,10 +40,25 @@ class Board:
             board_str += row_str
         
         return board_str
-
+    
+    def assign_ship_locations(self):
+        """
+        Assigns random locations for ships on the player's board.
+        """
+        current_locations = []
+        for ship in range(num_ships):
+            random_row = random.randrange(board_size)
+            random_column = random.randrange(board_size)
+            current_locations.append((random_row, random_column))
+            self.board[random_row][random_column] = 1
+            ship += 1
+        print(self.board)
+        return current_locations
 
 
 user = Board(board_size, num_ships, user_name)
 computer = Board(board_size, num_ships, "computer")
 
 print(user.display_board())
+print(user.assign_ship_locations())
+
