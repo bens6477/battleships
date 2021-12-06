@@ -1,6 +1,10 @@
 scores = {"computer": 0, "player": 0}
 print(scores)
 
+size = 5
+num_ships = 5
+player_name = "Ben"
+
 class Board:
     """
     Main board class. Sets all parameters for each player's board.
@@ -11,5 +15,8 @@ class Board:
         self.name = name
 
 
-player = Board(5, 5, "Ben")
-print(player.name)
+player_board = Board(size, num_ships, player_name)
+print(player_board.name)
+
+computer_board = Board(size, num_ships, "computer")
+print(computer_board.name)
