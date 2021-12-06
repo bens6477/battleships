@@ -79,11 +79,20 @@ def print_instructions():
     print("Here are the instructions...")
 
 
+def print_boards():
+    print(user.styled_board)
+    print(computer.styled_board)
+    game_boards = f"{user.styled_board} vs {computer.styled_board}"
+    print(game_boards)
+
+
 def main():
     """
     Main game function.
     """
     print("Welcome to the game!")
     print_instructions()
+    print_boards()
+
 
 main()
