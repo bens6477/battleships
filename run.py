@@ -16,6 +16,8 @@ class Board:
         self.num_ships = num_ships
         self.name = name
         self.board = self.create_board()
+        self.ship_locations = self.assign_ship_locations()
+        self.print_board = self.display_board()
 
     
     def create_board(self):
@@ -30,6 +32,25 @@ class Board:
         
         return self.board
     
+
+    def assign_ship_locations(self):
+        """
+        Assigns random locations for ships on the player's board.
+        """
+        ship_locations = []
+        ships = 0
+        while ships < num_ships:
+            random_row = random.randrange(board_size)
+            random_column = random.randrange(board_size)
+            random_pair = (random_row, random_column)
+            if random_pair not in ship_locations:
+                ship_locations.append(random_pair)
+                self.board[random_row][random_column] = 1
+                ships += 1
+
+        return ship_locations
+
+
     def display_board(self):
         """
         Displays player board in a clean and formatted structure.
@@ -39,33 +60,12 @@ class Board:
             row_str = f"{self.board[row][0]} {self.board[row][1]} {self.board[row][2]} {self.board[row][3]} {self.board[row][4]}\n"
             board_str += row_str
         
-        return board_str
-    
-    def assign_ship_locations(self):
-        """
-        Assigns random locations for ships on the player's board.
-        """
-        current_locations = []
-        ships = 0
-        while ships < num_ships:
-            print(ships)
-            random_row = random.randrange(board_size)
-            random_column = random.randrange(board_size)
-            random_pair = (random_row, random_column)
-            if random_pair in current_locations:
-                print('Ship here, choose another location.')
-            elif random_pair not in current_locations:
-                current_locations.append(random_pair)
-                self.board[random_row][random_column] = 1
-                ships += 1
-        
-        print(self.board)
-        return current_locations
+        return board_str    
+
 
 
 user = Board(board_size, num_ships, user_name)
 computer = Board(board_size, num_ships, "computer")
 
 print(user.display_board())
-print(user.assign_ship_locations())
-
+print(computer.print_board)
