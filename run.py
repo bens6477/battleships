@@ -55,13 +55,17 @@ class Board:
         """
         Displays player board in a clean and formatted structure.
         """
-        board_str = f""
+        board_str = f""        
         for row in range(board_size):
-            row_str = f"{self.board[row][0]} {self.board[row][1]} {self.board[row][2]} {self.board[row][3]} {self.board[row][4]}\n"
+            row_str = f""
+            for column in range(board_size):
+                column_str = f" {self.board[row][column]} "
+                if column == board_size - 1:
+                    column_str += f"\n"
+                row_str += column_str
             board_str += row_str
         
-        return board_str    
-
+        return board_str
 
 
 user = Board(board_size, num_ships, user_name)
