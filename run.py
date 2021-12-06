@@ -71,5 +71,8 @@ class Board:
 user = Board(board_size, num_ships, user_name)
 computer = Board(board_size, num_ships, "computer")
 
-print(user.display_board())
-print(computer.print_board)
+
+def main():
+    print("Welcome to the game!")
+
+main()
