@@ -17,7 +17,7 @@ class Board:
         self.name = name
         self.board = self.create_board()
         self.ship_locations = self.assign_ship_locations()
-        self.print_board = self.display_board()
+        self.styled_board = self.display_board()
 
     
     def create_board(self):
@@ -72,7 +72,18 @@ user = Board(board_size, num_ships, user_name)
 computer = Board(board_size, num_ships, "computer")
 
 
+def print_instructions():
+    """
+    Prints gameplay instructions to the user.
+    """
+    print("Here are the instructions...")
+
+
 def main():
+    """
+    Main game function.
+    """
     print("Welcome to the game!")
+    print_instructions()
 
 main()
