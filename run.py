@@ -109,6 +109,14 @@ def user_guess():
 
     return current_guess
 
+
+def check_guess_validity(guess):
+    """
+    Checks user guess is of valid format for processing.
+    Throws relevant errors if data is in invalid format.
+    """
+    print(guess)
+
 def main():
     """
     Main game function.
@@ -119,6 +127,7 @@ def main():
     print(game_boards)
     current_guess = user_guess()
     print(current_guess)
+    check_guess_validity(current_guess)
 
 
 main()
