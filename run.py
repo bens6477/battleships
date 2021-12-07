@@ -7,6 +7,7 @@ board_size = 5
 num_ships = 5
 user_name = "Ben"
 
+
 class Board:
     """
     Main board class. Sets all parameters for each player's board.
@@ -19,7 +20,6 @@ class Board:
         self.ship_locations = self.assign_ship_locations()
         self.styled_board = self.display_board()
 
-    
     def create_board(self):
         """
         Creates a new, empty board for the player.
@@ -29,9 +29,8 @@ class Board:
             self.board.append([])
             for column in range(self.board_size):
                 self.board[row].append('-')
-        
+
         return self.board
-    
 
     def assign_ship_locations(self):
         """
@@ -50,7 +49,6 @@ class Board:
 
         return ship_locations
 
-
     def display_board(self):
         """
         Displays player board in a clean and formatted structure.
@@ -64,7 +62,7 @@ class Board:
                     column_str += "\n"
                 row_str += column_str
             board_str += row_str
-        
+
         return board_str
 
 
@@ -83,8 +81,8 @@ def print_boards():
     """
     Displays both player board in a clean and formatted structure.
     """
-    board_str = f"   Your Board              Enemy's Board\n"
-    board_str += f"   0  1  2  3  4           0  1  2  3  4\n"
+    board_str = "   Your Board              Enemy's Board\n"
+    board_str += "   0  1  2  3  4           0  1  2  3  4\n"
     for row in range(board_size):
         row_str = f"{chr(65 + row)} "
         for column in range(board_size):
@@ -97,7 +95,7 @@ def print_boards():
                 column_str += "\n"
             row_str += column_str
         board_str += row_str
-    
+
     return board_str
 
 
