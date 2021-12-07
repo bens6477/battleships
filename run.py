@@ -122,7 +122,11 @@ def check_guess_validity(guess):
             )
         elif not guess[1].isdigit():
             raise ValueError(
-                f"First charater is not a decimal number in your guess '{guess}'"
+                f"Second charater is not a decimal number in your guess '{guess}'"
+            )
+        elif (int(guess[1]) > board_size - 1):
+            raise ValueError(
+                f"Second charater is out of bounds of the board in your guess '{guess}'"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
