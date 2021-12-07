@@ -101,7 +101,7 @@ def print_boards():
     return board_str
 
 
-def user_guess():
+def request_user_guess():
     """
     Requests user to input guess and returns guess.
     """
@@ -139,6 +139,17 @@ def check_guess_validity(guess):
         print("Valid input")
 
 
+def convert_guess(guess):
+    """
+    Converts user input string into respective indices on board array.
+    """
+    user_row = ord(guess[0].lower()) - 97
+    user_column = int(guess[1])
+    user_guess = (user_row, user_column)
+
+    return user_guess
+
+
 def main():
     """
     Main game function.
@@ -147,8 +158,10 @@ def main():
     print_instructions()
     game_boards = print_boards()
     print(game_boards)
-    current_guess = user_guess()
+    current_guess = request_user_guess()
     check_guess_validity(current_guess)
+    user_guess = convert_guess(current_guess)
+    print(user_guess)
 
 
 main()
