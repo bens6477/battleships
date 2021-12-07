@@ -45,7 +45,7 @@ class Board:
             random_pair = (random_row, random_column)
             if random_pair not in ship_locations:
                 ship_locations.append(random_pair)
-                self.board[random_row][random_column] = 1
+                self.board[random_row][random_column] = "S"
                 ships += 1
 
         return ship_locations
@@ -55,13 +55,13 @@ class Board:
         """
         Displays player board in a clean and formatted structure.
         """
-        board_str = f""        
+        board_str = ""
         for row in range(board_size):
-            row_str = f""
+            row_str = ""
             for column in range(board_size):
                 column_str = f" {self.board[row][column]} "
                 if column == board_size - 1:
-                    column_str += f"\n"
+                    column_str += "\n"
                 row_str += column_str
             board_str += row_str
         
@@ -83,21 +83,22 @@ def print_boards():
     """
     Displays both player board in a clean and formatted structure.
     """
-    board_str = f""
+    board_str = f"   0  1  2  3  4           0  1  2  3  4\n"
     for row in range(board_size):
-        row_str = f""
+        row_str = f"{chr(65 + row)} "
         for column in range(board_size):
             column_str = f" {user.board[row][column]} "
             row_str += column_str
-        row_str += f"   |   "
+        row_str += f"   |   {chr(65 + row)} "
         for column in range(board_size):
             column_str = f" {computer.board[row][column]} "
             if column == board_size - 1:
-                column_str += f"\n"
+                column_str += "\n"
             row_str += column_str
         board_str += row_str
     
     return board_str
+
 
 def main():
     """
