@@ -83,7 +83,8 @@ def print_boards():
     """
     Displays both player board in a clean and formatted structure.
     """
-    board_str = f"   0  1  2  3  4           0  1  2  3  4\n"
+    board_str = f"   Your Board              Enemy's Board\n"
+    board_str += f"   0  1  2  3  4           0  1  2  3  4\n"
     for row in range(board_size):
         row_str = f"{chr(65 + row)} "
         for column in range(board_size):
@@ -126,7 +127,7 @@ def check_guess_validity(guess):
             )
         elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + board_size):
             raise ValueError(
-                f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(65 + board_size - 1)}"
+                f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + board_size)}"
             )
         elif (int(guess[1]) > board_size - 1):
             raise ValueError(
@@ -134,6 +135,9 @@ def check_guess_validity(guess):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+    else:
+        print("Valid input")
+
 
 def main():
     """
@@ -144,7 +148,6 @@ def main():
     game_boards = print_boards()
     print(game_boards)
     current_guess = user_guess()
-    print(current_guess)
     check_guess_validity(current_guess)
 
 
