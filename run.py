@@ -116,10 +116,12 @@ def check_guess_validity(guess):
     Throws relevant errors if data is in invalid format.
     """
     try:
-        if (int(guess[1])):
-            print("Valid format")
-    except:
-        print("Second character not a number")
+        if not guess[0].isalpha():
+            raise ValueError(
+                f"First charater is not a letter in your guess {guess}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
 
 def main():
     """
