@@ -100,6 +100,15 @@ def print_boards():
     return board_str
 
 
+def user_guess():
+    """
+    Requests user to input guess and returns guess.
+    """
+    print("Enter your target, E.G. of the form A4.")
+    current_guess = input()
+
+    return current_guess
+
 def main():
     """
     Main game function.
@@ -108,6 +117,8 @@ def main():
     print_instructions()
     game_boards = print_boards()
     print(game_boards)
+    current_guess = user_guess()
+    print(current_guess)
 
 
 main()
