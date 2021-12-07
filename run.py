@@ -115,7 +115,11 @@ def check_guess_validity(guess):
     Checks user guess is of valid format for processing.
     Throws relevant errors if data is in invalid format.
     """
-    print(guess)
+    try:
+        if (int(guess[1])):
+            print("Valid format")
+    except:
+        print("Second character not a number")
 
 def main():
     """
