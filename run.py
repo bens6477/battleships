@@ -118,15 +118,19 @@ def check_guess_validity(guess):
     try:
         if not guess[0].isalpha():
             raise ValueError(
-                f"First charater is not a letter in your guess '{guess}'"
+                f"First character is not a letter in your guess '{guess}'"
             )
         elif not guess[1].isdigit():
             raise ValueError(
-                f"Second charater is not a decimal number in your guess '{guess}'"
+                f"Second character is not a decimal number in your guess '{guess}'"
+            )
+        elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + board_size):
+            raise ValueError(
+                f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(65 + board_size - 1)}"
             )
         elif (int(guess[1]) > board_size - 1):
             raise ValueError(
-                f"Second charater is out of bounds of the board in your guess '{guess}'"
+                f"Second character is out of bounds of the board in your guess '{guess}'"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
