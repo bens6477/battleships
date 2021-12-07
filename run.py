@@ -118,7 +118,11 @@ def check_guess_validity(guess):
     try:
         if not guess[0].isalpha():
             raise ValueError(
-                f"First charater is not a letter in your guess {guess}"
+                f"First charater is not a letter in your guess '{guess}'"
+            )
+        elif not guess[1].isdigit():
+            raise ValueError(
+                f"First charater is not a decimal number in your guess '{guess}'"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
