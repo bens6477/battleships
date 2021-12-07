@@ -80,11 +80,24 @@ def print_instructions():
 
 
 def print_boards():
-    print(user.styled_board)
-    print(computer.styled_board)
-    game_boards = f"{user.styled_board} vs {computer.styled_board}"
-    print(game_boards)
-
+    """
+    Displays both player board in a clean and formatted structure.
+    """
+    board_str = f""
+    for row in range(board_size):
+        row_str = f""
+        for column in range(board_size):
+            column_str = f" {user.board[row][column]} "
+            row_str += column_str
+        row_str += f"   |   "
+        for column in range(board_size):
+            column_str = f" {computer.board[row][column]} "
+            if column == board_size - 1:
+                column_str += f"\n"
+            row_str += column_str
+        board_str += row_str
+    
+    return board_str
 
 def main():
     """
@@ -92,7 +105,8 @@ def main():
     """
     print("Welcome to the game!")
     print_instructions()
-    print_boards()
+    game_boards = print_boards()
+    print(game_boards)
 
 
 main()
