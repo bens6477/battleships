@@ -7,6 +7,16 @@ num_ships = 5
 user_name = "Ben"
 
 
+def generate_random_guess():
+    """
+    Returns random target coordinates for as a tuple.
+    """
+    random_row = random.randrange(board_size)
+    random_column = random.randrange(board_size)
+    random_pair = (random_row, random_column)
+    return random_pair
+
+
 class Board:
     """
     Main board class. Sets all parameters for each player's board.
@@ -38,12 +48,10 @@ class Board:
         ship_locations = []
         ships = 0
         while ships < num_ships:
-            random_row = random.randrange(board_size)
-            random_column = random.randrange(board_size)
-            random_pair = (random_row, random_column)
+            random_pair = generate_random_guess()
             if random_pair not in ship_locations:
                 ship_locations.append(random_pair)
-                self.board[random_row][random_column] = "S"
+                self.board[random_pair[0]][random_pair[1]] = "S"
                 ships += 1
 
         return ship_locations
@@ -147,16 +155,6 @@ def convert_guess(guess):
     return user_guess
 
 
-def generate_computer_guess():
-    """
-    Returns random target coordinates for the computer's guess. 
-    """
-    random_row = random.randrange(board_size)
-    random_column = random.randrange(board_size)
-    random_pair = (random_row, random_column)
-    return random_pair
-
-
 def main():
     """
     Main game function.
@@ -169,7 +167,7 @@ def main():
     check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
     print(user_guess)
-    computer_guess = generate_computer_guess()
+    computer_guess = generate_random_guess()
     print(computer_guess)
 
 
