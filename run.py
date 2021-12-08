@@ -120,8 +120,7 @@ def print_boards():
                 column_str += "\n"
             row_str += column_str
         board_str += row_str
-
-    return board_str
+    print(board_str)
 
 
 def request_user_guess():
@@ -226,16 +225,14 @@ def single_blast():
     Game script running a single blast attempt from each player.
     """
     print_instructions()
-    game_boards = print_boards()
-    print(game_boards)
+    print_boards()
     current_guess = request_user_guess()
     check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
     edit_board(hit_array)
-    game_boards = print_boards()
-    print(game_boards)
+    print_boards()
     print_outcome(hit_array)
 
 
@@ -252,12 +249,31 @@ def check_remaining_ships():
             return False
         elif len(computer.ship_locations) < 5:
             print("Congratulations! You win!\n")
+            print("Game over\n")
             return False
         elif len(user.ship_locations) < 5:
             print("Unlucky! You lose!\n")
+            print("Game over\n")
             return False
         else:
             single_blast()
+
+
+def play_again():
+    """
+    Asks user if they would like to play again and restarts the game.
+    """
+    print(ord('y'))
+    print(ord('n'))
+    print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
+    another_game = input()
+    
+    if ord(another_game.lower()) == 121:
+        print("Playing again...\n")
+    elif ord(another_game.lower()) == 110:
+        print("Ending game...\n")
+    else:
+        print("Invalid input\n")
 
 
 def main():
@@ -267,6 +283,7 @@ def main():
     print("Welcome to the game!")
     single_blast()
     check_remaining_ships()
+    play_again()
 
 
 main()
