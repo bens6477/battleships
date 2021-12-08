@@ -130,6 +130,7 @@ def request_user_guess():
     """
     print("Enter your target, E.G. of the form A4.")
     current_guess = input()
+    print("")
 
     return current_guess
 
@@ -210,16 +211,16 @@ def print_outcome(hit_array):
     """
     Prints the outcome from the guesses of both players.
     """
-    print(hit_array[0][1])
+    print("Your cannon fires...")
     if hit_array[0][1]:
-        print("Direct hit! They took damage!")
+        print("Direct hit! They took damage!\n")
     else:
-        print("Unlucky! You missed!")
-    print(hit_array[1][1])
+        print("Unlucky! You missed!\n")
+    print("Computer's cannon fires...")
     if hit_array[1][1]:
-        print("Ouch! They hit our ship!")
+        print("Ouch! They hit our ship!\n")
     else:
-        print("Phew! They missed our ship, but stay alert!")
+        print("Phew! They missed our ship, but stay alert!\n")
 
 
 def single_blast():
@@ -250,15 +251,15 @@ def check_remaining_ships():
     """
     while True:
         print("User ships remaining: ", len(user.ship_locations))
-        print("Computer ships remaining: ", len(computer.ship_locations))
+        print("Computer ships remaining: ", len(computer.ship_locations), "\n")
         if len(user.ship_locations) < 5 and len(computer.ship_locations) < 5:
-            print("Its a draw! You both struck out on this round!")
+            print("Its a draw! You both struck out on this round!\n")
             return False
         elif len(computer.ship_locations) < 5:
-            print("Congratulations! You win!")
+            print("Congratulations! You win!\n")
             return False
         elif len(user.ship_locations) < 5:
-            print("Unlucky! You lose!")
+            print("Unlucky! You lose!\n")
             return False
         else:
             single_blast()
