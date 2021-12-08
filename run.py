@@ -1,5 +1,4 @@
 import random
-from pprint import pprint
 
 scores = {"computer": 0, "user": 0}
 
@@ -148,6 +147,16 @@ def convert_guess(guess):
     return user_guess
 
 
+def generate_computer_guess():
+    """
+    Returns random target coordinates for the computer's guess. 
+    """
+    random_row = random.randrange(board_size)
+    random_column = random.randrange(board_size)
+    random_pair = (random_row, random_column)
+    return random_pair
+
+
 def main():
     """
     Main game function.
@@ -160,6 +169,8 @@ def main():
     check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
     print(user_guess)
+    computer_guess = generate_computer_guess()
+    print(computer_guess)
 
 
 main()
