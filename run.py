@@ -179,9 +179,9 @@ def check_player_guesses(user_guess, computer_guess):
     their opponent.
     """
     user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False, True), user_guess]
-    print("computer.ship_locations: ",computer.ship_locations)
+    print("computer.ship_locations: ", computer.ship_locations)
     computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False, True), computer_guess]
-    print("user.ship_locations: ",user.ship_locations)
+    print("user.ship_locations: ", user.ship_locations)
 
     return (user_hit, computer_hit)
 
@@ -193,9 +193,9 @@ def edit_board(hit_array):
     """
     for guess in hit_array:
         if guess[0] == "user":
-            opponent = user
-        else:
             opponent = computer
+        else:
+            opponent = user
         guess_tuple = (guess[2][0], guess[2][1])
         print(guess_tuple)
         if guess[1]:
@@ -243,11 +243,30 @@ def single_blast():
     print_outcome(hit_array)
 
 
+def check_remaining_ships():
+    """
+    Checks the number of ships remaining for each player
+    and determines if the game is finished or still active.
+    """
+    print(len(user.ship_locations))
+    print(len(computer.ship_locations))
+    while True:
+        if len(computer.ship_locations) < 5:
+            print("Congratulations! You win!")
+            return False
+        elif len(user.ship_locations) < 5:
+            print("Unlucky! You lose!")
+            return False
+        else:
+            single_blast()
+
+
 def main():
     """
     Main game function.
     """
     print("Welcome to the game!")
     single_blast()
+    check_remaining_ships()
 
 main()
