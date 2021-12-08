@@ -248,10 +248,13 @@ def check_remaining_ships():
     Checks the number of ships remaining for each player
     and determines if the game is finished or still active.
     """
-    print(len(user.ship_locations))
-    print(len(computer.ship_locations))
     while True:
-        if len(computer.ship_locations) < 5:
+        print("User ships remaining: ", len(user.ship_locations))
+        print("Computer ships remaining: ", len(computer.ship_locations))
+        if len(user.ship_locations) < 5 and len(computer.ship_locations) < 5:
+            print("Its a draw! You both struck out on this round!")
+            return False
+        elif len(computer.ship_locations) < 5:
             print("Congratulations! You win!")
             return False
         elif len(user.ship_locations) < 5:
