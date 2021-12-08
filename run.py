@@ -176,10 +176,30 @@ def check_player_guesses(user_guess, computer_guess):
     Checks if the guesses of both players match ship locations of
     their opponent.
     """
-    user_hit = [is_guess_in_array(user_guess, computer.ship_locations, False), user_guess]
-    computer_hit = [is_guess_in_array(computer_guess, user.ship_locations, False), computer_guess]
+    user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False), user_guess]
+    computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False), computer_guess]
 
     return (user_hit, computer_hit)
+
+
+def edit_board(hit_array):
+    """
+    Edits the game board depending on the outcome of the
+    player guesses.
+    """
+    for guess in hit_array:
+        if guess[0] == "user":
+            player = user
+        else:
+            player = computer
+        guess_tuple = (guess[2][0], guess[2][1])
+        print(guess_tuple)
+        if guess[0]:
+            print("hit")
+            player.board[guess_tuple[0]][guess_tuple[1]] = "X"
+        else:
+            print("miss")
+            player.board[guess_tuple[0]][guess_tuple[1]] = "m"
 
 
 def main():
@@ -193,13 +213,14 @@ def main():
     current_guess = request_user_guess()
     check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
-    print(user_guess)
     computer_guess = generate_random_guess()
-    print(computer_guess)
     print(user.ship_locations)
     print(computer.ship_locations)
     hit_array = check_player_guesses(user_guess, computer_guess)
     print(hit_array)
+    edit_board(hit_array)
+    game_boards = print_boards()
+    print(game_boards)
 
 
 main()
