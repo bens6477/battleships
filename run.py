@@ -269,4 +269,5 @@ def main():
     single_blast()
     check_remaining_ships()
 
+
 main()
