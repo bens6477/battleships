@@ -202,6 +202,22 @@ def edit_board(hit_array):
             opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
 
 
+def print_outcome(hit_array):
+    """
+    Prints the outcome from the guesses of both players.
+    """
+    print(hit_array[0][1])
+    if hit_array[0][1]:
+        print("Direct hit! They took damage!")
+    else:
+        print("Unlucky! You missed!")
+    print(hit_array[1][1])
+    if hit_array[1][1]:
+        print("Ouch! They hit our ship!")
+    else:
+        print("Phew! They missed our ship, but stay alert!")
+
+
 def main():
     """
     Main game function.
@@ -221,6 +237,7 @@ def main():
     edit_board(hit_array)
     game_boards = print_boards()
     print(game_boards)
+    print_outcome(hit_array)
 
 
 main()
