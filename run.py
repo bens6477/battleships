@@ -189,17 +189,17 @@ def edit_board(hit_array):
     """
     for guess in hit_array:
         if guess[0] == "user":
-            player = user
+            opponent = user
         else:
-            player = computer
+            opponent = computer
         guess_tuple = (guess[2][0], guess[2][1])
         print(guess_tuple)
-        if guess[0]:
+        if guess[1]:
             print("hit")
-            player.board[guess_tuple[0]][guess_tuple[1]] = "X"
+            opponent.board[guess_tuple[0]][guess_tuple[1]] = "X"
         else:
             print("miss")
-            player.board[guess_tuple[0]][guess_tuple[1]] = "m"
+            opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
 
 
 def main():
