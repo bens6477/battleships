@@ -17,15 +17,16 @@ def generate_random_guess():
     return random_pair
 
 
-def log_coordinates(current_guess, guess_array):
+def is_guess_in_array(current_guess, location_array, append):
     """
     Checks if current coordinates have already been selected
     for function of choice.
     Appends cuurent guess to guess array if it has not been
     selected previously.
     """
-    if current_guess not in guess_array:
-        guess_array.append(current_guess)
+    if current_guess not in location_array:
+        if append:
+            location_array.append(current_guess)
         return True
     else:
         print("Location already chosen")
@@ -64,9 +65,8 @@ class Board:
         ships = 0
         while ships < num_ships:
             random_pair = generate_random_guess()
-            valid_location = log_coordinates(random_pair, ship_locations)            
+            valid_location = is_guess_in_array(random_pair, ship_locations, True)            
             if valid_location:
-                ship_locations.append(random_pair)
                 self.board[random_pair[0]][random_pair[1]] = "S"
                 ships += 1
 
@@ -185,6 +185,8 @@ def main():
     print(user_guess)
     computer_guess = generate_random_guess()
     print(computer_guess)
+    print(user.ship_locations)
+    print(computer.ship_locations)
 
 
 main()
