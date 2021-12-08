@@ -140,6 +140,7 @@ def check_guess_validity(guess):
     Checks user guess is of valid format for processing.
     Throws relevant errors if data is in invalid format.
     """
+    print("Checking validity of your target coordinates...")
     try:
         if not guess[0].isalpha():
             raise ValueError(
@@ -160,7 +161,7 @@ def check_guess_validity(guess):
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
     else:
-        print("Valid input")
+        print("Valid input\n")
 
 
 def convert_guess(guess):
@@ -180,9 +181,7 @@ def check_player_guesses(user_guess, computer_guess):
     their opponent.
     """
     user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False, True), user_guess]
-    print("computer.ship_locations: ", computer.ship_locations)
     computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False, True), computer_guess]
-    print("user.ship_locations: ", user.ship_locations)
 
     return (user_hit, computer_hit)
 
@@ -198,12 +197,11 @@ def edit_board(hit_array):
         else:
             opponent = user
         guess_tuple = (guess[2][0], guess[2][1])
-        print(guess_tuple)
         if guess[1]:
-            print("hit")
+            print(f"{guess[0]}: hit opponent\n")
             opponent.board[guess_tuple[0]][guess_tuple[1]] = "X"
         else:
-            print("miss")
+            print(f"{guess[0]}: missed opponent\n")
             opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
 
 
@@ -234,10 +232,7 @@ def single_blast():
     check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
     computer_guess = generate_random_guess()
-    print(user.ship_locations)
-    print(computer.ship_locations)
     hit_array = check_player_guesses(user_guess, computer_guess)
-    print(hit_array)
     edit_board(hit_array)
     game_boards = print_boards()
     print(game_boards)
