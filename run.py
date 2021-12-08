@@ -17,7 +17,7 @@ def generate_random_guess():
     return random_pair
 
 
-def is_guess_in_array(current_guess, location_array, append):
+def is_guess_in_array(current_guess, location_array, append, delete):
     """
     Checks if current coordinates have already been selected
     for function of choice.
@@ -29,6 +29,8 @@ def is_guess_in_array(current_guess, location_array, append):
             location_array.append(current_guess)
         return False
     else:
+        if delete:
+            location_array.remove(current_guess)
         print("Location in array")
         return True
 
@@ -65,7 +67,7 @@ class Board:
         ships = 0
         while ships < num_ships:
             random_pair = generate_random_guess()
-            valid_location = is_guess_in_array(random_pair, ship_locations, True)            
+            valid_location = is_guess_in_array(random_pair, ship_locations, True, False)            
             if not valid_location:
                 self.board[random_pair[0]][random_pair[1]] = "S"
                 ships += 1
@@ -176,8 +178,10 @@ def check_player_guesses(user_guess, computer_guess):
     Checks if the guesses of both players match ship locations of
     their opponent.
     """
-    user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False), user_guess]
-    computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False), computer_guess]
+    user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False, True), user_guess]
+    print("computer.ship_locations: ",computer.ship_locations)
+    computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False, True), computer_guess]
+    print("user.ship_locations: ",user.ship_locations)
 
     return (user_hit, computer_hit)
 
@@ -218,11 +222,10 @@ def print_outcome(hit_array):
         print("Phew! They missed our ship, but stay alert!")
 
 
-def main():
+def single_blast():
     """
-    Main game function.
+    Game script running a single blast attempt from each player.
     """
-    print("Welcome to the game!")
     print_instructions()
     game_boards = print_boards()
     print(game_boards)
@@ -239,5 +242,12 @@ def main():
     print(game_boards)
     print_outcome(hit_array)
 
+
+def main():
+    """
+    Main game function.
+    """
+    print("Welcome to the game!")
+    single_blast()
 
 main()
