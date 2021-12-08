@@ -27,10 +27,10 @@ def is_guess_in_array(current_guess, location_array, append):
     if current_guess not in location_array:
         if append:
             location_array.append(current_guess)
-        return True
-    else:
-        print("Location already chosen")
         return False
+    else:
+        print("Location in array")
+        return True
 
 
 class Board:
@@ -66,7 +66,7 @@ class Board:
         while ships < num_ships:
             random_pair = generate_random_guess()
             valid_location = is_guess_in_array(random_pair, ship_locations, True)            
-            if valid_location:
+            if not valid_location:
                 self.board[random_pair[0]][random_pair[1]] = "S"
                 ships += 1
 
@@ -171,6 +171,17 @@ def convert_guess(guess):
     return user_guess
 
 
+def check_player_guesses(user_guess, computer_guess):
+    """
+    Checks if the guesses of both players match ship locations of
+    their opponent.
+    """
+    user_hit = [is_guess_in_array(user_guess, computer.ship_locations, False), user_guess]
+    computer_hit = [is_guess_in_array(computer_guess, user.ship_locations, False), computer_guess]
+
+    return (user_hit, computer_hit)
+
+
 def main():
     """
     Main game function.
@@ -187,6 +198,8 @@ def main():
     print(computer_guess)
     print(user.ship_locations)
     print(computer.ship_locations)
+    hit_array = check_player_guesses(user_guess, computer_guess)
+    print(hit_array)
 
 
 main()
