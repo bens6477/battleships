@@ -43,6 +43,14 @@ class Ship:
         self.ship_type = ship_type
         self.ship_length = ship_length
         self.symbol = symbol
+    
+    def print_ship(self):
+        """
+        Prints an instance of the ship passed into the function.
+        """
+        print(self.ship_type)
+        for div in range(self.ship_length):
+            print(self.symbol)
 
 aircraft_carrier = Ship("Aircraft Carrier", 5, "A")
 battleship = Ship("Battleship", 4, "B")
@@ -50,15 +58,7 @@ cruiser = Ship("Cruiser", 3, "C")
 destroyer = Ship("Destroyer", 2, "D")
 submarine = Ship("Submarine", 3, "S")
 
-def print_ship(ship):
-    """
-    Prints an instance of the ship passed into the function.
-    """
-    print(ship.ship_type)
-    for div in range(ship.ship_length):
-        print(ship.symbol)
-
-print_ship(aircraft_carrier)
+destroyer.print_ship()
 
 
 class Board:
