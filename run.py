@@ -367,6 +367,24 @@ def add_ship_to_board(player, ship, location, direction):
         print("\n *** Invalid direction ***\n")
     return player.board
 
+def input_ship_location(player, ship):
+    """
+    Request an input for the location and direction of the passed ship.
+    """
+    print(f"Input the coordinates for bow of your {ship.ship_type}")
+    location = input()
+    print("")
+    print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
+    direction = input()
+    print("")
+
+    add_ship_to_board(player, ship, location, direction)
+
+    return (location, direction)
+
+
+
+input_ship_location(user, aircraft_carrier)
 
 add_ship_to_board(user, aircraft_carrier, (0,0), "down")
 add_ship_to_board(user, battleship, (1,1), "down")
