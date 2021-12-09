@@ -4,7 +4,6 @@ scores = {"computer": 0, "user": 0}
 
 board_size = 5
 num_ships = 5
-user_name = "Benjamin"
 
 
 def generate_random_guess():
@@ -89,6 +88,18 @@ class Board:
             board_str += row_str
 
         return board_str
+
+
+def game_introduction():
+    """
+    Welcomes user to the game and requests their name.
+    """
+    print("Welcome to the game!\n")
+    print("Enter your name:")
+    user_name = input()
+    print("")
+
+    return user_name
 
 
 def reset_board():
@@ -295,9 +306,10 @@ def main():
     """
     Main game function.
     """
-    print("Welcome to the game!")
+    global user_name
     global user
     global computer
+    user_name = game_introduction()
     players = reset_board()
     user = players[0]
     computer = players[1]
