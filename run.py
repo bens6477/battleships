@@ -353,20 +353,26 @@ def main():
     play_again()
 
 
-def add_ship_to_board(player, ship, location):
+def add_ship_to_board(player, ship, location, direction):
     """
     Add ship to player's board.
     """
-    for div in range(ship.ship_length):
-        player.board[location[0]][div + location[1]] = ship.symbol
-    print(player.board)
+    if direction == "right":
+        for div in range(ship.ship_length):
+            player.board[location[0]][div + location[1]] = ship.symbol
+    elif direction == "down":
+        for div in range(ship.ship_length):
+            player.board[div + location[0]][location[1]] = ship.symbol
+    else:
+        print("\n *** Invalid direction ***\n")
+    return player.board
 
 
-add_ship_to_board(user, aircraft_carrier, (0,0))
-add_ship_to_board(user, battleship, (1,1))
-add_ship_to_board(user, cruiser, (2,2))
-add_ship_to_board(user, destroyer, (3,3))
-add_ship_to_board(user, submarine, (4,2))
+add_ship_to_board(user, aircraft_carrier, (0,0), "down")
+add_ship_to_board(user, battleship, (1,1), "down")
+add_ship_to_board(user, cruiser, (2,2), "down")
+add_ship_to_board(user, destroyer, (3,3), "down")
+add_ship_to_board(user, submarine, (2,4), "down")
 
 print_boards()
 
