@@ -64,6 +64,7 @@ cruiser.print_ship()
 destroyer.print_ship()
 submarine.print_ship()
 
+
 class Board:
     """
     Main board class. Sets all parameters for each player's board.
@@ -140,6 +141,10 @@ def reset_board():
 
     return [user, computer]
 
+user_name = ""
+players = reset_board()
+user = players[0]
+computer = players[1]
 
 def print_instructions():
     """
@@ -348,4 +353,15 @@ def main():
     play_again()
 
 
-main()
+def add_ship_to_board(player, ship):
+    """
+    Add ship to player's board.
+    """
+    print(player.board)
+
+
+add_ship_to_board(user, aircraft_carrier)
+
+# main()
+
+
