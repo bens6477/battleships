@@ -353,16 +353,22 @@ def main():
     play_again()
 
 
-def add_ship_to_board(player, ship):
+def add_ship_to_board(player, ship, location):
     """
     Add ship to player's board.
     """
     for div in range(ship.ship_length):
-        player.board[0][div] = ship.symbol
+        player.board[location[0]][div + location[1]] = ship.symbol
     print(player.board)
 
 
-add_ship_to_board(user, aircraft_carrier)
+add_ship_to_board(user, aircraft_carrier, (0,0))
+add_ship_to_board(user, battleship, (1,1))
+add_ship_to_board(user, cruiser, (2,2))
+add_ship_to_board(user, destroyer, (3,3))
+add_ship_to_board(user, submarine, (4,2))
+
+print_boards()
 
 # main()
 
