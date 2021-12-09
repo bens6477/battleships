@@ -4,7 +4,7 @@ scores = {"computer": 0, "user": 0}
 
 board_size = 5
 num_ships = 5
-user_name = "Ben"
+user_name = "Benjamin"
 
 
 def generate_random_guess():
@@ -104,14 +104,16 @@ def print_instructions():
     """
     Prints gameplay instructions to the user.
     """
-    print("Here are the instructions...")
+    print("Here are the instructions...\n")
 
 
 def print_boards():
     """
     Displays both player board in a clean and formatted structure.
     """
-    board_str = "   Your Board              Enemy's Board\n"
+    board_str = f"{user_name}'s Board:"
+    board_str += " " * (14 - len(user_name))
+    board_str += f"Enemy's Board:\n\n"
     board_str += "   "
     for index in range(board_size):
         board_str += f"{index}  "
