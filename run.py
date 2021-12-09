@@ -91,8 +91,13 @@ class Board:
         return board_str
 
 
-user = Board(board_size, num_ships, user_name)
-computer = Board(board_size, num_ships, "computer")
+def reset_board():
+    user_copy = Board(board_size, num_ships, user_name)
+    computer_copy = Board(board_size, num_ships, "computer")
+    user = user_copy
+    computer = computer_copy
+
+    return [user, computer]
 
 
 def print_instructions():
@@ -263,15 +268,17 @@ def play_again():
     """
     Asks user if they would like to play again and restarts the game.
     """
-    print(ord('y'))
-    print(ord('n'))
     print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
     another_game = input()
+    print("")
     
     if ord(another_game.lower()) == 121:
-        print("Playing again...\n")
+        print("Playing again...")
+        print("-" * 35, "\n")
+        main()
     elif ord(another_game.lower()) == 110:
         print("Ending game...\n")
+        print("-" * 35, "\n")
     else:
         print("Invalid input\n")
 
@@ -281,6 +288,11 @@ def main():
     Main game function.
     """
     print("Welcome to the game!")
+    global user
+    global computer
+    reset_board()
+    user = reset_board()[0]
+    computer = reset_board()[1]
     single_blast()
     check_remaining_ships()
     play_again()
