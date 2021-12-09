@@ -45,14 +45,20 @@ class Ship:
         self.symbol = symbol
 
 aircraft_carrier = Ship("Aircraft Carrier", 5, "A")
+battleship = Ship("Battleship", 4, "B")
+cruiser = Ship("Cruiser", 3, "C")
+destroyer = Ship("Destroyer", 2, "D")
+submarine = Ship("Submarine", 3, "S")
 
-battleship = Ship("Battleship", 5, "B")
+def print_ship(ship):
+    """
+    Prints an instance of the ship passed into the function.
+    """
+    print(ship.ship_type)
+    for div in range(ship.ship_length):
+        print(ship.symbol)
 
-cruiser = Ship("Cruiser", 5, "C")
-
-destroyer = Ship("Destroyer", 5, "D")
-
-submarine = Ship("Submarine", 5, "S")
+print_ship(aircraft_carrier)
 
 
 class Board:
