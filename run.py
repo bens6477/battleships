@@ -44,6 +44,16 @@ class Ship:
         self.ship_length = ship_length
         self.symbol = symbol
 
+aircraft_carrier = Ship("Aircraft Carrier", 5, "A")
+
+battleship = Ship("Battleship", 5, "B")
+
+cruiser = Ship("Cruiser", 5, "C")
+
+destroyer = Ship("Destroyer", 5, "D")
+
+submarine = Ship("Submarine", 5, "S")
+
 
 class Board:
     """
