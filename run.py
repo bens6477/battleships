@@ -357,6 +357,8 @@ def add_ship_to_board(player, ship):
     """
     Add ship to player's board.
     """
+    for div in range(ship.ship_length):
+        player.board[0][div] = ship.symbol
     print(player.board)
 
 
