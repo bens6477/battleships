@@ -34,6 +34,17 @@ def is_guess_in_array(current_guess, location_array, append, delete):
         return True
 
 
+class Ship:
+    """
+    Creates a ship with specified length and symbol depending on the ship
+    type.
+    """
+    def __init__(self, ship_type, ship_length, symbol):
+        self.ship_type = ship_type
+        self.ship_length = ship_length
+        self.symbol = symbol
+
+
 class Board:
     """
     Main board class. Sets all parameters for each player's board.
