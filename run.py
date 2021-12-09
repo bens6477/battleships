@@ -112,7 +112,13 @@ def print_boards():
     Displays both player board in a clean and formatted structure.
     """
     board_str = "   Your Board              Enemy's Board\n"
-    board_str += "   0  1  2  3  4           0  1  2  3  4\n"
+    board_str += "   "
+    for index in range(board_size):
+        board_str += f"{index}  "
+    board_str += " " * 9
+    for index in range(board_size):
+        board_str += f"{index}  "
+    board_str += "\n"
     for row in range(board_size):
         row_str = f"{chr(65 + row)} "
         for column in range(board_size):
