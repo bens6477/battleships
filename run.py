@@ -290,9 +290,9 @@ def main():
     print("Welcome to the game!")
     global user
     global computer
-    reset_board()
-    user = reset_board()[0]
-    computer = reset_board()[1]
+    players = reset_board()
+    user = players[0]
+    computer = players[1]
     single_blast()
     check_remaining_ships()
     play_again()
