@@ -360,6 +360,24 @@ def main():
     play_again()
 
 
+def is_ship_already_here(player, location):
+    """
+    Checks if ship div is already present at passed coordinates.
+    """
+    print_boards()
+    print("\nChecking if ship present\n")
+    print(location)
+    board_location = player.board[location[0]][location[1]]
+    print(player.board[location[0]][location[1]])
+    if board_location != "-":
+        print("Ship already placed here")
+    else:
+        print("No ship present here")
+
+
+is_ship_already_here(user, (0, 0))
+
+
 def add_ship_to_board(player, ship, location, direction):
     """
     Add ship to player's board.
@@ -424,7 +442,6 @@ def randomise_all_ship_locations(player):
     """
     Randomises the location of all ships on the board.
     """
-    print(ship_tuple)
     for ship in ship_tuple:
         print(ship.ship_type)
         placed = False
@@ -432,11 +449,13 @@ def randomise_all_ship_locations(player):
             random_location = generate_random_ship_location(ship)
             print(random_location[1])
             add_ship_to_board(player, ship, random_location[1], random_location[0])
+            # Add logic to check if ship div already here
             placed = True
     print_boards()
 
 
 randomise_all_ship_locations(user)
+
 
 def user_manual_ship_input():
     """
