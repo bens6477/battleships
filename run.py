@@ -407,10 +407,13 @@ def generate_random_ship_location(ship):
     """
     direction_array = ["right", "down"]
     random_direction = random.choice(direction_array)
-    print(random_direction)
-    print(ship.placement_range)
     placement_array = [num for num in range(ship.placement_range + 1)]
-    print(placement_array)
+    random_placement_index = random.choice(placement_array)
+    random_index = random.randrange(board_size)
+    random_placement_tuple = (random_placement_index, random_index)
+    print([random_direction, random_placement_tuple])
+
+    return [random_direction, random_placement_tuple]
 
 generate_random_ship_location(destroyer)
 
