@@ -160,7 +160,7 @@ def print_boards():
     Displays both player board in a clean and formatted structure.
     """
     board_str = f"{user_name}'s Board:"
-    board_str += " " * (14 - len(user_name))
+    board_str += " " * (15 - len(user_name))
     board_str += "Enemy's Board:\n\n"
     board_str += "   "
     for index in range(board_size):
@@ -374,8 +374,8 @@ def input_ship_location(player, ship):
     """
     Request an input for the location and direction of the passed ship.
     """
+    print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
     print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
-    print(f"{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
     location_input = input()
     location = convert_guess(location_input)
     print("")
@@ -396,12 +396,20 @@ def input_ship_location(player, ship):
 
     return (location, direction)
 
+def user_manual_ship_input():
+    """
+    Single functions running the functions for user to place all five ships
+    on their board.
+    
+    """
+    input_ship_location(user, aircraft_carrier)
+    input_ship_location(user, battleship)
+    input_ship_location(user, cruiser)
+    input_ship_location(user, submarine)
+    input_ship_location(user, destroyer)
 
-input_ship_location(user, aircraft_carrier)
-input_ship_location(user, battleship)
-input_ship_location(user, cruiser)
-input_ship_location(user, submarine)
-input_ship_location(user, destroyer)
+
+user_manual_ship_input()
 
 # Quick placement:
 # add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
