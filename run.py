@@ -420,7 +420,7 @@ def generate_random_ship_location(ship):
 # generate_random_ship_location(destroyer)
 
 
-def randomise_all_ship_locations():
+def randomise_all_ship_locations(player):
     """
     Randomises the location of all ships on the board.
     """
@@ -430,12 +430,13 @@ def randomise_all_ship_locations():
         placed = False
         while not placed:
             random_location = generate_random_ship_location(ship)
-            print(random_location)
+            print(random_location[1])
+            add_ship_to_board(player, ship, random_location[1], random_location[0])
             placed = True
     print_boards()
 
 
-randomise_all_ship_locations()
+randomise_all_ship_locations(user)
 
 def user_manual_ship_input():
     """
