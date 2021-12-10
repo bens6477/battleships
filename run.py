@@ -59,10 +59,11 @@ class Ship(Mixin):
 aircraft_carrier = Ship("Aircraft Carrier", 5, "A")
 battleship = Ship("Battleship", 4, "B")
 cruiser = Ship("Cruiser", 3, "C")
-destroyer = Ship("Destroyer", 2, "D")
 submarine = Ship("Submarine", 3, "S")
+destroyer = Ship("Destroyer", 2, "D")
 
-ship_array = ["aircraft_carrier", "battleship", "cruiser", "submarine", "destroyer"]
+
+ship_tuple = (aircraft_carrier, battleship, cruiser, submarine, destroyer)
 aircraft_carrier.print_ship()
 battleship.print_ship()
 cruiser.print_ship()
@@ -423,7 +424,15 @@ def randomise_all_ship_locations():
     """
     Randomises the location of all ships on the board.
     """
-    print(ship_array)
+    print(ship_tuple)
+    for ship in ship_tuple:
+        print(ship.ship_type)
+        placed = False
+        while not placed:
+            random_location = generate_random_ship_location(ship)
+            print(random_location)
+            placed = True
+    print_boards()
 
 
 randomise_all_ship_locations()
