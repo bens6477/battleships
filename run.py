@@ -1,12 +1,13 @@
 import random
 
 
+board_size = 5
+num_ships = 5
+
 class Mixin:
     """
     Sets parameters that can be used in other classes.
     """
-    board_size = 5
-    num_ships = 5
 
 
 def generate_random_guess():
@@ -46,6 +47,7 @@ class Ship(Mixin):
         self.ship_type = ship_type
         self.ship_length = ship_length
         self.symbol = symbol
+        self.placement_range = board_size - self.ship_length
 
     def print_ship(self):
         """
@@ -83,9 +85,9 @@ class Board(Mixin):
         Creates a new, empty board for the player.
         """
         self.board = []
-        for row in range(self.board_size):
+        for row in range(board_size):
             self.board.append([])
-            for column in range(self.board_size):
+            for column in range(board_size):
                 self.board[row].append('-')
 
         return self.board
