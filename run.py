@@ -400,6 +400,20 @@ def input_ship_location(player, ship):
     return (location, direction)
 
 
+def generate_random_ship_location(ship):
+    """
+    Generates random ship location depending on the ship's
+    placement range by randomising direction and valid index.
+    """
+    direction_array = ["right", "down"]
+    random_direction = random.choice(direction_array)
+    print(random_direction)
+    print(ship.placement_range)
+    placement_array = [num for num in range(ship.placement_range + 1)]
+    print(placement_array)
+
+generate_random_ship_location(destroyer)
+
 def user_manual_ship_input():
     """
     Single functions running the functions for user to place all five ships
