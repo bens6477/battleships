@@ -62,12 +62,13 @@ cruiser = Ship("Cruiser", 3, "C")
 destroyer = Ship("Destroyer", 2, "D")
 submarine = Ship("Submarine", 3, "S")
 
-
+ship_array = ["aircraft_carrier", "battleship", "cruiser", "submarine", "destroyer"]
 aircraft_carrier.print_ship()
 battleship.print_ship()
 cruiser.print_ship()
-destroyer.print_ship()
 submarine.print_ship()
+destroyer.print_ship()
+
 
 
 class Board(Mixin):
@@ -415,7 +416,17 @@ def generate_random_ship_location(ship):
 
     return [random_direction, random_placement_tuple]
 
-generate_random_ship_location(destroyer)
+# generate_random_ship_location(destroyer)
+
+
+def randomise_all_ship_locations():
+    """
+    Randomises the location of all ships on the board.
+    """
+    print(ship_array)
+
+
+randomise_all_ship_locations()
 
 def user_manual_ship_input():
     """
