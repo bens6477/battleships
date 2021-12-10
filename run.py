@@ -43,7 +43,7 @@ class Ship:
         self.ship_type = ship_type
         self.ship_length = ship_length
         self.symbol = symbol
-    
+
     def print_ship(self):
         """
         Prints an instance of the ship passed into the function.
@@ -141,10 +141,12 @@ def reset_board():
 
     return [user, computer]
 
+
 user_name = ""
 players = reset_board()
 user = players[0]
 computer = players[1]
+
 
 def print_instructions():
     """
@@ -159,7 +161,7 @@ def print_boards():
     """
     board_str = f"{user_name}'s Board:"
     board_str += " " * (14 - len(user_name))
-    board_str += f"Enemy's Board:\n\n"
+    board_str += "Enemy's Board:\n\n"
     board_str += "   "
     for index in range(board_size):
         board_str += f"{index}  "
@@ -325,7 +327,7 @@ def play_again():
     print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
     another_game = input()
     print("")
-    
+
     if ord(another_game.lower()) == 121:
         print("Playing again...")
         print("-" * 35, "\n")
@@ -367,33 +369,47 @@ def add_ship_to_board(player, ship, location, direction):
         print("\n *** Invalid direction ***\n")
     return player.board
 
+
 def input_ship_location(player, ship):
     """
     Request an input for the location and direction of the passed ship.
     """
-    print(f"Input the coordinates for bow of your {ship.ship_type}")
-    location = input()
+    print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
+    print(f"{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
+    location_input = input()
+    location = convert_guess(location_input)
     print("")
     print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
-    direction = input()
+    direction_input = input()
     print("")
-
+    if ord(direction_input[0].lower()) == 114:
+        print(f"Ship placed horizontally across starting from {location}\n")
+        direction = "right"
+    elif ord(direction_input[0].lower()) == 100:
+        print(f"Ship placed vertically downwards starting from {location}\n")
+        direction = "down"
+    else:
+        print("\n *** Invalid direction ***\n")
+    print("")
     add_ship_to_board(player, ship, location, direction)
+    print_boards()
 
     return (location, direction)
 
 
-
 input_ship_location(user, aircraft_carrier)
+input_ship_location(user, battleship)
+input_ship_location(user, cruiser)
+input_ship_location(user, submarine)
+input_ship_location(user, destroyer)
 
-add_ship_to_board(user, aircraft_carrier, (0,0), "down")
-add_ship_to_board(user, battleship, (1,1), "down")
-add_ship_to_board(user, cruiser, (2,2), "down")
-add_ship_to_board(user, destroyer, (3,3), "down")
-add_ship_to_board(user, submarine, (2,4), "down")
+# Quick placement:
+# add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
+# add_ship_to_board(user, battleship, (1, 1), "down")
+# add_ship_to_board(user, cruiser, (2, 2), "down")
+# add_ship_to_board(user, destroyer, (3, 3), "down")
+# add_ship_to_board(user, submarine, (2, 4), "down")
 
-print_boards()
+
 
 # main()
-
-
