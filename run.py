@@ -1,9 +1,12 @@
 import random
 
-scores = {"computer": 0, "user": 0}
 
-board_size = 5
-num_ships = 5
+class Mixin:
+    """
+    Sets parameters that can be used in other classes.
+    """
+    board_size = 5
+    num_ships = 5
 
 
 def generate_random_guess():
@@ -34,7 +37,7 @@ def is_guess_in_array(current_guess, location_array, append, delete):
         return True
 
 
-class Ship:
+class Ship(Mixin):
     """
     Creates a ship with specified length and symbol depending on the ship
     type.
@@ -65,13 +68,11 @@ destroyer.print_ship()
 submarine.print_ship()
 
 
-class Board:
+class Board(Mixin):
     """
     Main board class. Sets all parameters for each player's board.
     """
-    def __init__(self, board_size, num_ships, name):
-        self.board_size = board_size
-        self.num_ships = num_ships
+    def __init__(self, name):
         self.name = name
         self.board = self.create_board()
         self.ship_locations = self.assign_ship_locations()
@@ -134,8 +135,8 @@ def game_introduction():
 
 
 def reset_board():
-    user_copy = Board(board_size, num_ships, user_name)
-    computer_copy = Board(board_size, num_ships, "computer")
+    user_copy = Board(user_name)
+    computer_copy = Board("computer")
     user = user_copy
     computer = computer_copy
 
@@ -396,11 +397,11 @@ def input_ship_location(player, ship):
 
     return (location, direction)
 
+
 def user_manual_ship_input():
     """
     Single functions running the functions for user to place all five ships
     on their board.
-    
     """
     input_ship_location(user, aircraft_carrier)
     input_ship_location(user, battleship)
