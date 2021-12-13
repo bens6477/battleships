@@ -427,10 +427,17 @@ def generate_random_ship_location(ship):
     """
     direction_array = ["right", "down"]
     random_direction = random.choice(direction_array)
+    print("placement_range: ", ship.placement_range)
     placement_array = [num for num in range(ship.placement_range + 1)]
+    print("placement_array: ", placement_array)
     random_placement_index = random.choice(placement_array)
     random_index = random.randrange(board_size)
-    random_placement_tuple = (random_placement_index, random_index)
+    if random_direction == "right":
+        random_placement_tuple = (random_index, random_placement_index)
+    elif random_direction == "down":
+        random_placement_tuple = (random_placement_index, random_index)
+    else:
+        print("** Invalid input **")
     print([random_direction, random_placement_tuple])
 
     return [random_direction, random_placement_tuple]
@@ -469,7 +476,7 @@ def user_manual_ship_input():
     input_ship_location(user, destroyer)
 
 
-user_manual_ship_input()
+# user_manual_ship_input()
 
 # Quick placement:
 # add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
