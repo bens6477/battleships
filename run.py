@@ -371,8 +371,10 @@ def is_ship_already_here(player, location):
     print(player.board[location[0]][location[1]])
     if board_location != "-":
         print("Ship already placed here")
+        return False
     else:
         print("No ship present here")
+        return True
 
 
 is_ship_already_here(user, (0, 0))
@@ -425,20 +427,27 @@ def generate_random_ship_location(ship):
     Generates random ship location depending on the ship's
     placement range by randomising direction and valid index.
     """
-    direction_array = ["right", "down"]
-    random_direction = random.choice(direction_array)
-    print("placement_range: ", ship.placement_range)
-    placement_array = [num for num in range(ship.placement_range + 1)]
-    print("placement_array: ", placement_array)
-    random_placement_index = random.choice(placement_array)
-    random_index = random.randrange(board_size)
-    if random_direction == "right":
-        random_placement_tuple = (random_index, random_placement_index)
-    elif random_direction == "down":
-        random_placement_tuple = (random_placement_index, random_index)
-    else:
-        print("** Invalid input **")
-    print([random_direction, random_placement_tuple])
+    empty_cell = False
+    while not empty_cell:
+        direction_array = ["right", "down"]
+        random_direction = random.choice(direction_array)
+        print("placement_range: ", ship.placement_range)
+        placement_array = [num for num in range(ship.placement_range + 1)]
+        print("placement_array: ", placement_array)
+        random_placement_index = random.choice(placement_array)
+        random_index = random.randrange(board_size)
+        if random_direction == "right":
+            random_placement_tuple = (random_index, random_placement_index)
+        elif random_direction == "down":
+            random_placement_tuple = (random_placement_index, random_index)
+        else:
+            print("** Invalid input **")
+        print([random_direction, random_placement_tuple])
+        
+        cell_check = is_ship_already_here(user, random_placement_tuple)
+        if cell_check:
+            empty_cell = True
+    print("Submitted data: ", [random_direction, random_placement_tuple])
 
     return [random_direction, random_placement_tuple]
 
