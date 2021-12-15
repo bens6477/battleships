@@ -465,23 +465,27 @@ def input_ship_location(player, ship):
     """
     Request an input for the location and direction of the passed ship.
     """
-    print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
-    print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
-    location_input = input()
-    location = convert_guess(location_input)
-    print("")
-    print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
-    direction_input = input()
-    print("")
-    if ord(direction_input[0].lower()) == 114:
-        print(f"Ship placed horizontally across starting from {location}\n")
-        direction = "right"
-    elif ord(direction_input[0].lower()) == 100:
-        print(f"Ship placed vertically downwards starting from {location}\n")
-        direction = "down"
-    else:
-        print("\n *** Invalid direction ***\n")
-    print("")
+    ship_present = True
+    while ship_present:
+        print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
+        print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
+        location_input = input()
+        location = convert_guess(location_input)
+        print("")
+        print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
+        direction_input = input()
+        print("")
+        if ord(direction_input[0].lower()) == 114:
+            print(f"Ship placed horizontally across starting from {location}\n")
+            direction = "right"
+        elif ord(direction_input[0].lower()) == 100:
+            print(f"Ship placed vertically downwards starting from {location}\n")
+            direction = "down"
+        else:
+            print("\n *** Invalid direction ***\n")
+        print("")
+        ship_present = is_ship_already_here(player, ship, direction, location)
+        # Stil need to run through input validation
     add_ship_to_board(player, ship, location, direction)
     print_boards()
 
