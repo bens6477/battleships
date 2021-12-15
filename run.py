@@ -8,6 +8,8 @@ class Mixin:
     """
     Sets parameters that can be used in other classes.
     """
+    def test_function(self, ship):
+        print(ship.ship_type, self.board)
 
 
 def generate_random_guess():
@@ -155,6 +157,8 @@ players = reset_board()
 user = players[0]
 computer = players[1]
 
+
+print(user.test_function(destroyer))
 
 def print_instructions():
     """
@@ -387,10 +391,37 @@ def is_ship_already_here(player, ship, direction, location):
         print("No ships present")
         return False
     else:
-        print("\nChecknot performed correctly\n")
+        print("\nCheck not performed correctly\n")
         return True
 
 # is_ship_already_here(user, (0, 0))
+
+
+def generate_random_ship_location(ship):
+    """
+    Generates random ship location depending on the ship's
+    placement range by randomising direction and valid index.
+    """
+    ship_present = True
+    while ship_present:
+        direction_array = ["right", "down"]
+        random_direction = random.choice(direction_array)
+        print("placement_range: ", ship.placement_range)
+        placement_array = [num for num in range(ship.placement_range + 1)]
+        print("placement_array: ", placement_array)
+        random_placement_index = random.choice(placement_array)
+        random_index = random.randrange(board_size)
+        if random_direction == "right":
+            random_placement_tuple = (random_index, random_placement_index)
+        elif random_direction == "down":
+            random_placement_tuple = (random_placement_index, random_index)
+        else:
+            print("** Invalid input **")
+        print([random_direction, random_placement_tuple])
+        ship_present = is_ship_already_here(user, ship, random_direction, random_placement_tuple)
+    print("Submitted data: ", [random_direction, random_placement_tuple])
+
+    return [random_direction, random_placement_tuple]
 
 
 def add_ship_to_board(player, ship, location, direction):
@@ -406,6 +437,28 @@ def add_ship_to_board(player, ship, location, direction):
     else:
         print("\n *** Invalid direction ***\n")
     return player.board
+
+
+# generate_random_ship_location(destroyer)
+
+
+def randomise_all_ship_locations(player):
+    """
+    Randomises the location of all ships on the board.
+    """
+    for ship in ship_tuple:
+        print(ship.ship_type)
+        placed = False
+        while not placed:
+            random_location = generate_random_ship_location(ship)
+            print(random_location[1])
+            add_ship_to_board(player, ship, random_location[1], random_location[0])
+            # Add logic to check if ship div already here
+            placed = True
+    print_boards()
+
+
+randomise_all_ship_locations(user)
 
 
 def input_ship_location(player, ship):
@@ -435,54 +488,6 @@ def input_ship_location(player, ship):
     return (location, direction)
 
 
-def generate_random_ship_location(ship):
-    """
-    Generates random ship location depending on the ship's
-    placement range by randomising direction and valid index.
-    """
-    ship_present = True
-    while ship_present:
-        direction_array = ["right", "down"]
-        random_direction = random.choice(direction_array)
-        print("placement_range: ", ship.placement_range)
-        placement_array = [num for num in range(ship.placement_range + 1)]
-        print("placement_array: ", placement_array)
-        random_placement_index = random.choice(placement_array)
-        random_index = random.randrange(board_size)
-        if random_direction == "right":
-            random_placement_tuple = (random_index, random_placement_index)
-        elif random_direction == "down":
-            random_placement_tuple = (random_placement_index, random_index)
-        else:
-            print("** Invalid input **")
-        print([random_direction, random_placement_tuple])
-        ship_present = is_ship_already_here(user, ship, random_direction, random_placement_tuple)
-    print("Submitted data: ", [random_direction, random_placement_tuple])
-
-    return [random_direction, random_placement_tuple]
-
-# generate_random_ship_location(destroyer)
-
-
-def randomise_all_ship_locations(player):
-    """
-    Randomises the location of all ships on the board.
-    """
-    for ship in ship_tuple:
-        print(ship.ship_type)
-        placed = False
-        while not placed:
-            random_location = generate_random_ship_location(ship)
-            print(random_location[1])
-            add_ship_to_board(player, ship, random_location[1], random_location[0])
-            # Add logic to check if ship div already here
-            placed = True
-    print_boards()
-
-
-randomise_all_ship_locations(user)
-
-
 def user_manual_ship_input():
     """
     Single functions running the functions for user to place all five ships
@@ -495,7 +500,7 @@ def user_manual_ship_input():
     input_ship_location(user, destroyer)
 
 
-# user_manual_ship_input()
+user_manual_ship_input()
 
 # Quick placement:
 # add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
