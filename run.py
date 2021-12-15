@@ -172,21 +172,26 @@ def print_boards():
     Displays both player board in a clean and formatted structure.
     """
     board_str = f"{user_name}'s Board:"
-    board_str += " " * (15 - len(user_name))
+    board_str += " " * (17 - len(user_name))
     board_str += "Enemy's Board:\n\n"
-    board_str += "   "
+    board_str += "     "
     for index in range(board_size):
         board_str += f"{index}  "
-    board_str += " " * 9
+    board_str += " " * 11
     for index in range(board_size):
         board_str += f"{index}  "
     board_str += "\n"
+    board_str += "     "
+    board_str += "\u2193  " * board_size
+    board_str += " " * 11
+    board_str += "\u2193  " * (board_size)
+    board_str += "\n"
     for row in range(board_size):
-        row_str = f"{chr(65 + row)} "
+        row_str = f"{chr(65 + row)} \u2192 "
         for column in range(board_size):
             column_str = f" {user.board[row][column]} "
             row_str += column_str
-        row_str += f"   |   {chr(65 + row)} "
+        row_str += f"   |   {chr(65 + row)} \u2192 "
         for column in range(board_size):
             column_str = f" {computer.board[row][column]} "
             if column == board_size - 1:
