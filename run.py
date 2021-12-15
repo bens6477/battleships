@@ -397,7 +397,7 @@ def is_ship_already_here(player, ship, direction, location):
 # is_ship_already_here(user, (0, 0))
 
 
-def generate_random_ship_location(ship):
+def generate_random_ship_location(player, ship):
     """
     Generates random ship location depending on the ship's
     placement range by randomising direction and valid index.
@@ -418,7 +418,7 @@ def generate_random_ship_location(ship):
         else:
             print("** Invalid input **")
         print([random_direction, random_placement_tuple])
-        ship_present = is_ship_already_here(user, ship, random_direction, random_placement_tuple)
+        ship_present = is_ship_already_here(player, ship, random_direction, random_placement_tuple)
     print("Submitted data: ", [random_direction, random_placement_tuple])
 
     return [random_direction, random_placement_tuple]
@@ -450,7 +450,7 @@ def randomise_all_ship_locations(player):
         print(ship.ship_type)
         placed = False
         while not placed:
-            random_location = generate_random_ship_location(ship)
+            random_location = generate_random_ship_location(player, ship)
             print(random_location[1])
             add_ship_to_board(player, ship, random_location[1], random_location[0])
             # Add logic to check if ship div already here
@@ -459,6 +459,7 @@ def randomise_all_ship_locations(player):
 
 
 randomise_all_ship_locations(user)
+randomise_all_ship_locations(computer)
 
 
 def input_ship_location(player, ship):
