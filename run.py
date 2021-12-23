@@ -174,24 +174,24 @@ def print_boards():
     board_str = f"{user_name}'s Board:"
     board_str += " " * (17 - len(user_name))
     board_str += "Enemy's Board:\n\n"
-    board_str += "     "
+    board_str += " " * 4
     for index in range(board_size):
         board_str += f"{index}  "
     board_str += " " * 11
     for index in range(board_size):
         board_str += f"{index}  "
     board_str += "\n"
-    board_str += "     "
-    board_str += "\u2193  " * board_size
+    board_str += "  \u2198 "
+    board_str += "   " * board_size
     board_str += " " * 11
-    board_str += "\u2193  " * (board_size)
+    board_str += "   " * (board_size)
     board_str += "\n"
     for row in range(board_size):
-        row_str = f"{chr(65 + row)} \u2192 "
+        row_str = f"{chr(65 + row)}  "
         for column in range(board_size):
             column_str = f" {user.board[row][column]} "
             row_str += column_str
-        row_str += f"   |   {chr(65 + row)} \u2192 "
+        row_str += f"   |   {chr(65 + row)}   "
         for column in range(board_size):
             column_str = f" {computer.board[row][column]} "
             if column == board_size - 1:
