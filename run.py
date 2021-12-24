@@ -81,7 +81,7 @@ class Board(Mixin):
     def __init__(self, name):
         self.name = name
         self.board = self.create_board()
-        # self.ship_locations = self.assign_ship_locations()
+        self.ship_locations = self.record_ship_locations()
         self.styled_board = self.display_board()
 
     def create_board(self):
@@ -110,6 +110,20 @@ class Board(Mixin):
                 ships += 1
 
         return ship_locations
+
+
+    def record_ship_locations(self):
+        """
+        Records the locations for ships on the player's board.
+        """
+        ship_locations = []
+        for row in range(board_size):
+            for column in range(board_size):
+                if self.board[row][column] != "-":
+                    ship_locations.append((row, column))
+
+        return ship_locations
+
 
     def display_board(self):
         """
@@ -467,6 +481,9 @@ randomise_all_ship_locations(user)
 randomise_all_ship_locations(computer)
 
 
+print(user.record_ship_locations())
+
+
 def input_ship_location(player, ship):
     """
     Request an input for the location and direction of the passed ship.
@@ -510,7 +527,7 @@ def user_manual_ship_input():
     input_ship_location(user, destroyer)
 
 
-user_manual_ship_input()
+# user_manual_ship_input()
 
 # Quick placement:
 # add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
