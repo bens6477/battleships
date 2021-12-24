@@ -197,6 +197,49 @@ class Board(Mixin):
                 placed = True
         print_boards()
 
+    
+    def input_ship_location(self, ship):
+        """
+        Request an input for the location and direction of the passed ship.
+        """
+        ship_present = True
+        while ship_present:
+            print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
+            print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
+            location_input = input()
+            location = convert_guess(location_input)
+            print("")
+            print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
+            direction_input = input()
+            print("")
+            if ord(direction_input[0].lower()) == 114:
+                print(f"Ship placed horizontally across starting from {location}\n")
+                direction = "right"
+            elif ord(direction_input[0].lower()) == 100:
+                print(f"Ship placed vertically downwards starting from {location}\n")
+                direction = "down"
+            else:
+                print("\n *** Invalid direction ***\n")
+            print("")
+            ship_present = self.is_ship_already_here(ship, direction, location)
+            # Stil need to run through input validation
+        self.add_ship_to_board(ship, location, direction)
+        print_boards()
+
+        return (location, direction)
+
+
+    def manual_ship_input(self):
+        """
+        Single functions running the functions for user to place all five ships
+        on their board.
+        """
+        self.input_ship_location(aircraft_carrier)
+        self.input_ship_location(battleship)
+        self.input_ship_location(cruiser)
+        self.input_ship_location(submarine)
+        self.input_ship_location(destroyer)
+
 
     def record_ship_locations(self):
         """
@@ -467,6 +510,9 @@ def main():
     players = reset_board()
     user = players[0]
     computer = players[1]
+    
+    user.manual_ship_input()
+    
     single_blast()
     check_remaining_ships()
 
@@ -475,60 +521,6 @@ def main():
     print(user.record_ship_locations())
 
     play_again()
-
-
-def input_ship_location(player, ship):
-    """
-    Request an input for the location and direction of the passed ship.
-    """
-    ship_present = True
-    while ship_present:
-        print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
-        print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
-        location_input = input()
-        location = convert_guess(location_input)
-        print("")
-        print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
-        direction_input = input()
-        print("")
-        if ord(direction_input[0].lower()) == 114:
-            print(f"Ship placed horizontally across starting from {location}\n")
-            direction = "right"
-        elif ord(direction_input[0].lower()) == 100:
-            print(f"Ship placed vertically downwards starting from {location}\n")
-            direction = "down"
-        else:
-            print("\n *** Invalid direction ***\n")
-        print("")
-        ship_present = is_ship_already_here(player, ship, direction, location)
-        # Stil need to run through input validation
-    add_ship_to_board(player, ship, location, direction)
-    print_boards()
-
-    return (location, direction)
-
-
-def user_manual_ship_input():
-    """
-    Single functions running the functions for user to place all five ships
-    on their board.
-    """
-    input_ship_location(user, aircraft_carrier)
-    input_ship_location(user, battleship)
-    input_ship_location(user, cruiser)
-    input_ship_location(user, submarine)
-    input_ship_location(user, destroyer)
-
-
-# user_manual_ship_input()
-
-# Quick placement:
-# add_ship_to_board(user, aircraft_carrier, (0, 0), "down")
-# add_ship_to_board(user, battleship, (1, 1), "down")
-# add_ship_to_board(user, cruiser, (2, 2), "down")
-# add_ship_to_board(user, destroyer, (3, 3), "down")
-# add_ship_to_board(user, submarine, (2, 4), "down")
-
 
 
 main()
