@@ -206,11 +206,11 @@ class Board(Mixin):
         while ship_present:
             print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
             print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
-            location_input = input()
+            location_input = input("\n")
             location = convert_guess(location_input)
             print("")
             print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
-            direction_input = input()
+            direction_input = input("\n")
             print("")
             if ord(direction_input[0].lower()) == 114:
                 print(f"Ship placed horizontally across starting from {location}\n")
@@ -277,7 +277,7 @@ def game_introduction():
     """
     print("Welcome to the game!\n")
     print("Enter your name:")
-    user_name = input()
+    user_name = input("\n")
     print("")
 
     return user_name
@@ -349,7 +349,7 @@ def request_user_guess():
     Requests user to input guess and returns guess.
     """
     print("Enter your target, E.G. of the form A4.")
-    current_guess = input()
+    current_guess = input("\n")
     print("")
 
     return current_guess
@@ -485,7 +485,7 @@ def play_again():
     Asks user if they would like to play again and restarts the game.
     """
     print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
-    another_game = input()
+    another_game = input("\n")
     print("")
 
     if ord(another_game.lower()) == 121:
