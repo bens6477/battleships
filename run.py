@@ -83,7 +83,7 @@ class Board(Mixin):
         self.board = self.create_board()
         # Assignments not working 
         self.ship_locations = self.record_ship_locations()
-        self.ships_present = self.print_remaining_ships()
+        self.ships_present = self.count_remaining_ships()
         # ^
         self.styled_board = self.display_board()
 
@@ -258,7 +258,7 @@ class Board(Mixin):
         return ship_locations
     
 
-    def print_remaining_ships(self):
+    def count_remaining_ships(self):
         """
         Returns the remaining number of different ships
         on the player's board.
@@ -270,6 +270,7 @@ class Board(Mixin):
                 if self.board[row][column] in ship_symbols:
                     ships_present.append(self.board[row][column])
         ships_present = list(dict.fromkeys(ships_present))
+        self.ships_present = ships_present
 
         return ships_present
 
@@ -484,17 +485,19 @@ def check_remaining_ships():
     and determines if the game is finished or still active.
     """
     while True:
-        print(user.print_remaining_ships())
-        print("User ships remaining: ", len(user.print_remaining_ships()))
-        print("Computer ships remaining: ", len(computer.print_remaining_ships()), "\n")
-        if len(user.ship_locations) < 5 and len(computer.print_remaining_ships()) < 5:
+        user_ships = user.count_remaining_ships()
+        computer_ships = computer.count_remaining_ships()
+        print(user_ships)
+        print("User ships remaining: ", len(user_ships))
+        print("Computer ships remaining: ", len(computer_ships), "\n")
+        if len(user_ships) < 5 and len(computer_ships) < 5:
             print("Its a draw! You both struck out on this round!\n")
             return False
-        elif len(computer.ship_locations) < 5:
+        elif len(computer_ships) < 5:
             print("Congratulations! You win!\n")
             print("Game over\n")
             return False
-        elif len(user.ship_locations) < 5:
+        elif len(user_ships) < 5:
             print("Unlucky! You lose!\n")
             print("Game over\n")
             return False
@@ -542,8 +545,10 @@ def main():
     print(user.record_ship_locations())
     print(computer.record_ship_locations())
 
+    print(user.ships_present)
+
     print(user.record_ship_locations())
-    print(user.print_remaining_ships())
+    print(user.count_remaining_ships())
 
 
     single_blast()
