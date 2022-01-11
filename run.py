@@ -173,7 +173,7 @@ class Board(Mixin):
         """
         if direction == "right":
             for div in range(ship.ship_length):
-                self.board[location[0]][div + location[1]] = ship.symbol
+                self.board[location[0]][div + location[1]] = ship.symbol    
         elif direction == "down":
             for div in range(ship.ship_length):
                 self.board[div + location[0]][location[1]] = ship.symbol
@@ -510,15 +510,16 @@ def main():
     players = reset_board()
     user = players[0]
     computer = players[1]
-    
-    user.manual_ship_input()
-    
-    single_blast()
-    check_remaining_ships()
 
     user.generate_random_ship_location(battleship)
     user.randomise_all_ship_locations()
     print(user.record_ship_locations())
+
+    computer.generate_random_ship_location(battleship)
+    computer.randomise_all_ship_locations()
+
+    single_blast()
+    check_remaining_ships()
 
     play_again()
 
