@@ -119,7 +119,6 @@ class Board(Mixin):
         """
         Checks if ship div is already present at passed coordinates.
         """
-        print_boards()
         print("\nChecking if ship present\n")
         print(location)
         if direction == "right":
@@ -152,9 +151,7 @@ class Board(Mixin):
         while ship_present:
             direction_array = ["right", "down"]
             random_direction = random.choice(direction_array)
-            print("placement_range: ", ship.placement_range)
             placement_array = [num for num in range(ship.placement_range + 1)]
-            print("placement_array: ", placement_array)
             random_placement_index = random.choice(placement_array)
             random_index = random.randrange(board_size)
             if random_direction == "right":
@@ -165,7 +162,6 @@ class Board(Mixin):
                 print("** Invalid input **")
             print([random_direction, random_placement_tuple])
             ship_present = self.is_ship_already_here(ship, random_direction, random_placement_tuple)
-        print("Submitted data: ", [random_direction, random_placement_tuple])
 
         return [random_direction, random_placement_tuple]
 
@@ -487,7 +483,6 @@ def check_remaining_ships():
     while True:
         user_ships = user.count_remaining_ships()
         computer_ships = computer.count_remaining_ships()
-        print(user_ships)
         print("User ships remaining: ", len(user_ships))
         print("Computer ships remaining: ", len(computer_ships), "\n")
         if len(user_ships) < 5 and len(computer_ships) < 5:
@@ -536,20 +531,8 @@ def main():
     user = players[0]
     computer = players[1]
 
-    user.generate_random_ship_location(battleship)
     user.randomise_all_ship_locations()
-
-    computer.generate_random_ship_location(battleship)
     computer.randomise_all_ship_locations()
-
-    print(user.record_ship_locations())
-    print(computer.record_ship_locations())
-
-    print(user.ships_present)
-
-    print(user.record_ship_locations())
-    print(user.count_remaining_ships())
-
 
     single_blast()
     check_remaining_ships()
