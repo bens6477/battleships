@@ -81,7 +81,8 @@ class Board(Mixin):
     def __init__(self, name):
         self.name = name
         self.board = self.create_board()
-        self.ship_locations = self.record_ship_locations()
+        self.ship_locations = self.record_ship_locations()[0]
+        self.ships_present = self.record_ship_locations()[1]
         self.styled_board = self.display_board()
 
     def create_board(self):
@@ -246,12 +247,25 @@ class Board(Mixin):
         Records the locations for ships on the player's board.
         """
         ship_locations = []
+        ship_symbols = ("A", "B", "C", "D", "S")
+        ships_present = []
         for row in range(board_size):
             for column in range(board_size):
                 if self.board[row][column] != "-":
                     ship_locations.append((row, column))
+                    ships_present.append(self.board[row][column])
+        ships_present = list(dict.fromkeys(ships_present))
 
-        return ship_locations
+        return [ships_present, ship_locations]
+    
+
+    def print_remaining_ships(self):
+        """
+        Returns the remaining number of different ships
+        on the player's board.
+        """
+
+
 
 
     def display_board(self):
@@ -517,6 +531,10 @@ def main():
 
     computer.generate_random_ship_location(battleship)
     computer.randomise_all_ship_locations()
+
+    print(user.record_ship_locations())
+    print(computer.record_ship_locations())
+
 
     single_blast()
     check_remaining_ships()
