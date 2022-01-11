@@ -262,12 +262,18 @@ class Board(Mixin):
         Returns the remaining number of different ships
         on the player's board.
         """
+        ship_symbols = ["A", "B", "C", "D", "S"]
         ships_present = []
         for row in range(board_size):
             for column in range(board_size):
                 if self.board[row][column] != "-":
                     ships_present.append(self.board[row][column])
         ships_present = list(dict.fromkeys(ships_present))
+        if "m" in ships_present:
+            ships_present.remove("m")
+        if "X" in ships_present:
+            ships_present.remove("X")
+
 
         return ships_present
 
@@ -482,9 +488,10 @@ def check_remaining_ships():
     and determines if the game is finished or still active.
     """
     while True:
-        print("User ships remaining: ", len(user.ship_locations))
-        print("Computer ships remaining: ", len(computer.ship_locations), "\n")
-        if len(user.ship_locations) < 5 and len(computer.ship_locations) < 5:
+        print(user.print_remaining_ships())
+        print("User ships remaining: ", len(user.print_remaining_ships()))
+        print("Computer ships remaining: ", len(computer.print_remaining_ships()), "\n")
+        if len(user.ship_locations) < 5 and len(computer.print_remaining_ships()) < 5:
             print("Its a draw! You both struck out on this round!\n")
             return False
         elif len(computer.ship_locations) < 5:
