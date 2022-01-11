@@ -194,7 +194,6 @@ class Board(Mixin):
                 self.add_ship_to_board(ship, random_location[1], random_location[0])
                 # Add logic to check if ship div already here
                 placed = True
-        print_boards()
 
     
     def input_ship_location(self, ship):
