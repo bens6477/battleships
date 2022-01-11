@@ -81,9 +81,10 @@ class Board(Mixin):
     def __init__(self, name):
         self.name = name
         self.board = self.create_board()
-
+        # Assignments not working 
         self.ship_locations = self.record_ship_locations()
         self.ships_present = self.print_remaining_ships()
+        # ^
         self.styled_board = self.display_board()
 
     def create_board(self):
@@ -266,14 +267,9 @@ class Board(Mixin):
         ships_present = []
         for row in range(board_size):
             for column in range(board_size):
-                if self.board[row][column] != "-":
+                if self.board[row][column] in ship_symbols:
                     ships_present.append(self.board[row][column])
         ships_present = list(dict.fromkeys(ships_present))
-        if "m" in ships_present:
-            ships_present.remove("m")
-        if "X" in ships_present:
-            ships_present.remove("X")
-
 
         return ships_present
 
