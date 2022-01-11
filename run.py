@@ -81,8 +81,9 @@ class Board(Mixin):
     def __init__(self, name):
         self.name = name
         self.board = self.create_board()
-        self.ship_locations = self.record_ship_locations()[0]
-        self.ships_present = self.record_ship_locations()[1]
+
+        self.ship_locations = self.record_ship_locations()
+        self.ships_present = self.print_remaining_ships()
         self.styled_board = self.display_board()
 
     def create_board(self):
@@ -247,16 +248,13 @@ class Board(Mixin):
         Records the locations for ships on the player's board.
         """
         ship_locations = []
-        ship_symbols = ("A", "B", "C", "D", "S")
         ships_present = []
         for row in range(board_size):
             for column in range(board_size):
                 if self.board[row][column] != "-":
                     ship_locations.append((row, column))
-                    ships_present.append(self.board[row][column])
-        ships_present = list(dict.fromkeys(ships_present))
 
-        return [ships_present, ship_locations]
+        return ship_locations
     
 
     def print_remaining_ships(self):
@@ -264,7 +262,14 @@ class Board(Mixin):
         Returns the remaining number of different ships
         on the player's board.
         """
+        ships_present = []
+        for row in range(board_size):
+            for column in range(board_size):
+                if self.board[row][column] != "-":
+                    ships_present.append(self.board[row][column])
+        ships_present = list(dict.fromkeys(ships_present))
 
+        return ships_present
 
 
 
@@ -527,13 +532,15 @@ def main():
 
     user.generate_random_ship_location(battleship)
     user.randomise_all_ship_locations()
-    print(user.record_ship_locations())
 
     computer.generate_random_ship_location(battleship)
     computer.randomise_all_ship_locations()
 
     print(user.record_ship_locations())
     print(computer.record_ship_locations())
+
+    print(user.record_ship_locations())
+    print(user.print_remaining_ships())
 
 
     single_blast()
