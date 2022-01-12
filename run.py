@@ -1,6 +1,5 @@
 import random
 
-
 board_size = 5
 num_ships = 5
 
@@ -91,7 +90,6 @@ class Board(Mixin):
         self.board = self.create_board()
         self.ships_present = self.update_board()[0]
         self.ship_locations = self.update_board()[1]
-        self.styled_board = self.display_board()
 
     def create_board(self):
         """
@@ -104,21 +102,6 @@ class Board(Mixin):
                 self.board[row].append('-')
 
         return self.board
-
-    def assign_ship_locations(self):
-        """
-        Assigns random locations for ships on the player's board.
-        """
-        ship_locations = []
-        ships = 0
-        while ships < num_ships:
-            random_pair = generate_random_guess()
-            valid_location = is_guess_in_array(random_pair, ship_locations, True, False)            
-            if not valid_location:
-                self.board[random_pair[0]][random_pair[1]] = "S"
-                ships += 1
-
-        return ship_locations
 
     
     def is_ship_already_here(self, ship, direction, location):
@@ -190,51 +173,7 @@ class Board(Mixin):
             while not placed:
                 random_location = self.generate_random_ship_location(ship)
                 self.add_ship_to_board(ship, random_location[1], random_location[0])
-                # Add logic to check if ship div already here
                 placed = True
-
-    
-    def input_ship_location(self, ship):
-        """
-        Request an input for the location and direction of the passed ship.
-        """
-        ship_present = True
-        while ship_present:
-            print(f"\n{ship.ship_type} ({ship.ship_length}):  " + f" {ship.symbol}" * ship.ship_length)
-            print(f"Input the coordinates for bow of your {ship.ship_type}. Enter in the form A1.")
-            location_input = input("\n")
-            location = convert_guess(location_input)
-            print("")
-            print(f"Input direction of you {ship.ship_type} from bow to stern (front to back). Enter (r)ight or (d)own.")
-            direction_input = input("\n")
-            print("")
-            if ord(direction_input[0].lower()) == 114:
-                print(f"Ship placed horizontally across starting from {location}\n")
-                direction = "right"
-            elif ord(direction_input[0].lower()) == 100:
-                print(f"Ship placed vertically downwards starting from {location}\n")
-                direction = "down"
-            else:
-                print("\n *** Invalid direction ***\n")
-            print("")
-            ship_present = self.is_ship_already_here(ship, direction, location)
-            # Stil need to run through input validation
-        self.add_ship_to_board(ship, location, direction)
-        print_boards()
-
-        return (location, direction)
-
-
-    def manual_ship_input(self):
-        """
-        Single functions running the functions for user to place all five ships
-        on their board.
-        """
-        self.input_ship_location(aircraft_carrier)
-        self.input_ship_location(battleship)
-        self.input_ship_location(cruiser)
-        self.input_ship_location(submarine)
-        self.input_ship_location(destroyer)
 
     
     def update_board(self):
@@ -255,24 +194,6 @@ class Board(Mixin):
         self.ship_locations = ship_locations
 
         return (ships_present, ship_locations)
-
-
-
-    def display_board(self):
-        """
-        Displays player board in a clean and formatted structure.
-        """
-        board_str = ""
-        for row in range(board_size):
-            row_str = ""
-            for column in range(board_size):
-                column_str = f" {self.board[row][column]} "
-                if column == board_size - 1:
-                    column_str += "\n"
-                row_str += column_str
-            board_str += row_str
-
-        return board_str
 
 
 def game_introduction():
