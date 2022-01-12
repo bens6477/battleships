@@ -431,6 +431,8 @@ def edit_board(hit_array):
         else:
             print(f"{guess[0]}: missed opponent\n")
             opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
+    user.update_board()
+    computer.update_board()
 
 
 def print_outcome(hit_array):
