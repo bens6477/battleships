@@ -397,8 +397,10 @@ def check_guess_validity(guess):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
     else:
         print("Valid input\n")
+        return True
 
 
 def convert_guess(guess):
@@ -458,14 +460,16 @@ def print_outcome(hit_array):
         print("Phew! They missed our ship, but stay alert!\n")
 
 
-def single_blast():
+def single_round():
     """
     Game script running a single blast attempt from each player.
     """
     print_instructions()
     print_boards()
-    current_guess = request_user_guess()
-    check_guess_validity(current_guess)
+    valid_guess = False
+    while not valid_guess:
+        current_guess = request_user_guess()
+        valid_guess = check_guess_validity(current_guess)
     user_guess = convert_guess(current_guess)
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
@@ -496,7 +500,7 @@ def check_remaining_ships():
             print("Game over\n")
             return False
         else:
-            single_blast()
+            single_round()
 
 
 def play_again():
@@ -533,7 +537,7 @@ def main():
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
 
-    single_blast()
+    single_round()
     check_remaining_ships()
 
     play_again()
