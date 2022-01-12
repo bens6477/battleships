@@ -118,24 +118,19 @@ class Board(Mixin):
     def is_ship_already_here(self, ship, direction, location):
         """
         Checks if ship div is already present at passed coordinates.
+        Returns True if ship is present and False if not present.
         """
-        print("\nChecking if ship present\n")
-        print(location)
         if direction == "right":
             for div in range(ship.ship_length):
                 cell = self.board[location[0]][div + location[1]]
                 if cell != '-':
-                    print("Ship here")
                     return True
-            print("No ships present")
             return False
         elif direction == "down":
             for div in range(ship.ship_length):
                 cell = self.board[div + location[0]][location[1]]
                 if cell != '-':
-                    print("Ship here")
                     return True
-            print("No ships present")
             return False
         else:
             print("\nCheck not performed correctly\n")
@@ -160,7 +155,6 @@ class Board(Mixin):
                 random_placement_tuple = (random_placement_index, random_index)
             else:
                 print("** Invalid input **")
-            print([random_direction, random_placement_tuple])
             ship_present = self.is_ship_already_here(ship, random_direction, random_placement_tuple)
 
         return [random_direction, random_placement_tuple]
@@ -186,11 +180,9 @@ class Board(Mixin):
         Randomises the location of all ships on the board.
         """
         for ship in ship_tuple:
-            print(ship.ship_type)
             placed = False
             while not placed:
                 random_location = self.generate_random_ship_location(ship)
-                print(random_location[1])
                 self.add_ship_to_board(ship, random_location[1], random_location[0])
                 # Add logic to check if ship div already here
                 placed = True
@@ -283,7 +275,7 @@ def game_introduction():
     """
     print("Welcome to the game!\n")
     print("Enter your name:")
-    user_name = input("\n")
+    user_name = input("")
     print("")
 
     return user_name
@@ -355,7 +347,7 @@ def request_user_guess():
     Requests user to input guess and returns guess.
     """
     print("Enter your target, E.G. of the form A4.")
-    current_guess = input("\n")
+    current_guess = input("")
     print("")
 
     return current_guess
@@ -499,7 +491,7 @@ def play_again():
     Asks user if they would like to play again and restarts the game.
     """
     print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
-    another_game = input("\n")
+    another_game = input("")
     print("")
 
     if ord(another_game.lower()) == 121:
@@ -528,14 +520,8 @@ def main():
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
 
-    print(user.ships_present)
-    print(user.ship_locations)
-
     user.update_board()
     computer.update_board()
-
-    print(user.ships_present)
-    print(user.ship_locations)
 
     single_round()
     check_remaining_ships()
