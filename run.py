@@ -14,11 +14,19 @@ class Mixin:
 
 def generate_random_guess():
     """
-    Returns random target coordinates for as a tuple.
+    Returns random target coordinates as a tuple.
     """
-    random_row = random.randrange(board_size)
-    random_column = random.randrange(board_size)
-    random_pair = (random_row, random_column)
+    valid_guess = False
+    while not valid_guess:
+        random_row = random.randrange(board_size)
+        random_column = random.randrange(board_size)
+        random_pair = (random_row, random_column)
+
+        if random_pair not in user.previous_guesses:
+            print("Fresh guess")
+            valid_guess = True
+    user.previous_guesses.append(random_pair)
+
     return random_pair
 
 
@@ -353,7 +361,7 @@ def get_valid_guess():
         print("")
         print("Checking validity of your target coordinates...")
 
-        player = user
+        player = computer
 
         num_row = ord(guess[0].lower()) - 97
         num_column = int(guess[1])
@@ -444,9 +452,7 @@ def single_round():
     """
     print_instructions()
     print_boards()
-    user_guess = get_valid_guess()
-    print(user_guess)
-    print(user.previous_guesses)
+    user_guess = get_valid_guess()    
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
     edit_board(hit_array)
