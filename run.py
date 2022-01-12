@@ -36,7 +36,6 @@ def is_guess_in_array(current_guess, location_array, append, delete):
     else:
         if delete:
             location_array.remove(current_guess)
-        print("Location in array")
         return True
 
 
@@ -80,11 +79,10 @@ class Board(Mixin):
     """
     def __init__(self, name):
         self.name = name
+        self.previous_guesses = []
         self.board = self.create_board()
-        # Assignments not working 
         self.ships_present = self.update_board()[0]
         self.ship_locations = self.update_board()[1]
-        # ^
         self.styled_board = self.display_board()
 
     def create_board(self):
@@ -342,57 +340,54 @@ def print_boards():
     print(board_str)
 
 
-def request_user_guess():
+def get_valid_guess():
     """
-    Requests user to input guess and returns guess.
-    """
-    print("Enter your target, E.G. of the form A4.")
-    current_guess = input("")
-    print("")
-
-    return current_guess
-
-
-def check_guess_validity(guess):
-    """
-    Checks user guess is of valid format for processing.
+    Request coordinates from user and checks it is of 
+    valid format for processing.
     Throws relevant errors if data is in invalid format.
     """
-    print("Checking validity of your target coordinates...")
-    try:
-        if not guess[0].isalpha():
-            raise ValueError(
-                f"First character is not a letter in your guess '{guess}'"
-            )
-        elif not guess[1].isdigit():
-            raise ValueError(
-                f"Second character is not a decimal number in your guess '{guess}'"
-            )
-        elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + board_size):
-            raise ValueError(
-                f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + board_size)}"
-            )
-        elif (int(guess[1]) > board_size - 1):
-            raise ValueError(
-                f"Second character is out of bounds of the board in your guess '{guess}'"
-            )
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
-        return False
-    else:
-        print("Valid input\n")
-        return True
+    valid_guess = False
+    while not valid_guess:
+        print("Enter your target, E.G. of the form A4.")
+        guess = input("")
+        print("")
+        print("Checking validity of your target coordinates...")
 
+        player = user
 
-def convert_guess(guess):
-    """
-    Converts user input string into respective indices on board array.
-    """
-    user_row = ord(guess[0].lower()) - 97
-    user_column = int(guess[1])
-    user_guess = (user_row, user_column)
+        num_row = ord(guess[0].lower()) - 97
+        num_column = int(guess[1])
+        num_guess = (num_row, num_column)
 
-    return user_guess
+        try:
+            if num_guess in player.previous_guesses:
+                raise ValueError(
+                    f"You have already guessed the coordinates of '{guess}'"
+                )
+            elif not guess[0].isalpha():
+                raise ValueError(
+                    f"First character is not a letter in your guess '{guess}'"
+                )
+            elif not guess[1].isdigit():
+                raise ValueError(
+                    f"Second character is not a decimal number in your guess '{guess}'"
+                )
+            elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + board_size):
+                raise ValueError(
+                    f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + board_size)}"
+                )
+            elif (int(guess[1]) > board_size - 1):
+                raise ValueError(
+                    f"Second character is out of bounds of the board in your guess '{guess}'"
+                )
+        except ValueError as e:
+            print(f"Invalid data: {e}, please try again.\n")
+        else:
+            print("Valid input\n")
+            player.previous_guesses.append(num_guess)
+            valid_guess = True
+    print("Escaped while loop")
+    return num_guess
 
 
 def check_player_guesses(user_guess, computer_guess):
@@ -449,11 +444,9 @@ def single_round():
     """
     print_instructions()
     print_boards()
-    valid_guess = False
-    while not valid_guess:
-        current_guess = request_user_guess()
-        valid_guess = check_guess_validity(current_guess)
-    user_guess = convert_guess(current_guess)
+    user_guess = get_valid_guess()
+    print(user_guess)
+    print(user.previous_guesses)
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
     edit_board(hit_array)
