@@ -269,6 +269,15 @@ class Board(Mixin):
 
         return ships_present
 
+    
+    def update_board(self):
+        """
+        Updates board data including ship locations and
+        ship types remaining.
+        """
+        self.ship_locations = self.record_ship_locations()
+        self.ships_present = self.count_remaining_ships()
+
 
 
     def display_board(self):
@@ -536,6 +545,9 @@ def main():
 
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
+
+    user.update_board()
+    computer.update_board()
 
     single_round()
     check_remaining_ships()
