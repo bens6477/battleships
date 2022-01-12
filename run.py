@@ -82,8 +82,8 @@ class Board(Mixin):
         self.name = name
         self.board = self.create_board()
         # Assignments not working 
-        self.ship_locations = self.record_ship_locations()
-        self.ships_present = self.count_remaining_ships()
+        self.ships_present = self.update_board()[0]
+        self.ship_locations = self.update_board()[1]
         # ^
         self.styled_board = self.display_board()
 
@@ -238,45 +238,25 @@ class Board(Mixin):
         self.input_ship_location(submarine)
         self.input_ship_location(destroyer)
 
-
-    def record_ship_locations(self):
-        """
-        Records the locations for ships on the player's board.
-        """
-        ship_locations = []
-        ships_present = []
-        for row in range(board_size):
-            for column in range(board_size):
-                if self.board[row][column] != "-":
-                    ship_locations.append((row, column))
-
-        return ship_locations
-    
-
-    def count_remaining_ships(self):
-        """
-        Returns the remaining number of different ships
-        on the player's board.
-        """
-        ship_symbols = ["A", "B", "C", "D", "S"]
-        ships_present = []
-        for row in range(board_size):
-            for column in range(board_size):
-                if self.board[row][column] in ship_symbols:
-                    ships_present.append(self.board[row][column])
-        ships_present = list(dict.fromkeys(ships_present))
-        self.ships_present = ships_present
-
-        return ships_present
-
     
     def update_board(self):
         """
         Updates board data including ship locations and
         ship types remaining.
         """
-        self.ship_locations = self.record_ship_locations()
-        self.ships_present = self.count_remaining_ships()
+        ship_symbols = ["A", "B", "C", "D", "S"]
+        ship_locations = []
+        ships_present = []
+        for row in range(board_size):
+            for column in range(board_size):
+                if self.board[row][column] in ship_symbols:
+                    ship_locations.append((row, column))
+                    ships_present.append(self.board[row][column])
+        ships_present = list(dict.fromkeys(ships_present))
+        self.ships_present = ships_present
+        self.ship_locations = ship_locations
+
+        return (ships_present, ship_locations)
 
 
 
@@ -493,8 +473,8 @@ def check_remaining_ships():
     and determines if the game is finished or still active.
     """
     while True:
-        user_ships = user.count_remaining_ships()
-        computer_ships = computer.count_remaining_ships()
+        user_ships = user.ships_present
+        computer_ships = computer.ships_present
         print("User ships remaining: ", len(user_ships))
         print("Computer ships remaining: ", len(computer_ships), "\n")
         if len(user_ships) < 5 and len(computer_ships) < 5:
@@ -546,8 +526,14 @@ def main():
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
 
+    print(user.ships_present)
+    print(user.ship_locations)
+
     user.update_board()
     computer.update_board()
+
+    print(user.ships_present)
+    print(user.ship_locations)
 
     single_round()
     check_remaining_ships()
