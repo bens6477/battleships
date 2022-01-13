@@ -55,6 +55,11 @@ def game_introduction():
     Welcomes user to the game and requests their name.
     """
     print("Welcome to the game!\n")
+    aircraft_carrier.print_ship()
+    battleship.print_ship()
+    cruiser.print_ship()
+    submarine.print_ship()
+    destroyer.print_ship()
     print("Enter your name:")
     user_name = input("")
     print("")
@@ -85,6 +90,7 @@ def print_boards():
     """
     Displays both player board in a clean and formatted structure.
     """
+    clear_console()
     board_str = f"{user_name}'s Board:"
     board_str += " " * (17 - len(user_name))
     board_str += "Enemy's Board:\n\n"
@@ -281,6 +287,7 @@ def main():
     """
     Main game function.
     """
+    clear_console()
     global user_name
     global user
     global computer
@@ -301,11 +308,7 @@ def main():
     play_again()
 
 
-aircraft_carrier.print_ship()
-battleship.print_ship()
-cruiser.print_ship()
-submarine.print_ship()
-destroyer.print_ship()
+
 
 user_name = ""
 players = reset_board()
