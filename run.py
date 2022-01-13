@@ -126,16 +126,10 @@ def get_valid_guess():
     """
     valid_guess = False
     while not valid_guess:
-        print("Enter your target, E.G. of the form A4.")
+        print("Enter your target in the form 'A4' (not case-sensitive)")
         guess = input("")
         print("")
         print("Checking validity of your target coordinates...")
-
-        print("len(guess):", len(guess))
-
-
-        player = computer
-
 
         try:
             if len(guess) != 2:
@@ -160,29 +154,23 @@ def get_valid_guess():
                 )
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
-            continue
         else:
-            print("Valid input\n")
-        
+            num_row = ord(guess[0].lower()) - 97
+            num_column = int(guess[1])
+            num_guess = (num_row, num_column)
 
-        print("Passed first exception")
+            try:
+                if num_guess in computer.previous_guesses:
+                    raise ValueError(
+                        f"You have already guessed the coordinates of '{guess}'"
+                    )
+            except ValueError as e:
+                print(f"Invalid data: {e}, please choose coordinates in the the form 'A4'.\n")
+            else:
+                print("Valid input\n")
+                computer.previous_guesses.append(num_guess)
+                valid_guess = True
 
-        num_row = ord(guess[0].lower()) - 97
-        num_column = int(guess[1])
-        num_guess = (num_row, num_column)
-
-        try:
-            if num_guess in player.previous_guesses:
-                raise ValueError(
-                    f"You have already guessed the coordinates of '{guess}'"
-                )
-        except ValueError as e:
-            print(f"Invalid data: {e}, please try again.\n")
-        else:
-            print("Valid input\n")
-            player.previous_guesses.append(num_guess)
-            valid_guess = True
-    print("Escaped while loop")
     return num_guess
 
 
