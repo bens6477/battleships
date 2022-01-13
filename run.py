@@ -131,16 +131,16 @@ def get_valid_guess():
         print("")
         print("Checking validity of your target coordinates...")
 
+        print("len(guess):", len(guess))
+
+
         player = computer
 
-        num_row = ord(guess[0].lower()) - 97
-        num_column = int(guess[1])
-        num_guess = (num_row, num_column)
 
         try:
-            if num_guess in player.previous_guesses:
+            if len(guess) != 2:
                 raise ValueError(
-                    f"You have already guessed the coordinates of '{guess}'"
+                    f"Two characters were not provided in your guess '{guess}'"
                 )
             elif not guess[0].isalpha():
                 raise ValueError(
@@ -157,6 +157,24 @@ def get_valid_guess():
             elif (int(guess[1]) > board_size - 1):
                 raise ValueError(
                     f"Second character is out of bounds of the board in your guess '{guess}'"
+                )
+        except ValueError as e:
+            print(f"Invalid data: {e}, please try again.\n")
+            continue
+        else:
+            print("Valid input\n")
+        
+
+        print("Passed first exception")
+
+        num_row = ord(guess[0].lower()) - 97
+        num_column = int(guess[1])
+        num_guess = (num_row, num_column)
+
+        try:
+            if num_guess in player.previous_guesses:
+                raise ValueError(
+                    f"You have already guessed the coordinates of '{guess}'"
                 )
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
