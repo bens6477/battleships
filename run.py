@@ -15,7 +15,6 @@ def generate_random_guess():
         random_pair = (random_row, random_column)
 
         if random_pair not in user.previous_guesses:
-            print("Fresh guess")
             valid_guess = True
     user.previous_guesses.append(random_pair)
 
@@ -212,14 +211,14 @@ def print_outcome(hit_array):
     """
     print("Your cannon fires...")
     if hit_array[0][1]:
-        print("Direct hit! They took damage!\n")
+        input("Direct hit! They took damage! Press Enter to continue.\n")
     else:
-        print("Unlucky! You missed!\n")
+        input("Unlucky! You missed! Press Enter to continue.\n")
     print("Computer's cannon fires...")
     if hit_array[1][1]:
-        print("Ouch! They hit our ship!\n")
+        input("Ouch! They hit our ship! Press Enter to continue.\n")
     else:
-        print("Phew! They missed our ship, but stay alert!\n")
+        input("Phew! They missed our ship, but stay alert! Press Enter to continue.\n")
 
 
 def single_round():
@@ -228,7 +227,7 @@ def single_round():
     """
     print_instructions()
     print_boards()
-    user_guess = get_valid_guess()    
+    user_guess = get_valid_guess()
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
     edit_board(hit_array)
