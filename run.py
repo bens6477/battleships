@@ -2,6 +2,18 @@ from parameters import *
 from ship import *
 from board import Board
 import random
+import os
+
+
+# Code taken from https://www.delftstack.com/howto/python/python-clear-console/
+def clear_console():
+    """
+    Clears console of all text.
+    """
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
 
 
 def generate_random_guess():
@@ -38,13 +50,6 @@ def is_guess_in_array(current_guess, location_array, append, delete):
         return True
 
 
-aircraft_carrier.print_ship()
-battleship.print_ship()
-cruiser.print_ship()
-submarine.print_ship()
-destroyer.print_ship()
-
-
 def game_introduction():
     """
     Welcomes user to the game and requests their name.
@@ -67,13 +72,6 @@ def reset_board():
     computer = computer_copy
 
     return [user, computer]
-
-
-user_name = ""
-players = reset_board()
-user = players[0]
-computer = players[1]
-
 
 
 def print_instructions():
@@ -302,5 +300,16 @@ def main():
 
     play_again()
 
+
+aircraft_carrier.print_ship()
+battleship.print_ship()
+cruiser.print_ship()
+submarine.print_ship()
+destroyer.print_ship()
+
+user_name = ""
+players = reset_board()
+user = players[0]
+computer = players[1]
 
 main()
