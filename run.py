@@ -204,7 +204,7 @@ def edit_board(hit_array, player):
         player.board[guess_tuple[0]][guess_tuple[1]] = f"{Fore.RED}X{Style.RESET_ALL}"
     else:
         print(f"{guess[0]}: missed opponent\n")
-        player.board[guess_tuple[0]][guess_tuple[1]] = f"{Fore.YELLOW}m{Style.RESET_ALL}"
+        player.board[guess_tuple[0]][guess_tuple[1]] = f"{Fore.YELLOW}~{Style.RESET_ALL}"
     player.update_board()
 
 
