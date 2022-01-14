@@ -2,6 +2,7 @@ from parameters import *
 from ship import *
 import random
 import copy
+from colorama import Fore, Style
 
 
 class Board():
@@ -24,7 +25,7 @@ class Board():
         for row in range(board_size):
             self.board.append([])
             for column in range(board_size):
-                self.board[row].append('-')
+                self.board[row].append(f"{Fore.BLUE}~{Style.RESET_ALL}")
 
         return self.board
     
@@ -39,7 +40,7 @@ class Board():
         for row in range(board_size):
             for column in range(board_size):
                 if self.hidden_board[row][column] in ship_symbols:
-                    self.hidden_board[row][column] = "-"
+                    self.hidden_board[row][column] = f"{Fore.BLUE}~{Style.RESET_ALL}"
 
         return self.hidden_board
 
@@ -52,13 +53,13 @@ class Board():
         if direction == "right":
             for div in range(ship.ship_length):
                 cell = self.board[location[0]][div + location[1]]
-                if cell != '-':
+                if cell != f"{Fore.BLUE}~{Style.RESET_ALL}":
                     return True
             return False
         elif direction == "down":
             for div in range(ship.ship_length):
                 cell = self.board[div + location[0]][location[1]]
-                if cell != '-':
+                if cell != f"{Fore.BLUE}~{Style.RESET_ALL}":
                     return True
             return False
         else:
