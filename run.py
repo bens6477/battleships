@@ -3,7 +3,9 @@ from ship import *
 from board import Board
 import random
 import os
+from colorama import Fore, Style
 
+print(f"This is {Fore.GREEN}color{Style.RESET_ALL}")
 
 # Code taken from https://www.delftstack.com/howto/python/python-clear-console/
 def clear_console():
@@ -200,10 +202,10 @@ def edit_board(hit_array, player):
     guess_tuple = (guess[2][0], guess[2][1])
     if guess[1]:
         print(f"{guess[0]}: hit opponent\n")
-        player.board[guess_tuple[0]][guess_tuple[1]] = "X"
+        player.board[guess_tuple[0]][guess_tuple[1]] = f"{Fore.RED}X{Style.RESET_ALL}"
     else:
         print(f"{guess[0]}: missed opponent\n")
-        player.board[guess_tuple[0]][guess_tuple[1]] = "m"
+        player.board[guess_tuple[0]][guess_tuple[1]] = f"{Fore.BLUE}m{Style.RESET_ALL}"
     player.update_board()
 
 
