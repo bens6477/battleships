@@ -24,7 +24,7 @@ class Board():
         for row in range(board_size):
             self.board.append([])
             for column in range(board_size):
-                self.board[row].append('\33[34m' + '~' + '\33[0m')
+                self.board[row].append('\33[94m' + '~' + '\33[0m')
 
         return self.board
     
@@ -39,7 +39,7 @@ class Board():
         for row in range(board_size):
             for column in range(board_size):
                 if self.hidden_board[row][column] in ship_symbols:
-                    self.hidden_board[row][column] = '\33[34m' + '~' + '\33[0m'
+                    self.hidden_board[row][column] = '\33[94m' + '~' + '\33[0m'
 
         return self.hidden_board
 
@@ -52,13 +52,13 @@ class Board():
         if direction == "right":
             for div in range(ship.ship_length):
                 cell = self.board[location[0]][div + location[1]]
-                if cell != '\33[34m' + '~' + '\33[0m':
+                if cell != '\33[94m' + '~' + '\33[0m':
                     return True
             return False
         elif direction == "down":
             for div in range(ship.ship_length):
                 cell = self.board[div + location[0]][location[1]]
-                if cell != '\33[34m' + '~' + '\33[0m':
+                if cell != '\33[94m' + '~' + '\33[0m':
                     return True
             return False
         else:
