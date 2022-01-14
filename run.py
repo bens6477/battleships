@@ -194,9 +194,9 @@ def edit_board(hit_array, player):
     player guesses.
     """
     if player == user:
-        guess = hit_array[0]
-    else:
         guess = hit_array[1]
+    else:
+        guess = hit_array[0]
     guess_tuple = (guess[2][0], guess[2][1])
     if guess[1]:
         print(f"{guess[0]}: hit opponent\n")
@@ -251,23 +251,27 @@ def check_remaining_ships():
     Checks the number of ships remaining for each player
     and determines if the game is finished or still active.
     """
-    while True:
+    print_boards()
+    ships_remaining = True
+    while ships_remaining:
         user_ships = user.ships_present
         computer_ships = computer.ships_present
         print("User ships remaining: ", len(user_ships))
         print("Computer ships remaining: ", len(computer_ships), "\n")
+
         if len(user_ships) < 5 and len(computer_ships) < 5:
             print("Its a draw! You both struck out on this round!\n")
-            return False
+            ships_remaining = False
         elif len(computer_ships) < 5:
-            print("Congratulations! You win!\n")
+            print("Congratulations! You destroyed all of the computer's ships, you win!\n")
             print("Game over\n")
-            return False
+            ships_remaining = False
         elif len(user_ships) < 5:
-            print("Unlucky! You lose!\n")
+            print("Unlucky! All of your ships have been destroyed, you lose.\n")
             print("Game over\n")
-            return False
+            ships_remaining = False
         else:
+            input("Round over, press Enter to continue.")
             single_round()
 
 
