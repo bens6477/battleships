@@ -36,14 +36,10 @@ class Board():
         """
         ship_symbols = ["A", "B", "C", "D", "S"]
         self.hidden_board = copy.deepcopy(self.board)
-        print("hidden_board:", self.hidden_board)
-        print("self.board:", self.board)
         for row in range(board_size):
             for column in range(board_size):
                 if self.hidden_board[row][column] in ship_symbols:
                     self.hidden_board[row][column] = "-"
-        print("hidden_board:", self.hidden_board)
-        print("self.board:", self.board)
 
         return self.hidden_board
 

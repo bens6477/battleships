@@ -193,21 +193,6 @@ def edit_board(hit_array, player):
     Edits the game board depending on the outcome of the
     player guesses.
     """
-    # for guess in hit_array:
-    #     if guess[0] == "user":
-    #         opponent = computer
-    #     else:
-    #         opponent = user
-    #     guess_tuple = (guess[2][0], guess[2][1])
-    #     if guess[1]:
-    #         print(f"{guess[0]}: hit opponent\n")
-    #         opponent.board[guess_tuple[0]][guess_tuple[1]] = "X"
-    #     else:
-    #         print(f"{guess[0]}: missed opponent\n")
-    #         opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
-    # user.update_board()
-    # computer.update_board()
-
     if player == user:
         guess = hit_array[0]
     else:
@@ -220,7 +205,6 @@ def edit_board(hit_array, player):
         print(f"{guess[0]}: missed opponent\n")
         player.board[guess_tuple[0]][guess_tuple[1]] = "m"
     player.update_board()
-    # computer.update_board()
 
 
 
@@ -249,9 +233,6 @@ def single_round():
     """
     print_instructions()
     print_boards()
-
-    print(computer.hide_ships())
-
     user_guess = get_valid_guess()
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
