@@ -306,21 +306,14 @@ def main():
     players = reset_board()
     user = players[0]
     computer = players[1]
-
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
     computer.hide_ships()
-
-
     user.update_board()
     computer.update_board()
-
     single_round()
     check_remaining_ships()
-
     play_again()
-
-
 
 
 user_name = ""

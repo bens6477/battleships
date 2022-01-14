@@ -15,7 +15,7 @@ class Ship():
         """
         Prints an instance of the ship passed into the function.
         """
-        print(f"{self.ship_type} ({self.ship_length}):  " + f" {self.symbol}" * self.ship_length)
+        print(f" {self.symbol}" * self.ship_length + " - " f"{self.ship_type} ({self.ship_length})")
 
 
 aircraft_carrier = Ship("Aircraft Carrier", 5, "A")
