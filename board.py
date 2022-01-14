@@ -1,6 +1,7 @@
 from parameters import *
 from ship import *
 import random
+import copy
 
 
 class Board():
@@ -14,6 +15,7 @@ class Board():
         self.ships_present = self.update_board()[0]
         self.ship_locations = self.update_board()[1]
 
+
     def create_board(self):
         """
         Creates a new, empty board for the player.
@@ -25,6 +27,25 @@ class Board():
                 self.board[row].append('-')
 
         return self.board
+    
+
+    def hide_ships(self):
+        """
+        Hides all ships from view but showing previously guessed
+        hit and missed coordinates.
+        """
+        ship_symbols = ["A", "B", "C", "D", "S"]
+        self.hidden_board = copy.deepcopy(self.board)
+        print("hidden_board:", self.hidden_board)
+        print("self.board:", self.board)
+        for row in range(board_size):
+            for column in range(board_size):
+                if self.hidden_board[row][column] in ship_symbols:
+                    self.hidden_board[row][column] = "-"
+        print("hidden_board:", self.hidden_board)
+        print("self.board:", self.board)
+
+        return self.hidden_board
 
     
     def is_ship_already_here(self, ship, direction, location):

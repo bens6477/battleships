@@ -113,7 +113,7 @@ def print_boards():
             row_str += column_str
         row_str += f"   |   {chr(65 + row)}   "
         for column in range(board_size):
-            column_str = f" {computer.board[row][column]} "
+            column_str = f" {computer.hidden_board[row][column]} "
             if column == board_size - 1:
                 column_str += "\n"
             row_str += column_str
@@ -129,7 +129,7 @@ def get_valid_guess():
     """
     valid_guess = False
     while not valid_guess:
-        print("Enter your target in the form 'A4' (not case-sensitive)")
+        print("Enter your target in the form 'A4' or 'a4'.")
         guess = input("")
         print("")
         print("Checking validity of your target coordinates...")
@@ -168,7 +168,7 @@ def get_valid_guess():
                         f"You have already guessed the coordinates of '{guess}'"
                     )
             except ValueError as e:
-                print(f"Invalid data: {e}, please choose coordinates in the the form 'A4'.\n")
+                print(f"Invalid data: {e}, please choose coordinates in the the form 'A4' or 'a4'.\n")
             else:
                 print("Valid input\n")
                 computer.previous_guesses.append(num_guess)
@@ -231,10 +231,14 @@ def single_round():
     """
     print_instructions()
     print_boards()
+
+    print(computer.hide_ships())
+
     user_guess = get_valid_guess()
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
     edit_board(hit_array)
+    computer.hide_ships()
     print_boards()
     print_outcome(hit_array)
 
@@ -298,6 +302,8 @@ def main():
 
     user.randomise_all_ship_locations()
     computer.randomise_all_ship_locations()
+    computer.hide_ships()
+
 
     user.update_board()
     computer.update_board()
