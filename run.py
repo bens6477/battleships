@@ -188,41 +188,59 @@ def check_player_guesses(user_guess, computer_guess):
     return (user_hit, computer_hit)
 
 
-def edit_board(hit_array):
+def edit_board(hit_array, player):
     """
     Edits the game board depending on the outcome of the
     player guesses.
     """
-    for guess in hit_array:
-        if guess[0] == "user":
-            opponent = computer
-        else:
-            opponent = user
-        guess_tuple = (guess[2][0], guess[2][1])
-        if guess[1]:
-            print(f"{guess[0]}: hit opponent\n")
-            opponent.board[guess_tuple[0]][guess_tuple[1]] = "X"
-        else:
-            print(f"{guess[0]}: missed opponent\n")
-            opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
-    user.update_board()
-    computer.update_board()
+    # for guess in hit_array:
+    #     if guess[0] == "user":
+    #         opponent = computer
+    #     else:
+    #         opponent = user
+    #     guess_tuple = (guess[2][0], guess[2][1])
+    #     if guess[1]:
+    #         print(f"{guess[0]}: hit opponent\n")
+    #         opponent.board[guess_tuple[0]][guess_tuple[1]] = "X"
+    #     else:
+    #         print(f"{guess[0]}: missed opponent\n")
+    #         opponent.board[guess_tuple[0]][guess_tuple[1]] = "m"
+    # user.update_board()
+    # computer.update_board()
+
+    if player == user:
+        guess = hit_array[0]
+    else:
+        guess = hit_array[1]
+    guess_tuple = (guess[2][0], guess[2][1])
+    if guess[1]:
+        print(f"{guess[0]}: hit opponent\n")
+        player.board[guess_tuple[0]][guess_tuple[1]] = "X"
+    else:
+        print(f"{guess[0]}: missed opponent\n")
+        player.board[guess_tuple[0]][guess_tuple[1]] = "m"
+    player.update_board()
+    # computer.update_board()
 
 
-def print_outcome(hit_array):
+
+
+def print_outcome(hit_array, player):
     """
     Prints the outcome from the guesses of both players.
     """
-    print("Your cannon fires...")
-    if hit_array[0][1]:
-        input("Direct hit! They took damage! Press Enter to continue.\n")
+    if player == user:
+        print("Your cannon fires...")
+        if hit_array[0][1]:
+            input("Direct hit! They took damage! Press Enter to continue.\n")
+        else:
+            input("Unlucky! You missed! Press Enter to continue.\n")
     else:
-        input("Unlucky! You missed! Press Enter to continue.\n")
-    print("Computer's cannon fires...")
-    if hit_array[1][1]:
-        input("Ouch! They hit our ship! Press Enter to continue.\n")
-    else:
-        input("Phew! They missed our ship, but stay alert! Press Enter to continue.\n")
+        print("Computer's cannon fires...")
+        if hit_array[1][1]:
+            input("Ouch! They hit our ship! Press Enter to continue.\n")
+        else:
+            input("Phew! They missed our ship, but stay alert! Press Enter to continue.\n")
 
 
 def single_round():
@@ -237,10 +255,14 @@ def single_round():
     user_guess = get_valid_guess()
     computer_guess = generate_random_guess()
     hit_array = check_player_guesses(user_guess, computer_guess)
-    edit_board(hit_array)
+    edit_board(hit_array, computer)
     computer.hide_ships()
     print_boards()
-    print_outcome(hit_array)
+    print_outcome(hit_array, user)
+    edit_board(hit_array, user)
+    print_boards()
+    print_outcome(hit_array, computer)
+
 
 
 def check_remaining_ships():
