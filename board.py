@@ -134,3 +134,4 @@ class Board():
         self.ship_locations = ship_locations
 
         return (ships_present, ship_locations)
+        
