@@ -37,18 +37,21 @@
     * [Media](#media)
 
 ## Planning
-### Target Audience
+### Target Audience **EDIT**
 * Users who wish to engage in a more complex version of Rock, Paper, Scissors.
 * Users who are looking to design and code interactive games themselves.
 * Younger users who are looking to play a simple, engaging game with a short duration.
 * Users who are looking to interactively learn the rules of Rock, Paper, Scissors, Lizard, Spock to play externally with friends.
 
-### User Stories
+### User Stories **EDIT**
 * As a user, I want a simple, clean layout, providing everything I need for smooth gameplay.
 * As a user, I want to easily access instructions on how to play the game.
 * As a user, I want to easily select my chosen attack in an intuitive manner.
 * As a user, I want to easily view the winner of each point and receive an explanation of the result.
 * As a user, I want to easily reset the game to play again as many times as desired.
+
+### Game Brief
+* 1990 Milton Bradley rules: https://en.wikipedia.org/wiki/Battleship_(game)
 
 ### Flowcharts
 * Wireframes were created to plan the visual layout of the site, organise the content into sections and plan the structure for both desktop and mobile browsers.  To optimise the usage of space, the content spanned horizontally on wide screens, and stacked vertically on thinner screens.
@@ -65,59 +68,81 @@ Styling of
 
 
 ## Features
-### Instruction Page
+
+* Welcome screen
+* Instructions / Rules
+* User name input
+* Setup type (Automatic/manual)
+* Battle commencement
+* Error handling
+* Player Win
+* Computer Win
+* 
+
+### Instruction Page **EDIT**
 Upon loading the page, the user is provided with instructions of how to play the game, including the winner hierarchy figure and the different methods to select their attack. Users can return to this page throughout the game without losing their progress by clicking on the instruction button or "I" on their keyboard.
 
 ![Instruction Page](assets/images/readme/instructions.PNG)
 
-### Game Area
+### Game Area **EDIT**
 The game area consists of two player areas - the user and the computer - containing their current score, and their current active image. Images vary dynamically between the attack selection figure, the player's chosen attack, and finally the winner/loser images after the game finishes.
 
-### Responsive Layout
+### Responsive Layout **EDIT**
 For wider screens, the user and computer game areas are side by side to optimally fill the window area. For thinner screens, such as mobiles and tablets, the player areas are stacked vertically, giving the user the sense of playing directly in front of their opponent. CSS media queries were utilised to optimise the styling across the different screen sizes.
 
 ![Horizontal vs. Vertical Stacking](assets/images/readme/layouts.png)
 
-### Integrated Attack Selection
+### Integrated Attack Selection **EDIT**
 The user selects their attack by clicking directly on the relevant icon in the image. Circular buttons are embedded over the each attack option so the user can intuitively relate their selection to the other possible attacks.
 
 ![Attack Selector Buttons](assets/images/readme/selector-buttons.PNG)
 
-### Countdown Sequence
+### Countdown Sequence **EDIT**
 After the user selects and attack, a countdown sequence is triggered. The words "Rock", "Paper", "Scissors", "Lizard", "Spock" flash in the center of the screen before returning the outcome of the point. This creates anticipation over the result after the user locks in their selection. All selector buttons are disabled for the duration of the countdown to prevent the result from being overridden or from sending unaccepted inputs through the code.
 
-### Outcome Feedback 
+### Outcome Feedback  **EDIT**
 The last evaluated result is verbally transcribed in the central area, stating whether the user won/lost/drew and providing an explanation of the combination behind the scoring. The winner and loser's scores are displayed in green and red respectively to provide an instant visual indicator of the victor. Additionally, the result text is responsively coloured in accordance with the user's outcome.
 
-### Declaring the Winner
+### Declaring the Winner **EDIT**
 Once either player reaches 10 points the winner is declared, returning a trophy image to the victor's game area and a red cross to the loser's game area. All selector buttons are prevented from triggering from this point onwards, until the user selects to reset the game and play again. Should a selector be pressed, a Sweet Alert message will appear to reiterate this to the user.
 
 ![Declaring the Winner](assets/images/readme/declaring-winner.PNG)
 
 ### Error Catching
-Once the game has ended, the user can reset the game to play again. All selector buttons are disabled from triggering the game sequence, however, should the user select another attack at this point, a Sweet Alert error message informs the user that they must reset the game to continue playing.
+Errors caught:
 
-![Sweet Alert Error Catching](assets/images/readme/error-catching.PNG)
+Coordinate inputs checks if:
+* Two characters were not provided
+* First character is not a letter
+* Second character is not a decimal number
+* First character is out of bounds of the board
+* Second character is out of bounds of the board
+* The coordinates have prevously been guessed
 
 
 ## Future Enhancements
-Various additional features would bring a greater user experience to the website: 
-* The addition of a two-player game, where two users can play against each other.
-* The addition of customisable winning score - e.g. first to 20, best of 15 etc.
+Various additional features would bring a greater user experience to the website:
+* Allow the user to manually place their ships by selecting the coordinates for the front of the ship and dictating whether it the remaining divisions of the ship trail right or downward.
+* The addition of feature selecting coordinates for the computer in cells adjacent to a direct hit. 
+* Refactor code for printing the player boards to the console
+* Multiplayer **EDIT**
+* Audio **EDIT**
 
 
 ## Technology Used
-* HTML - Creating and adding content
-* CSS - Styling content
-* JavaScript - Manipulating content
-* [Google Fonts](https://fonts.google.com/specimen/Russo+One/) - 'Russo One' style 
-* [Font Awesome](https://fontawesome.com/v5.15/icons/) - GitHub and up-arrow icons
+* [Python 3](https://www.python.org/downloads/) - Game code
 * [GitPod](https://www.gitpod.io/) - IDE for local development
 * [GIT](https://git-scm.com/) - Version Control
 * [GitHub](https://github.com/) - to host the repositories for this project and the live website preview
+* [Heroku](https://www.heroku.com/home) - Site deployment
 
 
 ## Testing
+
+* Letting computer win - show board
+
+
+
 ### Functionality Testing
 * **Test** - All buttons were clicked to check they performed the desired outcome.
     * **Outcome** - All 5 attack selector buttons sent the appropriate data-type attribute when clicked, triggering the correct event listener code. The 'Reset Game' button correctly executed the resetBoard() function, the 'Instructions' button overlayed the instructions content, and the 'Play' button resumed the game from the last recorded since (0-0 upon loading). The GitHub button previously contained an anchor tag linking to the GitHub page, though the user was only redirected when clicking on the text, and the button body triggered an unknown data-type issue in the event listener logic. Consequently, the anchor tag was removed and the user was redirected to the site via JavaScript when clicking on any part of the button. 
@@ -163,16 +188,22 @@ Various additional features would bring a greater user experience to the website
     * **Outcome** - The performance of the website was significantly improved by importing the 'Russo One' Google Font from within the CSS script rather than from the within the head of the HTML script. This again halved the largest contentful paint time, which particularly improved the loading time on mobile devices.
 
 ### Validator Testing
-#### HTML
-* No errors were found when running the HTML code through the [official W3C validator](https://validator.w3.org/).
-#### CSS
-* No errors were found when running the CSS code through the [official W3C Jigsaw validator](https://jigsaw.w3.org/css-validator/).
-#### JavaScript
-* No errors were found when running the JavaScript code through the [JSHint validator](https://jshint.com/).
-#### Accessibility
-* The website was tested using the Lighthouse function in Chrome DevTools, showing a accessibility level of 100%.
+* No errors were found when running the Python code through the [PEP8 online validator](http://pep8online.com/).
     
 ### Bugs
+
+* Colorama not supported - used escape characters
+* Nested list not copying - import copy - <code>copy.deepcopy(list)</code>
+* Two letters thowing uncaught error
+* Not catching duplicate guesses - create list of previous guesses and check list before accepting subsequent guesses as valid
+* Checking validation of letter-row coordinate range - convert to unicode number
+
+#### Robustness Testing
+ * Frequecy testing - testing over and over again.
+ * Test the random positioning of ships over 100 times
+
+
+
 * **Issue** - Generating the winner outcome.
     * **Resolution** - A standardised outcome array was set up for each selection option with the syntax <code>selectionArray = [win, win, lose, lose, draw]</code>, representing the user's outcome relative to the computer's selection. For example <code>rockArray = ['scissors', 'lizard', 'paper', 'spock', 'rock']</code>, where rock beats scissors, loses to paper and so forth. Subsequently, each selection array was nested within the larger <code>cases</code> array, creating one variable from which all combinations could be accessed. This meant that <code>cases[i][j]</code> could be used to create the outcome logic for any combination, where i represented the user's selection, j represented the computer's selection, and the j index determined the user's outcome (win, lose, draw). No tutorials were used when writing the code to determine the winner.
 
@@ -203,24 +234,33 @@ Various additional features would bring a greater user experience to the website
 ### Unfixed Bugs
 There are no known bugs left unfixed.
 
+* Required use of global variables for username and player boards to function. Removing the global variable required the players to be passed through each function they were used in.
 
 ## Deployment
 ### GitHub Pages
-The site was deployed to GitHub pages. The steps to deploy are as follows:
-1. In the GitHub repository, navigate to the repository for apprentice-brewing and then click on the Settings tab.
-1. Click on the Pages tab from the list of options on the left hand side of the page.
-1. Under Source click the drop-down menu labelled None and select main as the branch.
-1. Once saved the link to the page will be provided above the ‘Source’ sub-section upon refreshing.
-1. The live link can be found here - https://bens6477.github.io/rock-paper-scissors-lizard-spock/
+The site was deployed to Heroku. The steps to deploy are as follows:
+1. From the user dashboard select 'Create New App'.
+1. Enter a unique app name and select the current region. This project was deployed from the UK, Europe.
+1. Once the skeleton of the app has been created, navigate to the 'Settings' tab.
+1. Click 'Reveal Config Vars' and type in "PORT" to the 'KEY' field and "8000" to the 'VALUE' field. Press Add to confirm.
+1. Click 'Add buildpack' and type in "heroku/python" and then click 'Save changes'. Alternatively click on the python icon to auto-fill the field with "heroku/python".
+1. Click 'Add buildpack' again and type in "heroku/nodejs" and then click 'Save changes'. Alternatively click on the nodejs icon to auto-fill the field with "heroku/nodejs".
+1. Ensure the order of the buildpacks starts with "heroku/python" and is followed by "heroku/nodejs".
+1. Navigate to the 'Deploy' tab in the app menu.
+1. Under the 'Deployment method' subsection select GitHub and click 'Connet to GitHub'.
+1. In the 'repo-name' field type the repository name and click search, and then below click 'Connect'. In this case the repo-name was "battleships".
+1. Under the 'Automatic deploys' subsection click 'Enable Automatic Deploys'.
+1. After the app has been deployed, click 'View' to open the deployed site in a new tab. Alternatively, scroll to the top of the app workspace and click 'Open app'.
+1. The live link can be found here - https://github.com/bens6477/battleships
 
 ### Cloning Repository
 You can clone this repository to view, edit and run the code. The steps to clone the repository are as follows:
 
-* Within the repository, navigate to the 'Code' drop-down menu, select 'HTTP' and copy the URL.
-* Open Git Bash from your IDE of choice.
-* Navigate the current working directory to your desired location.
-* To clone the repository, type <code>git clone</code> into the terminal followed by the repository URL, in this case <code>git clone https://github.com/bens6477/rock-paper-scissors-lizard-spock</code>.
-* Press 'Enter'.
+1. Within the repository, navigate to the 'Code' drop-down menu, select 'HTTP' and copy the URL.
+1. Open Git Bash from your IDE of choice.
+1. Navigate the current working directory to your desired location.
+1. To clone the repository, type <code>git clone</code> into the terminal followed by the repository URL, in this case <code>git clone https://github.com/bens6477/battleships</code>.
+1. Press 'Enter'.
 
 
 ## Credits
