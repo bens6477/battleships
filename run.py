@@ -50,6 +50,34 @@ def is_guess_in_array(current_guess, location_array, append, delete):
         return True
 
 
+def get_user_name():
+    """
+    Requests and checks validity of user name.
+    """
+    valid_name = False
+    while not valid_name:
+        print("Enter your name:")
+        name_input = input("")
+        print("")
+        print("Checking validity of your user name...")
+        try:
+            if len(name_input) == 0:
+                raise ValueError(
+                    "Name cannot be blank"
+                )
+            elif len(name_input) > 8:
+                raise ValueError(
+                    "Name too long. Provide a shorter name"
+                )
+        except ValueError as e:
+            print(f"Invalid data: {e}, please try again.\n")
+        else:
+            print("Valid input\n")
+            valid_name = True
+        
+    return name_input
+
+
 def game_introduction():
     """
     Welcomes user to the game and requests their name.
@@ -72,13 +100,6 @@ ship.""")
     print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
     print("""\nCan you destroy the computer's fleet before your ships are
 destroyed?\n""")
-
-    input("Press Enter to start.")
-    print("Enter your name:")
-    user_name = input("")
-    print("")
-
-    return user_name
 
 
 def reset_board():
@@ -327,7 +348,10 @@ def main():
     global user_name
     global user
     global computer
-    user_name = game_introduction()
+    game_introduction()
+    user_name = get_user_name()
+    print("user_name:", user_name)
+    input(user_name)
     players = reset_board()
     user = players[0]
     computer = players[1]
