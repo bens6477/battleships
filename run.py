@@ -1,5 +1,5 @@
-from parameters import *
-from ship import *
+from parameters import BOARD_SIZE
+from ship import aircraft_carrier, battleship, cruiser, destroyer, submarine
 from board import Board
 import random
 import os
@@ -22,8 +22,8 @@ def generate_random_guess():
     """
     valid_guess = False
     while not valid_guess:
-        random_row = random.randrange(board_size)
-        random_column = random.randrange(board_size)
+        random_row = random.randrange(BOARD_SIZE)
+        random_column = random.randrange(BOARD_SIZE)
         random_pair = (random_row, random_column)
 
         if random_pair not in user.previous_guesses:
@@ -56,18 +56,22 @@ def game_introduction():
     """
     print("Welcome to Battleships!\n")
     print("Two enemy fleets are in battle ")
-    print("Both players have a fleet of 5 ships, each occupying a certain number of cell blocks, as shown below.")
-    print(f"Ships are randomly placed on a {board_size}x{board_size} grid.\n")
+    print("""Both players have a fleet of 5 ships, each occupying a certain
+number of cell blocks, as shown below.""")
+    print(f"Ships are randomly placed on a {BOARD_SIZE}x{BOARD_SIZE} grid.\n")
     aircraft_carrier.print_ship()
     battleship.print_ship()
     cruiser.print_ship()
     submarine.print_ship()
     destroyer.print_ship()
-    print("\nPlayers choose coordinates each round to fire a cannon at their opponent's ship.")
-    print("The symbols below indicate whether the cannonball hits or misses a ship.\n")
+    print("""\nPlayers choose coordinates each round to fire a cannon at their
+opponent's ship.""")
+    print("""The symbols below indicate whether the cannonball hits or misses a
+ship.""")
     print("Direct hit - " + '\33[91m' + 'X' + '\33[0m')
     print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
-    print("\nCan you destroy the computer's fleet before your ships are destroyed?\n")
+    print("""\nCan you destroy the computer's fleet before your ships are
+destroyed?\n""")
 
     input("Press Enter to start.")
     print("Enter your name:")
@@ -105,26 +109,26 @@ def print_boards():
     board_str += " " * (17 - len(user_name))
     board_str += "Enemy's Board:\n\n"
     board_str += " " * 4
-    for index in range(board_size):
+    for index in range(BOARD_SIZE):
         board_str += f"{index}  "
     board_str += " " * 11
-    for index in range(board_size):
+    for index in range(BOARD_SIZE):
         board_str += f"{index}  "
     board_str += "\n"
     board_str += "  \u2198 "
-    board_str += "   " * board_size
+    board_str += "   " * BOARD_SIZE
     board_str += " " * 11
-    board_str += "   " * (board_size)
+    board_str += "   " * (BOARD_SIZE)
     board_str += "\n"
-    for row in range(board_size):
+    for row in range(BOARD_SIZE):
         row_str = f"{chr(65 + row)}  "
-        for column in range(board_size):
+        for column in range(BOARD_SIZE):
             column_str = f" {user.board[row][column]} "
             row_str += column_str
         row_str += f"   |   {chr(65 + row)}   "
-        for column in range(board_size):
+        for column in range(BOARD_SIZE):
             column_str = f" {computer.hidden_board[row][column]} "
-            if column == board_size - 1:
+            if column == BOARD_SIZE - 1:
                 column_str += "\n"
             row_str += column_str
         board_str += row_str
@@ -157,11 +161,11 @@ def get_valid_guess():
                 raise ValueError(
                     f"Second character is not a decimal number in your guess '{guess}'"
                 )
-            elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + board_size):
+            elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + BOARD_SIZE):
                 raise ValueError(
-                    f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + board_size)}"
+                    f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + BOARD_SIZE)}"
                 )
-            elif (int(guess[1]) > board_size - 1):
+            elif (int(guess[1]) > BOARD_SIZE - 1):
                 raise ValueError(
                     f"Second character is out of bounds of the board in your guess '{guess}'"
                 )
@@ -217,8 +221,6 @@ def edit_board(hit_array, player):
     player.update_board()
 
 
-
-
 def print_outcome(hit_array, player):
     """
     Prints the outcome from the guesses of both players.
@@ -253,7 +255,6 @@ def single_round():
     edit_board(hit_array, user)
     print_boards()
     print_outcome(hit_array, computer)
-
 
 
 def check_remaining_ships():

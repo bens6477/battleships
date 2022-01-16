@@ -1,5 +1,5 @@
-from parameters import *
-from ship import *
+from parameters import BOARD_SIZE
+from ship import ship_tuple
 import random
 import copy
 
@@ -15,19 +15,17 @@ class Board():
         self.ships_present = self.update_board()[0]
         self.ship_locations = self.update_board()[1]
 
-
     def create_board(self):
         """
         Creates a new, empty board for the player.
         """
         self.board = []
-        for row in range(board_size):
+        for row in range(BOARD_SIZE):
             self.board.append([])
-            for column in range(board_size):
+            for column in range(BOARD_SIZE):
                 self.board[row].append('\33[94m' + '~' + '\33[0m')
 
         return self.board
-    
 
     def hide_ships(self):
         """
@@ -36,13 +34,12 @@ class Board():
         """
         ship_symbols = ["A", "B", "C", "D", "S"]
         self.hidden_board = copy.deepcopy(self.board)
-        for row in range(board_size):
-            for column in range(board_size):
+        for row in range(BOARD_SIZE):
+            for column in range(BOARD_SIZE):
                 if self.hidden_board[row][column] in ship_symbols:
                     self.hidden_board[row][column] = '\33[94m' + '~' + '\33[0m'
 
         return self.hidden_board
-
     
     def is_ship_already_here(self, ship, direction, location):
         """
@@ -65,7 +62,6 @@ class Board():
             print("\nCheck not performed correctly\n")
             return True
 
-
     def generate_random_ship_location(self, ship):
         """
         Generates random ship location depending on the ship's
@@ -77,7 +73,7 @@ class Board():
             random_direction = random.choice(direction_array)
             placement_array = [num for num in range(ship.placement_range + 1)]
             random_placement_index = random.choice(placement_array)
-            random_index = random.randrange(board_size)
+            random_index = random.randrange(BOARD_SIZE)
             if random_direction == "right":
                 random_placement_tuple = (random_index, random_placement_index)
             elif random_direction == "down":
@@ -87,7 +83,6 @@ class Board():
             ship_present = self.is_ship_already_here(ship, random_direction, random_placement_tuple)
 
         return [random_direction, random_placement_tuple]
-
 
     def add_ship_to_board(self, ship, location, direction):
         """
@@ -103,7 +98,6 @@ class Board():
             print("\n *** Invalid direction ***\n")
         return self.board
 
-
     def randomise_all_ship_locations(self):
         """
         Randomises the location of all ships on the board.
@@ -115,7 +109,6 @@ class Board():
                 self.add_ship_to_board(ship, random_location[1], random_location[0])
                 placed = True
 
-    
     def update_board(self):
         """
         Updates board data including ship locations and
@@ -124,8 +117,8 @@ class Board():
         ship_symbols = ["A", "B", "C", "D", "S"]
         ship_locations = []
         ships_present = []
-        for row in range(board_size):
-            for column in range(board_size):
+        for row in range(BOARD_SIZE):
+            for column in range(BOARD_SIZE):
                 if self.board[row][column] in ship_symbols:
                     ship_locations.append((row, column))
                     ships_present.append(self.board[row][column])

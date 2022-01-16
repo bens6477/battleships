@@ -1,4 +1,5 @@
-from parameters import board_size
+from parameters import BOARD_SIZE
+
 
 class Ship():
     """
@@ -9,7 +10,7 @@ class Ship():
         self.ship_type = ship_type
         self.ship_length = ship_length
         self.symbol = symbol
-        self.placement_range = board_size - self.ship_length
+        self.placement_range = BOARD_SIZE - self.ship_length
 
     def print_ship(self):
         """
