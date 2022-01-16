@@ -5,6 +5,27 @@ import random
 import os
 
 
+def colour_text(text, colour):
+    """
+    Wraps text in escape character for colouring
+    terminal text.
+    """
+    if colour == "green":
+        colour_code = '\33[92m'
+    elif colour == "red":
+        colour_code = '\33[91m'
+    elif colour == "yellow":
+        colour_code = '\33[93m'
+    elif colour == "blue":
+        colour_code = '\33[94m'
+    elif colour == "light blue":
+        colour_code = '\33[96m'
+    string = colour_code + text + '\33[0m'
+    return string
+
+input(colour_text("green", "green"))
+
+
 # Code taken from https://www.delftstack.com/howto/python/python-clear-console/
 def clear_console():
     """
@@ -57,7 +78,7 @@ def get_user_name():
     clear_console()
     valid_name = False
     while not valid_name:
-        print('\33[92m' + "Enter your name:" + '\33[0m')
+        print(colour_text("Enter your name:", "green"))
         name_input = input("")
         try:
             if len(name_input) == 0:
@@ -98,7 +119,7 @@ ship.""")
     print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
     print("""\Destroy the computer's fleet before your ships are
 destroyed to win the battle.\n""")
-    input("Press Enter to continue.\n")
+    input(colour_text("Press Enter to continue.\n", "light blue"))
 
 
 def reset_board():
@@ -163,8 +184,7 @@ def get_valid_guess():
     """
     valid_guess = False
     while not valid_guess:
-        print('\33[92m' + "Enter your target in the form 'A4' or 'a4':"
-              + '\33[0m')
+        print(colour_text("Enter your target in the form 'A4' or 'a4':", "green"))
         guess = input("")
         try:
             if len(guess) != 2:
@@ -256,16 +276,17 @@ def print_outcome(hit_array, player):
     if player == user:
         print("Your cannon fires...")
         if hit_array[0][1]:
-            input("Direct hit! Press Enter to continue.\n")
+            input(colour_text("Direct hit! ", "red") + colour_text("Press Enter to continue.\n", "light blue"))
         else:
-            input("Splash! You missed! Press Enter to continue.\n")
+            input(colour_text("Splash! You missed! ", "yellow") + colour_text("Press Enter to continue.\n", "light blue"))
     else:
         print("Computer's cannon fires...")
         if hit_array[1][1]:
-            input("Ouch! Direct hit! Press Enter to continue.\n")
+            input(colour_text("Ouch! Direct hit! ", "red") + colour_text("Press Enter to continue.\n", "light blue"))
         else:
-            input("""Splash! They missed, but stay alert! Press Enter
-to continue.\n""")
+            input(colour_text("Splash! They missed, but stay alert! ",
+                  "yellow")
+                  + colour_text("Press Enter to continue.\n", "light blue"))
 
 
 def single_round():
@@ -311,7 +332,7 @@ ships, you win!\n""")
 \n""")
             ships_remaining = False
         else:
-            input("Press Enter to continue.")
+            input(colour_text("Press Enter to continue.\n", "light blue"))
             single_round()
 
 
@@ -323,7 +344,7 @@ def play_again():
     valid_options = (110, 121)
     while not valid_input:
         print('\33[92m' + """Would you like to play again? Enter 'Y' to play again or 'N' to
-quit.""" + '\33[0m')
+quit:""" + '\33[0m')
         another_game = input("")
         try:
             if len(another_game) == 0:
