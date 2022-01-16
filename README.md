@@ -137,6 +137,23 @@ Various additional features would bring a greater user experience to the website
 * [Heroku](https://www.heroku.com/home) - Site deployment
 
 
+## Data Model
+### Classes
+This project used Object Oriented programming, consisting of two main classes - Ship and Board. There are 5 different instances of the Ship class and 2 instances of the Board class (one for each player). Each player board receives all five ship instances to be assigned locations on the grid.
+
+1. Ship
+    * Aircraft Cruiser
+    * Battleship
+    * Cruiser
+    * Destroyer
+    * Submarine
+1. Board
+    * User
+    * Computer
+
+![Classes Flowchart](assets/images/classes-flowchart.png)
+  
+
 ## Testing
 
 * Letting computer win - show board
