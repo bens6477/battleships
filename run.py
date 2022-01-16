@@ -57,7 +57,7 @@ def get_user_name():
     clear_console()
     valid_name = False
     while not valid_name:
-        print("Enter your name:")
+        print('\33[92m' + "Enter your name:" + '\33[0m')
         name_input = input("")
         try:
             if len(name_input) == 0:
@@ -163,7 +163,8 @@ def get_valid_guess():
     """
     valid_guess = False
     while not valid_guess:
-        print("Enter your target in the form 'A4' or 'a4'.")
+        print('\33[92m' + "Enter your target in the form 'A4' or 'a4':"
+              + '\33[0m')
         guess = input("")
         try:
             if len(guess) != 2:
@@ -304,12 +305,10 @@ def check_remaining_ships():
         elif len(computer_ships) < 5:
             print("""Congratulations! You destroyed all of the computer's
 ships, you win!\n""")
-            print("Game over\n")
             ships_remaining = False
         elif len(user_ships) < 5:
             print("""Unlucky! All of your ships have been destroyed, you lose.
 \n""")
-            print("Game over\n")
             ships_remaining = False
         else:
             input("Press Enter to continue.")
@@ -323,8 +322,8 @@ def play_again():
     valid_input = False
     valid_options = (110, 121)
     while not valid_input:
-        print("""Would you like to play again? Enter 'Y' to play again or 'N' to
-quit.""")
+        print('\33[92m' + """Would you like to play again? Enter 'Y' to play again or 'N' to
+quit.""" + '\33[0m')
         another_game = input("")
         try:
             if len(another_game) == 0:
