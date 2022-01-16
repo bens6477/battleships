@@ -141,6 +141,9 @@ Various additional features would bring a greater user experience to the website
 
 * Letting computer win - show board
 
+#### Robustness Testing
+ * Frequecy testing - testing over and over again.
+ * Test the random positioning of ships over 100 times
 
 
 ### Functionality Testing
@@ -224,44 +227,44 @@ Various additional features would bring a greater user experience to the website
 * **Test** - Continuous verification across multiple viewports.
     * **Outcome** - [Am I Responsive](http://ami.responsivedesign.is/#) was frequently used to check the responsiveness of the website across different screen dimensions, ensuring that all content was displayed in the optimal manner.
 
+
 ### Performance Testing
-* **Test** - Numerically testing the effectiveness of the website.
-    * **Outcome** - The Lighthouse function in Google Chrome's Developer Tools was used frequently to numerically measure the parameters such as performance, accessibility, best practices and search engine optimisation. Lighthouse was run for both desktop and mobile sites with the results shown below.
-    #### Desktop Homepage Lighthouse Results
-    ![Desktop Homepage Lighthouse Results](assets/images/readme/lighthouse-desktop.PNG)
-    #### Mobile Homepage Lighthouse Results
-    ![Mobile Homepage Lighthouse Results](assets/images/readme/lighthouse-mobile.PNG)
+* **Test 🧪** - Frequencv testing of the placement of ships, repeating process 50 times.
+    * **Result 🏆** - The ships were successfully placed on the board all 50 times, with no over lapping and with the correct number of divisions in each ship.
+    * **Verdict ✅** - This test passed, proving that the ship placement was operating correctly and conistently.
 
-* **Test** - Checking performance of images loading.
-    * **Outcome** - The website was designed using a desktop-first approach, therefore the image resolutions were optimised to look better on larger screens. This resulted in a lower performance score due to longer contentful paint times on mobile devices as the image resolution was much larger than the maximum screen resolution.
-    * **Outcome 2** - Lighthouse returned a warning indicating that no explicit width or height was provided. To resolve this, the attributes of <code>width="500" height="500"</code> were added to the three image elements in the HTML script, and <code>img {height: auto;}</code> was added in the CSS script. This meant that the aspect ratio of the images was not overridden by the default settings of the browser and thus the image data could be manipulated faster at the start of the layout calculation through the provision of this code. Image sizes could subsequently be overridden using typical CSS code. [Adapted from web.dev](https://web.dev/optimize-cls/?utm_source=lighthouse&utm_medium=devtools#images-without-dimensions/).
-
-* **Test** - Testing performance of importing Sweet Alert scripts 
-    * **Outcome** - The performance of the website was significantly improved by importing the sweetalert2 JavaScript file script from the web URL <code>https://unpkg.com/sweetalert/dist/sweetalert.min.js</code> rather than from the JSDelivr CDN <code>//cdn.jsdelivr.net/npm/sweetalert2@11</code>. This halved the largest contentful paint time, which particularly improved the loading time on mobile devices.
-
-* **Test** - Testing performance of importing Google Fonts scripts 
-    * **Outcome** - The performance of the website was significantly improved by importing the 'Russo One' Google Font from within the CSS script rather than from the within the head of the HTML script. This again halved the largest contentful paint time, which particularly improved the loading time on mobile devices.
 
 ### Validator Testing
 * No errors were found when running the Python code through the [PEP8 online validator](http://pep8online.com/).
     
 ### Bugs
 
-* Colorama not supported - used escape characters
 * Nested list not copying - import copy - <code>copy.deepcopy(list)</code>
 * Two letters thowing uncaught error
 * Not catching duplicate guesses - create list of previous guesses and check list before accepting subsequent guesses as valid
 * Checking validation of letter-row coordinate range - convert to unicode number
 
-#### Robustness Testing
- * Frequecy testing - testing over and over again.
- * Test the random positioning of ships over 100 times
 
 
-* **Problem 🐞** - Colorama library not suppoted in deployed Heroku terminal.
-    * **Cause 🛠** - 
+* **Problem 🐞** - Colorama library not suppoted in deployed Heroku terminal. <code>ModuleNotFoundError: No module named 'colorama'</code>
+    * **Resolution ✅** - The code was refactored to incorporate escape characters, which withdrew the need to import an additional library for colour alteration. The <code>colour_text(text, colour)</code> function was created to wrap colour-dependent escape characters around the inputted text, with the syntax <code>colour_code + text + reset_colour</code>. Since many different colours were frequently printed in the teminal, this function significanlty improved the efficiency, readablity and troubleshooting of this process.
+
+* **Problem 🐞** - Nested lists not copying to new variable correctly.
+    * **Resolution ✅** - 
+    . [Adapted from Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
+
+
+* **Problem 🐞** - Continual printing of data leading to over-crowded terminal and poor user experience
+    * **Resolution ✅** - The terminal was cleared frequently to ensure that the game board was consitently at the top of the terminal. The <code>clear_console()</code> function utilised the <code>os.system('clear')</code> was used to wipe the terminal of data, enabling the presentation of the game to be controlled and styled. [Adapted from DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
+
+* **Problem 🐞** - 
     * **Resolution ✅** - 
 
+* **Problem 🐞** - 
+    * **Resolution ✅** - 
+
+* **Problem 🐞** - 
+    * **Resolution ✅** - 
 
 
 * **Issue** - Generating the winner outcome.
@@ -325,15 +328,10 @@ You can clone this repository to view, edit and run the code. The steps to clone
 
 ## Credits
 ### Content
-* Provding alternative colours for text in the terminal - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
+* Provding alternative colours for text in the terminal using escape characters - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
 * Function to clear console - [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
-
-
-* In-context code credits are provided in the [Bugs](#bugs) section. **EDIT**
+* Deep-copying nested lists - [Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
+* In-context code credits are provided in the [Bugs](#bugs) section.
 
 ### Media
-* The main figure with attacks was taken from the images in this eBay [T-Shirt](https://www.ebay.co.uk/itm/273532646173). Each individual attack image was cropped from the parent image above.
-* The trophy winner image was taken from [freepik](https://www.freepik.com/vectors/business).
-* The red cross loser image was taken from [Wikimedia](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1024px-Red_X.svg.png).
-The image displaying the website on different screens in this document was created using [Am I Responsive](http://ami.responsivedesign.is/#).
-* Wireframes were created using [Balsamiq](https://balsamiq.com/).
+* Flowcharts were created using [diagrams.net](https://app.diagrams.net/).

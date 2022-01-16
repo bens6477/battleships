@@ -1,5 +1,6 @@
 BOARD_SIZE = 6
 
+
 class Ship():
     """
     Creates a ship with specified length and symbol depending on the ship
