@@ -324,20 +324,40 @@ def play_again():
     """
     Asks user if they would like to play again and restarts the game.
     """
-    print("""Would you like to play again? Enter 'Y' to play again or 'N' to
+    valid_input = False
+    valid_options = (110, 121)
+    while not valid_input:
+        print("""Would you like to play again? Enter 'Y' to play again or 'N' to
 quit.""")
-    another_game = input("")
-    print("")
-
-    if ord(another_game.lower()) == 121:
-        print("Playing again...")
-        print("-" * 35, "\n")
-        main()
-    elif ord(another_game.lower()) == 110:
-        print("Ending game...\n")
-        print("-" * 35, "\n")
-    else:
-        print("Invalid input\n")
+        another_game = input("")
+        print("")
+        print("Checking validity of your request...")
+        try:
+            if len(another_game) == 0:
+                raise ValueError(
+                    "Input cannot be blank"
+                )
+            elif len(another_game) > 1:
+                raise ValueError(
+                    "Input too long"
+                )
+            elif ord(another_game.lower()) not in valid_options:
+                print(ord(another_game.lower()))
+                raise ValueError(
+                    "Y/N input not given"
+                )
+        except ValueError as e:
+            print(f"Invalid data: {e}, please try again.\n")
+        else:
+            print("Valid input\n")
+            if ord(another_game.lower()) == 121:
+                print("Playing again...")
+                print("-" * 35, "\n")
+                main()
+            else:
+                print("Ending game...\n")
+                print("-" * 35, "\n")
+            valid_input = True
 
 
 def main():
@@ -350,8 +370,6 @@ def main():
     global computer
     game_introduction()
     user_name = get_user_name()
-    print("user_name:", user_name)
-    input(user_name)
     players = reset_board()
     user = players[0]
     computer = players[1]
