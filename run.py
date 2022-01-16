@@ -7,7 +7,7 @@ import os
 
 def colour_text(text, colour):
     """
-    Wraps text in escape character for colouring
+    Wraps text in escape characters for colouring
     terminal text.
     """
     if colour == "green":
@@ -22,8 +22,6 @@ def colour_text(text, colour):
         colour_code = '\33[96m'
     string = colour_code + text + '\33[0m'
     return string
-
-input(colour_text("green", "green"))
 
 
 # Code taken from https://www.delftstack.com/howto/python/python-clear-console/
@@ -184,7 +182,8 @@ def get_valid_guess():
     """
     valid_guess = False
     while not valid_guess:
-        print(colour_text("Enter your target in the form 'A4' or 'a4':", "green"))
+        print(colour_text("Enter your target in the form 'A4' or 'a4':",
+              "green"))
         guess = input("")
         try:
             if len(guess) != 2:
@@ -276,13 +275,16 @@ def print_outcome(hit_array, player):
     if player == user:
         print("Your cannon fires...")
         if hit_array[0][1]:
-            input(colour_text("Direct hit! ", "red") + colour_text("Press Enter to continue.\n", "light blue"))
+            input(colour_text("Direct hit! ", "red")
+                  + colour_text("Press Enter to continue.\n", "light blue"))
         else:
-            input(colour_text("Splash! You missed! ", "yellow") + colour_text("Press Enter to continue.\n", "light blue"))
+            input(colour_text("Splash! You missed! ", "yellow")
+                  + colour_text("Press Enter to continue.\n", "light blue"))
     else:
         print("Computer's cannon fires...")
         if hit_array[1][1]:
-            input(colour_text("Ouch! Direct hit! ", "red") + colour_text("Press Enter to continue.\n", "light blue"))
+            input(colour_text("Ouch! Direct hit! ", "red")
+                  + colour_text("Press Enter to continue.\n", "light blue"))
         else:
             input(colour_text("Splash! They missed, but stay alert! ",
                   "yellow")
@@ -312,24 +314,27 @@ def check_remaining_ships():
     Checks the number of ships remaining for each player
     and determines if the game is finished or still active.
     """
-    print_boards()
+    
     ships_remaining = True
     while ships_remaining:
+        clear_console()
+        print_boards()
         user_ships = user.ships_present
         computer_ships = computer.ships_present
         print(f"{user_name}'s ships remaining: ", len(user_ships))
         print("Computer's ships remaining: ", len(computer_ships), "\n")
 
         if len(user_ships) < 5 and len(computer_ships) < 5:
-            print("Its a draw! You both struck out on this round!\n")
+            print(colour_text("""Its a draw! You both destroyed your
+opponent's last ship on this round!\n""", "yellow"))
             ships_remaining = False
         elif len(computer_ships) < 5:
-            print("""Congratulations! You destroyed all of the computer's
-ships, you win!\n""")
+            print(colour_text("""Congratulations! You destroyed all of the computer's
+ships, you win!\n""", "green"))
             ships_remaining = False
         elif len(user_ships) < 5:
-            print("""Unlucky! All of your ships have been destroyed, you lose.
-\n""")
+            print(colour_text("""Unlucky! All of your ships have been destroyed, you lose.
+\n, you win!\n""", "red"))
             ships_remaining = False
         else:
             input(colour_text("Press Enter to continue.\n", "light blue"))
