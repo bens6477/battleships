@@ -1,2 +1,2 @@
-board_size = 5
+board_size = 6
 num_ships = 5

@@ -238,7 +238,7 @@ There are no known bugs left unfixed.
 
 ## Deployment
 ### GitHub Pages
-The site was deployed to Heroku. The steps to deploy are as follows:
+This app was created using the [python essentials template](https://github.com/Code-Institute-Org/python-essentials-template) developed by the Code Institute and the site was deployed to Heroku. The steps to deploy are as follows:
 1. From the user dashboard select 'Create New App'.
 1. Enter a unique app name and select the current region. This project was deployed from the UK, Europe.
 1. Once the skeleton of the app has been created, navigate to the 'Settings' tab.

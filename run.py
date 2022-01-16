@@ -54,12 +54,22 @@ def game_introduction():
     """
     Welcomes user to the game and requests their name.
     """
-    print("Welcome to the game!\n")
+    print("Welcome to Battleships!\n")
+    print("Two enemy fleets are in battle ")
+    print("Both players have a fleet of 5 ships, each occupying a certain number of cell blocks, as shown below.")
+    print(f"Ships are randomly placed on a {board_size}x{board_size} grid.\n")
     aircraft_carrier.print_ship()
     battleship.print_ship()
     cruiser.print_ship()
     submarine.print_ship()
     destroyer.print_ship()
+    print("\nPlayers choose coordinates each round to fire a cannon at their opponent's ship.")
+    print("The symbols below indicate whether the cannonball hits or misses a ship.\n")
+    print("Direct hit - " + '\33[91m' + 'X' + '\33[0m')
+    print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
+    print("\nCan you destroy the computer's fleet before your ships are destroyed?\n")
+
+    input("Press Enter to start.")
     print("Enter your name:")
     user_name = input("")
     print("")
