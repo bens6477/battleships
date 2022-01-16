@@ -6,6 +6,20 @@
 
 <br><br>
 
+TO DO
+* Game Features
+* Error Catching
+* Testing
+* Bugs
+* Flow chart
+* Future Enhancements
+* Intro
+* User stories
+* Target audience
+* Styling
+* Contents
+
+
 ## Site Overview
 
 
@@ -54,9 +68,25 @@
 * 1990 Milton Bradley rules: https://en.wikipedia.org/wiki/Battleship_(game)
 
 ### Flowcharts
-* Wireframes were created to plan the visual layout of the site, organise the content into sections and plan the structure for both desktop and mobile browsers.  To optimise the usage of space, the content spanned horizontally on wide screens, and stacked vertically on thinner screens.
+* Flowcharts were created to plan the logic and feature paths of the game, and to organise the content into actionable sections.
 
-![Balsamiq Wireframes](assets/images/readme/wireframes.PNG)
+![Flowchart](assets/images/readme/)
+
+## Data Model
+### Classes
+This project used Object Oriented programming, consisting of two main classes - Ship and Board. There are 5 different instances of the Ship class and 2 instances of the Board class (one for each player). Each player board receives all five ship instances to be assigned locations on the grid.
+
+1. Ship
+    * Aircraft Cruiser
+    * Battleship
+    * Cruiser
+    * Destroyer
+    * Submarine
+1. Board
+    * User
+    * Computer
+
+![Classes Flowchart](assets/images/classes-flowchart.png)
 
 ### Styling
 Styling of 
@@ -79,8 +109,8 @@ Styling of
 * Computer Win
 * 
 
-### Instruction Page **EDIT**
-Upon loading the page, the user is provided with instructions of how to play the game, including the winner hierarchy figure and the different methods to select their attack. Users can return to this page throughout the game without losing their progress by clicking on the instruction button or "I" on their keyboard.
+### Game Introduction
+Upon loading the page, the user is provided with an overview of the game, including the different ship types and the key for hit/miss symbols on the game board. This is shown upon loading and every time a new game starts.
 
 ![Instruction Page](assets/images/readme/instructions.PNG)
 
@@ -117,7 +147,7 @@ Coordinate inputs checks if:
 * Second character is not a decimal number
 * First character is out of bounds of the board
 * Second character is out of bounds of the board
-* The coordinates have prevously been guessed
+* The coordinates have previously been guessed
 
 
 ## Future Enhancements
@@ -137,29 +167,24 @@ Various additional features would bring a greater user experience to the website
 * [Heroku](https://www.heroku.com/home) - Site deployment
 
 
-## Data Model
-### Classes
-This project used Object Oriented programming, consisting of two main classes - Ship and Board. There are 5 different instances of the Ship class and 2 instances of the Board class (one for each player). Each player board receives all five ship instances to be assigned locations on the grid.
+## Libraries
+Three imported libraries were utilised in this project:
 
-1. Ship
-    * Aircraft Cruiser
-    * Battleship
-    * Cruiser
-    * Destroyer
-    * Submarine
-1. Board
-    * User
-    * Computer
+### random
+random.randint() was used to randomly obtain an index from 0 to the board width and random.choice() were used to randomly select elements from lists. These were used in functions for generating the direction and coordinates when placing the ships and for generating computer guesses. 
 
-![Classes Flowchart](assets/images/classes-flowchart.png)
-  
+### os
+<code>os.system()</code> was used to clear the terminal of data. This was used in the <code>clear_console()</code> function which was used to control the game layout. <code>os.name</code> was also used to tailor the code depending on the operating system.
+
+### copy
+<code>copy.deepcopy()</code> was used to create duplicate nested lists which had no dependencies on the original list. Other conventional techniques for copying lists such as <code>old_list.copy()</code> and <code>old_list[:]</code> modified the original list when manipulating the duplicated nested list and therefore were not sufficient for the feature.
 
 ## Testing
 
 * Letting computer win - show board
 
 #### Robustness Testing
- * Frequecy testing - testing over and over again.
+ * Frequency testing - testing over and over again.
  * Test the random positioning of ships over 100 times
 
 
@@ -185,7 +210,7 @@ This project used Object Oriented programming, consisting of two main classes - 
     * **Verdict ✅** - 
 
 * **Test** - All buttons were clicked to check they performed the desired outcome.
-    * **Outcome** - All 5 attack selector buttons sent the appropriate data-type attribute when clicked, triggering the correct event listener code. The 'Reset Game' button correctly executed the resetBoard() function, the 'Instructions' button overlayed the instructions content, and the 'Play' button resumed the game from the last recorded since (0-0 upon loading). The GitHub button previously contained an anchor tag linking to the GitHub page, though the user was only redirected when clicking on the text, and the button body triggered an unknown data-type issue in the event listener logic. Consequently, the anchor tag was removed and the user was redirected to the site via JavaScript when clicking on any part of the button. 
+    * **Outcome** - All 5 attack selector buttons sent the appropriate data-type attribute when clicked, triggering the correct event listener code. The 'Reset Game' button correctly executed the resetBoard() function, the 'Instructions' button overlaid the instructions content, and the 'Play' button resumed the game from the last recorded since (0-0 upon loading). The GitHub button previously contained an anchor tag linking to the GitHub page, though the user was only redirected when clicking on the text, and the button body triggered an unknown data-type issue in the event listener logic. Consequently, the anchor tag was removed and the user was redirected to the site via JavaScript when clicking on any part of the button. 
 
 * **Test** - Checked all keyboard shortcut commands operated correctly, 
     * **Outcome** - Pressing the 1-5 keys on the keyboards correctly triggered the attacks from rock through to spock respectively. Pressing the 'R', 'I' and 'P' keys on the keyboard executed the same code as the 'Reset Game', 'Instructions' and 'Play' buttons respectively, as explained above.
@@ -205,7 +230,7 @@ This project used Object Oriented programming, consisting of two main classes - 
     * **Result 🏆** - The colorama imported python library was supported within GitPod, however was not supported in the deployed Heroku terminal. All other imported libraries loaded successfully.
     * **Verdict ✅** - This test failed the initial assessment, however, refactoring the code to incorporate escape characters relieved the need to import an additional library for colour alteration.
 
-* **Test 🧪** - Testing the final code in multiple teminals.
+* **Test 🧪** - Testing the final code in multiple terminals.
     * **Result 🏆** - All operations were working successfully in both GitPod and the deployed Heroku terminal.
     * **Verdict ✅** - This test passed, frequent assessment of the compatibility of code in both terminals ensured a pass was maintained.
 
@@ -246,9 +271,9 @@ This project used Object Oriented programming, consisting of two main classes - 
 
 
 ### Performance Testing
-* **Test 🧪** - Frequencv testing of the placement of ships, repeating process 50 times.
+* **Test 🧪** - Frequency testing of the placement of ships, repeating process 50 times.
     * **Result 🏆** - The ships were successfully placed on the board all 50 times, with no over lapping and with the correct number of divisions in each ship.
-    * **Verdict ✅** - This test passed, proving that the ship placement was operating correctly and conistently.
+    * **Verdict ✅** - This test passed, proving that the ship placement was operating correctly and consistently.
 
 
 ### Validator Testing
@@ -257,14 +282,14 @@ This project used Object Oriented programming, consisting of two main classes - 
 ### Bugs
 
 * Nested list not copying - import copy - <code>copy.deepcopy(list)</code>
-* Two letters thowing uncaught error
+* Two letters rthowing uncaught error
 * Not catching duplicate guesses - create list of previous guesses and check list before accepting subsequent guesses as valid
 * Checking validation of letter-row coordinate range - convert to unicode number
 
 
 
-* **Problem 🐞** - Colorama library not suppoted in deployed Heroku terminal. <code>ModuleNotFoundError: No module named 'colorama'</code>
-    * **Resolution ✅** - The code was refactored to incorporate escape characters, which withdrew the need to import an additional library for colour alteration. The <code>colour_text(text, colour)</code> function was created to wrap colour-dependent escape characters around the inputted text, with the syntax <code>colour_code + text + reset_colour</code>. Since many different colours were frequently printed in the teminal, this function significanlty improved the efficiency, readablity and troubleshooting of this process.
+* **Problem 🐞** - Colorama library not supported in deployed Heroku terminal. <code>ModuleNotFoundError: No module named 'colorama'</code>
+    * **Resolution ✅** - The code was refactored to incorporate escape characters, which withdrew the need to import an additional library for colour alteration. The <code>colour_text(text, colour)</code> function was created to wrap colour-dependent escape characters around the inputted text, with the syntax <code>colour_code + text + reset_colour</code>. Since many different colours were frequently printed in the terminal, this function significantly improved the efficiency, readability and troubleshooting of this process.
 
 * **Problem 🐞** - Nested lists not copying to new variable correctly.
     * **Resolution ✅** - 
@@ -272,7 +297,7 @@ This project used Object Oriented programming, consisting of two main classes - 
 
 
 * **Problem 🐞** - Continual printing of data leading to over-crowded terminal and poor user experience
-    * **Resolution ✅** - The terminal was cleared frequently to ensure that the game board was consitently at the top of the terminal. The <code>clear_console()</code> function utilised the <code>os.system('clear')</code> was used to wipe the terminal of data, enabling the presentation of the game to be controlled and styled. [Adapted from DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
+    * **Resolution ✅** - The terminal was cleared frequently to ensure that the game board was consistently at the top of the terminal. The <code>clear_console()</code> function utilised the <code>os.system('clear')</code> was used to wipe the terminal of data, enabling the presentation of the game to be controlled and styled. [Adapted from DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
 
 * **Problem 🐞** - 
     * **Resolution ✅** - 
@@ -327,7 +352,7 @@ This app was created using the [python essentials template](https://github.com/C
 1. Click 'Add buildpack' again and type in "heroku/nodejs" and then click 'Save changes'. Alternatively click on the nodejs icon to auto-fill the field with "heroku/nodejs".
 1. Ensure the order of the buildpacks starts with "heroku/python" and is followed by "heroku/nodejs".
 1. Navigate to the 'Deploy' tab in the app menu.
-1. Under the 'Deployment method' subsection select GitHub and click 'Connet to GitHub'.
+1. Under the 'Deployment method' subsection select GitHub and click 'Connect to GitHub'.
 1. In the 'repo-name' field type the repository name and click search, and then below click 'Connect'. In this case the repo-name was "battleships".
 1. Under the 'Automatic deploys' subsection click 'Enable Automatic Deploys'.
 1. After the app has been deployed, click 'View' to open the deployed site in a new tab. Alternatively, scroll to the top of the app workspace and click 'Open app'.
@@ -345,7 +370,7 @@ You can clone this repository to view, edit and run the code. The steps to clone
 
 ## Credits
 ### Content
-* Provding alternative colours for text in the terminal using escape characters - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
+* Providing alternative colours for text in the terminal using escape characters - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
 * Function to clear console - [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
 * Deep-copying nested lists - [Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
 * In-context code credits are provided in the [Bugs](#bugs) section.

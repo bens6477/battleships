@@ -10,7 +10,7 @@ class Board():
     def __init__(self, name):
         self.name = name
         self.previous_guesses = []
-        self.blank_symbol = '\33[94m' + '~' + '\33[0m'
+        self.blank_symbol = '\33[96m' + '~' + '\33[0m'
         self.miss_symbol = '\33[93m' + '~' + '\33[0m'
         self.hit_symbol = '\33[91m' + 'X' + '\33[0m'
         self.board = self.create_board()

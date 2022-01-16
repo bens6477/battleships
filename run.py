@@ -16,8 +16,6 @@ def colour_text(text, colour):
     elif colour == "yellow":
         colour_code = '\33[93m'
     elif colour == "blue":
-        colour_code = '\33[94m'
-    elif colour == "light blue":
         colour_code = '\33[96m'
     string = colour_code + text + '\33[0m'
     return string
@@ -107,18 +105,18 @@ number of cell blocks, as shown below.""")
     cruiser.print_ship()
     submarine.print_ship()
     destroyer.print_ship()
-    input(colour_text("\nPress Enter to continue.\n", "light blue"))
+    input(colour_text("\nPress Enter to continue.\n", "blue"))
     clear_console()
     print("""Players choose coordinates each round to fire a cannon at their
 opponent's ship.""")
     print("""The symbols below indicate whether the cannonball hits or misses a
 ship.\n""")
-    print("Direct hit - " + colour_text("X", "red"))
-    print("Shot missed - " + colour_text("~", "yellow"))
-    print("Blank/hidden cell - " + colour_text("~\n", "blue"))
-    print("""Destroy the computer's fleet before your ships are
+    print(colour_text("X", "red") + " - Direct hit")
+    print(colour_text("~", "yellow") + " - Shot missed")
+    print(colour_text("~", "blue") + " - Blank/hidden cell")
+    print("""\nDestroy the computer's fleet before your ships are
 destroyed to win the battle.\n""")
-    input(colour_text("Press Enter to continue.\n", "light blue"))
+    input(colour_text("Press Enter to continue.\n", "blue"))
 
 
 def reset_board():
@@ -131,13 +129,6 @@ def reset_board():
     computer = computer_copy
 
     return [user, computer]
-
-
-def print_instructions():
-    """
-    Prints gameplay instructions to the user.
-    """
-    print("Here are the instructions...\n")
 
 
 def print_boards():
@@ -277,26 +268,25 @@ def print_outcome(hit_array, player):
         print("Your cannon fires...")
         if hit_array[0][1]:
             input(colour_text("Direct hit! ", "red")
-                  + colour_text("Press Enter to continue.\n", "light blue"))
+                  + colour_text("Press Enter to continue.\n", "blue"))
         else:
             input(colour_text("Splash! You missed! ", "yellow")
-                  + colour_text("Press Enter to continue.\n", "light blue"))
+                  + colour_text("Press Enter to continue.\n", "blue"))
     else:
         print("Computer's cannon fires...")
         if hit_array[1][1]:
             input(colour_text("Ouch! Direct hit! ", "red")
-                  + colour_text("Press Enter to continue.\n", "light blue"))
+                  + colour_text("Press Enter to continue.\n", "blue"))
         else:
             input(colour_text("Splash! They missed, but stay alert! ",
                   "yellow")
-                  + colour_text("Press Enter to continue.\n", "light blue"))
+                  + colour_text("Press Enter to continue.\n", "blue"))
 
 
 def single_round():
     """
     Game script running a single blast attempt from each player.
     """
-    print_instructions()
     print_boards()
     user_guess = get_valid_guess()
     computer_guess = generate_random_guess()
@@ -338,7 +328,7 @@ ships, you win!\n""", "green"))
 \n, you win!\n""", "red"))
             ships_remaining = False
         else:
-            input(colour_text("Press Enter to continue.\n", "light blue"))
+            input(colour_text("Press Enter to continue.\n", "blue"))
             single_round()
 
 
