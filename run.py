@@ -54,12 +54,11 @@ def get_user_name():
     """
     Requests and checks validity of user name.
     """
+    clear_console()
     valid_name = False
     while not valid_name:
         print("Enter your name:")
         name_input = input("")
-        print("")
-        print("Checking validity of your user name...")
         try:
             if len(name_input) == 0:
                 raise ValueError(
@@ -72,7 +71,6 @@ def get_user_name():
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
         else:
-            print("Valid input\n")
             valid_name = True
         
     return name_input
@@ -98,8 +96,9 @@ opponent's ship.""")
 ship.""")
     print("Direct hit - " + '\33[91m' + 'X' + '\33[0m')
     print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
-    print("""\nCan you destroy the computer's fleet before your ships are
-destroyed?\n""")
+    print("""\Destroy the computer's fleet before your ships are
+destroyed to win the battle.\n""")
+    input("Press Enter to continue.\n")
 
 
 def reset_board():
@@ -128,7 +127,7 @@ def print_boards():
     clear_console()
     board_str = f"{user_name}'s Board:"
     board_str += " " * (17 - len(user_name))
-    board_str += "Enemy's Board:\n\n"
+    board_str += "Computer's Board:\n\n"
     board_str += " " * 4
     for index in range(BOARD_SIZE):
         board_str += f"{index}  "
@@ -166,9 +165,6 @@ def get_valid_guess():
     while not valid_guess:
         print("Enter your target in the form 'A4' or 'a4'.")
         guess = input("")
-        print("")
-        print("Checking validity of your target coordinates...")
-
         try:
             if len(guess) != 2:
                 raise ValueError(
@@ -259,15 +255,15 @@ def print_outcome(hit_array, player):
     if player == user:
         print("Your cannon fires...")
         if hit_array[0][1]:
-            input("Direct hit! They took damage! Press Enter to continue.\n")
+            input("Direct hit! Press Enter to continue.\n")
         else:
-            input("Unlucky! You missed! Press Enter to continue.\n")
+            input("Splash! You missed! Press Enter to continue.\n")
     else:
         print("Computer's cannon fires...")
         if hit_array[1][1]:
-            input("Ouch! They hit our ship! Press Enter to continue.\n")
+            input("Ouch! Direct hit! Press Enter to continue.\n")
         else:
-            input("""Phew! They missed our ship, but stay alert! Press Enter
+            input("""Splash! They missed, but stay alert! Press Enter
 to continue.\n""")
 
 
@@ -299,8 +295,8 @@ def check_remaining_ships():
     while ships_remaining:
         user_ships = user.ships_present
         computer_ships = computer.ships_present
-        print("User ships remaining: ", len(user_ships))
-        print("Computer ships remaining: ", len(computer_ships), "\n")
+        print(f"{user_name}'s ships remaining: ", len(user_ships))
+        print("Computer's ships remaining: ", len(computer_ships), "\n")
 
         if len(user_ships) < 5 and len(computer_ships) < 5:
             print("Its a draw! You both struck out on this round!\n")
@@ -316,7 +312,7 @@ ships, you win!\n""")
             print("Game over\n")
             ships_remaining = False
         else:
-            input("Round over, press Enter to continue.")
+            input("Press Enter to continue.")
             single_round()
 
 
@@ -330,8 +326,6 @@ def play_again():
         print("""Would you like to play again? Enter 'Y' to play again or 'N' to
 quit.""")
         another_game = input("")
-        print("")
-        print("Checking validity of your request...")
         try:
             if len(another_game) == 0:
                 raise ValueError(
