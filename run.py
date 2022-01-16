@@ -1,8 +1,9 @@
-from parameters import BOARD_SIZE
-from ship import aircraft_carrier, battleship, cruiser, destroyer, submarine
-from board import Board
 import random
 import os
+from classes.ship import BOARD_SIZE, aircraft_carrier, battleship, cruiser, destroyer, submarine
+from classes.board import Board
+
+import colorama
 
 
 def colour_text(text, colour):

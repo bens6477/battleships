@@ -1,7 +1,6 @@
-from parameters import BOARD_SIZE
-from ship import ship_tuple
 import random
 import copy
+from .ship import BOARD_SIZE, ship_tuple
 
 
 class Board():

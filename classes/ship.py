@@ -1,5 +1,4 @@
-from parameters import BOARD_SIZE
-
+BOARD_SIZE = 6
 
 class Ship():
     """

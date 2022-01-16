@@ -144,6 +144,26 @@ Various additional features would bring a greater user experience to the website
 
 
 ### Functionality Testing
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
 * **Test** - All buttons were clicked to check they performed the desired outcome.
     * **Outcome** - All 5 attack selector buttons sent the appropriate data-type attribute when clicked, triggering the correct event listener code. The 'Reset Game' button correctly executed the resetBoard() function, the 'Instructions' button overlayed the instructions content, and the 'Play' button resumed the game from the last recorded since (0-0 upon loading). The GitHub button previously contained an anchor tag linking to the GitHub page, though the user was only redirected when clicking on the text, and the button body triggered an unknown data-type issue in the event listener logic. Consequently, the anchor tag was removed and the user was redirected to the site via JavaScript when clicking on any part of the button. 
 
@@ -159,7 +179,42 @@ Various additional features would bring a greater user experience to the website
 * **Test** - Checking the score bar for the computer moved below the image on smaller screens.
     * **Outcome** - <code>console.log('threshold crossed')</code> was used to check that the  <code>moveScore()</code> function was executing correctly. This message is displayed in the console every time the window size crossed the stacking threshold of 800px. The window was dragged to small and large widths several times, and the score bar moved appropriately to optimise the viewing of the content.
 
+
 ### Compatibility Testing
+* **Test 🧪** - Testing the imported libraries were fully functional in multiple workspaces.
+    * **Result 🏆** - The colorama imported python library was supported within GitPod, however was not supported in the deployed Heroku terminal. All other imported libraries loaded successfully.
+    * **Verdict ✅** - This test failed the initial assessment, however, refactoring the code to incorporate escape characters relieved the need to import an additional library for colour alteration.
+
+* **Test 🧪** - Testing the final code in multiple teminals.
+    * **Result 🏆** - All operations were working successfully in both GitPod and the deployed Heroku terminal.
+    * **Verdict ✅** - This test passed, frequent assessment of the compatibility of code in both terminals ensured a pass was maintained.
+
+
+
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+* **Test 🧪** - 
+    * **Result 🏆** - 
+    * **Verdict ✅** - 
+
+
+
+
 * **Test** - Testing responsivity across various screen sizes.
     * **Outcome** - The website was tested for responsivity across screen sizes of 320px, 768px, 1280px and 1600px in width, coving typical screens for mobiles, tablets, laptops and desktops. Three different laptop sizes and three different mobile phone sizes were used to verify this. Content readability was optimised by altering the size and positioning of elements.
 
@@ -201,6 +256,11 @@ Various additional features would bring a greater user experience to the website
 #### Robustness Testing
  * Frequecy testing - testing over and over again.
  * Test the random positioning of ships over 100 times
+
+
+* **Problem 🐞** - Colorama library not suppoted in deployed Heroku terminal.
+    * **Cause 🛠** - 
+    * **Resolution ✅** - 
 
 
 
@@ -265,15 +325,11 @@ You can clone this repository to view, edit and run the code. The steps to clone
 
 ## Credits
 ### Content
-* Providing explicit width and height dimension to images - adapted from [web.dev](https://web.dev/optimize-cls/?utm_source=lighthouse&utm_medium=devtools#images-without-dimensions/)
-* Embedding selection buttons within the attack options in the image -  adapted from [Stack Overflow](https://stackoverflow.com/questions/24435397/).
-* Creating a countdown feature before revealing the result - adapted from [Carl Anderson](https://carlanderson.xyz/creating-timed-sequences-in-javascript-using-settimeout/).
-* Dynamically hiding elements from view during gameplay - adapted from [Career Karma](https://careerkarma.com/blog/css-hide-element/).
-* Functions running immediately when assigning event listeners - adapted from [Stack Overflow](https://stackoverflow.com/questions/16310423/addeventlistener-calls-the-function-without-me-even-asking-it-to).
-* Alerts disturbing the flow of events - adapted from [Sweet Alert](https://sweetalert2.github.io/).
-* In-context code credits are provided in the [Bugs](#bugs) section.
-* All fonts were imported from [Google Fonts](https://fonts.google.com/specimen/Russo+One/).
-* The icons in the footer and game area were taken from [Font Awesome](https://fontawesome.com/v5.15/icons/).
+* Provding alternative colours for text in the terminal - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
+* Function to clear console - [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
+
+
+* In-context code credits are provided in the [Bugs](#bugs) section. **EDIT**
 
 ### Media
 * The main figure with attacks was taken from the images in this eBay [T-Shirt](https://www.ebay.co.uk/itm/273532646173). Each individual attack image was cropped from the parent image above.
