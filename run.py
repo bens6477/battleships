@@ -100,7 +100,6 @@ def game_introduction():
     Welcomes user to the game and requests their name.
     """
     print("Welcome to Battleships!\n")
-    print("Two enemy fleets are in battle ")
     print("""Both players have a fleet of 5 ships, each occupying a certain
 number of cell blocks, as shown below.""")
     print(f"Ships are randomly placed on a {BOARD_SIZE}x{BOARD_SIZE} grid.\n")
@@ -109,13 +108,16 @@ number of cell blocks, as shown below.""")
     cruiser.print_ship()
     submarine.print_ship()
     destroyer.print_ship()
-    print("""\nPlayers choose coordinates each round to fire a cannon at their
+    input(colour_text("\nPress Enter to continue.\n", "light blue"))
+    clear_console()
+    print("""Players choose coordinates each round to fire a cannon at their
 opponent's ship.""")
     print("""The symbols below indicate whether the cannonball hits or misses a
-ship.""")
-    print("Direct hit - " + '\33[91m' + 'X' + '\33[0m')
-    print("Shot missed - " + '\33[93m' + '~' + '\33[0m')
-    print("""\Destroy the computer's fleet before your ships are
+ship.\n""")
+    print("Direct hit - " + colour_text("X", "red"))
+    print("Shot missed - " + colour_text("~", "yellow"))
+    print("Blank/hidden cell - " + colour_text("~\n", "blue"))
+    print("""Destroy the computer's fleet before your ships are
 destroyed to win the battle.\n""")
     input(colour_text("Press Enter to continue.\n", "light blue"))
 
@@ -368,13 +370,11 @@ quit:""" + '\33[0m')
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
         else:
-            print("Valid input\n")
             if ord(another_game.lower()) == 121:
-                print("Playing again...")
                 print("-" * 35, "\n")
                 main()
             else:
-                print("Ending game...\n")
+                print("Game finished.\n")
                 print("-" * 35, "\n")
             valid_input = True
 
