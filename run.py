@@ -83,7 +83,7 @@ destroyed?\n""")
 
 def reset_board():
     """
-    Re-initialises boards ready for the start of a new game 
+    Re-initialises boards ready for the start of a new game.
     """
     user_copy = Board(user_name)
     computer_copy = Board("computer")
@@ -137,7 +137,7 @@ def print_boards():
 
 def get_valid_guess():
     """
-    Request coordinates from user and checks it is of 
+    Request coordinates from user and checks it is of
     valid format for processing.
     Throws relevant errors if data is in invalid format.
     """
@@ -159,15 +159,19 @@ def get_valid_guess():
                 )
             elif not guess[1].isdigit():
                 raise ValueError(
-                    f"Second character is not a decimal number in your guess '{guess}'"
+                    f"""Second character is not a decimal number in your guess
+'{guess}'"""
                 )
-            elif ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + BOARD_SIZE):
+            elif (ord(guess[0].lower()) < 97 or
+                    ord(guess[0].lower()) > (96 + BOARD_SIZE)):
                 raise ValueError(
-                    f"First character is out of bounds of the board in your guess '{guess}'. It should be a letter between A and {chr(64 + BOARD_SIZE)}"
+                    f"""First character is out of bounds of the board in your
+guess '{guess}'. It should be a letter between A and {chr(64 + BOARD_SIZE)}"""
                 )
             elif (int(guess[1]) > BOARD_SIZE - 1):
                 raise ValueError(
-                    f"Second character is out of bounds of the board in your guess '{guess}'"
+                    f"""Second character is out of bounds of the board in your
+guess '{guess}'"""
                 )
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
@@ -179,10 +183,12 @@ def get_valid_guess():
             try:
                 if num_guess in computer.previous_guesses:
                     raise ValueError(
-                        f"You have already guessed the coordinates of '{guess}'"
+                        f"""You have already guessed the coordinates of
+'{guess}'"""
                     )
             except ValueError as e:
-                print(f"Invalid data: {e}, please choose coordinates in the the form 'A4' or 'a4'.\n")
+                print(f"""Invalid data: {e}, please choose coordinates in the
+form 'A4' or 'a4'.\n""")
             else:
                 print("Valid input\n")
                 computer.previous_guesses.append(num_guess)
@@ -196,8 +202,12 @@ def check_player_guesses(user_guess, computer_guess):
     Checks if the guesses of both players match ship locations of
     their opponent.
     """
-    user_hit = ["user", is_guess_in_array(user_guess, computer.ship_locations, False, True), user_guess]
-    computer_hit = ["computer", is_guess_in_array(computer_guess, user.ship_locations, False, True), computer_guess]
+    user_check = is_guess_in_array(user_guess, computer.ship_locations,
+                                   False, True)
+    computer_check = is_guess_in_array(computer_guess, user.ship_locations,
+                                       False, True)
+    user_hit = ["user", user_check, user_guess]
+    computer_hit = ["computer", computer_check, computer_guess]
 
     return (user_hit, computer_hit)
 
@@ -214,10 +224,10 @@ def edit_board(hit_array, player):
     guess_tuple = (guess[2][0], guess[2][1])
     if guess[1]:
         print(f"{guess[0]}: hit opponent\n")
-        player.board[guess_tuple[0]][guess_tuple[1]] = '\33[91m' + 'X' + '\33[0m'
+        player.board[guess_tuple[0]][guess_tuple[1]] = player.hit_symbol
     else:
         print(f"{guess[0]}: missed opponent\n")
-        player.board[guess_tuple[0]][guess_tuple[1]] = '\33[93m' + '~' + '\33[0m'
+        player.board[guess_tuple[0]][guess_tuple[1]] = player.miss_symbol
     player.update_board()
 
 
@@ -236,7 +246,8 @@ def print_outcome(hit_array, player):
         if hit_array[1][1]:
             input("Ouch! They hit our ship! Press Enter to continue.\n")
         else:
-            input("Phew! They missed our ship, but stay alert! Press Enter to continue.\n")
+            input("""Phew! They missed our ship, but stay alert! Press Enter
+to continue.\n""")
 
 
 def single_round():
@@ -274,11 +285,13 @@ def check_remaining_ships():
             print("Its a draw! You both struck out on this round!\n")
             ships_remaining = False
         elif len(computer_ships) < 5:
-            print("Congratulations! You destroyed all of the computer's ships, you win!\n")
+            print("""Congratulations! You destroyed all of the computer's
+ships, you win!\n""")
             print("Game over\n")
             ships_remaining = False
         elif len(user_ships) < 5:
-            print("Unlucky! All of your ships have been destroyed, you lose.\n")
+            print("""Unlucky! All of your ships have been destroyed, you lose.
+\n""")
             print("Game over\n")
             ships_remaining = False
         else:
@@ -290,7 +303,8 @@ def play_again():
     """
     Asks user if they would like to play again and restarts the game.
     """
-    print("Would you like to play again? Enter 'Y' to play again or 'N' to quit.")
+    print("""Would you like to play again? Enter 'Y' to play again or 'N' to
+quit.""")
     another_game = input("")
     print("")
 
