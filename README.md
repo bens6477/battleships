@@ -93,6 +93,26 @@ Styling of
 * Gameboard
 * Narrative
 
+The game area consists of two player board - the user and the computer - containing their name and grid map. The cell symbols vary dynamically depending on the contents of the cell and the outcome of chosen coordinates.
+
+* A - Ships indicated by ship type initial
+* <span style="color:dodgerblue">~</span> - Blank/hidden cell
+* <span style="color:red">X</span> - Hit
+* <span style="color:yellow">~</span> - Miss
+
+
+* The user can see the locations of each of their ships, however the locations of the computer's ships are hidden. The player's aim is to successfully guess the locations all of their opponent's ships.
+
+
+#### Text Colouring
+* Specific phrases and characters are assigned different colours depending on the data they represent.
+* This improves the readability of the game and improves the user experience as the player can differentiate between data quickly and it is much more pleasing to look at.
+
+Colour dependent data is as follows:
+* <span style="color:lime">User input requests</span>
+* <span style="color:dodgerblue">"Enter to continue" messages and blank/hidden cell</span>
+* <span style="color:red">Hit cases and messages</span>
+* <span style="color:yellow">Miss cases and messages</span> 
 
 ![Eight Shapes Color Grid](assets/images/readme/color-contrast.PNG)
 
@@ -130,12 +150,21 @@ The user is prompted to input their chosen user name. The program will only prog
 1. The user name cannot be the same as the Computer.
     * A custom error is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
 
+![Ship Instructions](assets/images/user-name.png)
 
 ### Ship Placement
-
+* Each ship is placed by randomly selecting a starting coordinate and randomly selecting a direction of either "right" or "down". From the starting point, The divisions of the ship are printed to adjacent cells from the starting point in the specified direction.
+* The <code>ship.placement_range</code> attribute is used to randomise the starting position of the ships depending on the length of the ship and how many cells it requires to print in full.
+* The <code>is_ship_already_here()</code> function is used to check that there are no ships already located in any of the cells before placing the ship.
 
 ### Gameboard
-#### Valid Guess
+#### Valid User Guess
+
+
+#### Randomised Computer Guess
+* Computer guesses were randomly selected on the grid using the imported random library.
+* random.randint() was used to randomly obtain an index from 0 to the board width and random.choice() were used to randomly select elements from lists.
+* These were used in functions for generating the direction and coordinates when placing the ships and for generating computer guesses.
 
 #### Hit Result
 
