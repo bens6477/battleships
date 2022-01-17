@@ -14,10 +14,13 @@ TO DO
 * Flow chart
 * Future Enhancements
 * Intro
-* User stories
-* Target audience
 * Styling
 * Contents
+
+COMPLETEd
+* User stories
+* Target audience
+
 
 
 ## Site Overview
@@ -52,17 +55,22 @@ TO DO
 
 ## Planning
 ### Target Audience **EDIT**
-* Users who wish to engage in a more complex version of Rock, Paper, Scissors.
+* Users who wish to play and enjoyable game of Battleships.
 * Users who are looking to design and code interactive games themselves.
-* Younger users who are looking to play a simple, engaging game with a short duration.
-* Users who are looking to interactively learn the rules of Rock, Paper, Scissors, Lizard, Spock to play externally with friends.
+* Users who are looking to play a simple, engaging game with a short duration.
 
 ### User Stories **EDIT**
-* As a user, I want a simple, clean layout, providing everything I need for smooth gameplay.
-* As a user, I want to easily access instructions on how to play the game.
-* As a user, I want to easily select my chosen attack in an intuitive manner.
-* As a user, I want to easily view the winner of each point and receive an explanation of the result.
-* As a user, I want to easily reset the game to play again as many times as desired.
+As a user, I want:
+* A simple, clean layout, providing everything I need for smooth gameplay.
+* To view instructions on how to play the game.
+* To view a clean game area with only the essential information for each stage.
+* To easily input data in an intuitive manner.
+* To be clearly informed of errors when I've given invalid information. 
+* To easily view the outcome of each guess.
+* To easily reset the game to play again as many times as desired.
+
+Site Aims
+
 
 ### Game Brief
 * 1990 Milton Bradley rules: https://en.wikipedia.org/wiki/Battleship_(game)
@@ -89,20 +97,16 @@ This project used Object Oriented programming, consisting of two main classes - 
 ![Classes Flowchart](assets/images/classes-flowchart.png)
 
 ### Styling
-Styling of 
-* Gameboard
-* Narrative
+#### Game Area
 
 The game area consists of two player board - the user and the computer - containing their name and grid map. The cell symbols vary dynamically depending on the contents of the cell and the outcome of chosen coordinates.
 
-* A - Ships indicated by ship type initial
-* <span style="color:dodgerblue">~</span> - Blank/hidden cell
-* <span style="color:red">X</span> - Hit
-* <span style="color:yellow">~</span> - Miss
+![Symbol Key](assets/images/symbol-key.png)
+
 
 * The user can see the locations of each of their ships, however the locations of the computer's ships are hidden. The player's aim is to successfully guess the locations all of their opponent's ships.
 
-![Eight Shapes Color Grid](assets/images/readme/color-contrast.PNG)
+![Game Board](assets/images/game-board.png)
 
 
 #### Text Colouring
@@ -112,12 +116,7 @@ The game area consists of two player board - the user and the computer - contain
 * This improves the readability of the game and improves the user experience as the player can differentiate between data quickly and it is much more pleasing to look at.
 
 Colour dependent data is as follows:
-* <span style="color:lime">User input requests</span>
-* <span style="color:dodgerblue">"Enter to continue" messages and blank/hidden cell</span>
-* <span style="color:red">Hit cases and messages</span>
-* <span style="color:yellow">Miss cases and messages</span> 
-
-
+![Colour Key](assets/images/colour-key.png)
 
 ## Features
 

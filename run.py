@@ -116,7 +116,7 @@ opponent's ship.""")
     print("""The symbols below indicate whether the cannonball hits or misses a
 ship.\n""")
     print(colour_text("X", "red") + " - Direct hit")
-    print(colour_text("~", "yellow") + " - Shot missed")
+    print(colour_text("\u2300", "yellow") + " - Shot missed")
     print(colour_text("~", "blue") + " - Blank/hidden cell")
     print("""\nDestroy the computer's fleet before your ships are
 destroyed to win the battle.\n""")
