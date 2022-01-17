@@ -140,27 +140,27 @@ def print_boards():
     Displays both player board in a clean and formatted structure.
     """
     clear_console()
-    board_str = " " * 4 + f"{user_name}'s Board:"
-    board_str += " " * (17 - len(user_name))
-    board_str += "Computer's Board:\n\n"
-    board_str += " " * 8
+    board_str = " " * 10 + f"{user_name}'s Board"
+    board_str += " " * (24 - len(user_name))
+    board_str += "Computer's Board\n\n"
+    board_str += " " * 14
     for index in range(BOARD_SIZE):
         board_str += f"{index}  "
     board_str += " " * 10
     for index in range(BOARD_SIZE):
         board_str += f"{index}  "
     board_str += "\n"
-    board_str += " " * 6 + "\u2198 "
+    board_str += " " * 12 + "\u2198 "
     board_str += "   " * BOARD_SIZE
     board_str += " " * 8 + "\u2198"
     board_str += "   " * (BOARD_SIZE)
     board_str += "\n"
     for row in range(BOARD_SIZE):
-        row_str = " " * 4 + f"{chr(65 + row)}  "
+        row_str = " " * 10 + f"{chr(65 + row)}  "
         for column in range(BOARD_SIZE):
             column_str = f" {user.board[row][column]} "
             row_str += column_str
-        row_str += f"   |   {chr(65 + row)}  "
+        row_str += " " * 7 + f"{chr(65 + row)}  "
         for column in range(BOARD_SIZE):
             column_str = f" {computer.hidden_board[row][column]} "
             if column == BOARD_SIZE - 1:
