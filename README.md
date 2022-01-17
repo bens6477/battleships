@@ -1,36 +1,9 @@
 # Battleships Game
 
-<br>
-
-** **STILL TO BE EDITTED FROM PREVIOUS PROJECT** **
-
-<br><br>
-
-TO DO
-
-* Bugs
-* Future Enhancements
-* Unfinished bugs
-
-
-
-COMPLETEd
-* User stories
-* Target audience
-* Styling
-* Contents
-* Game Features
-* Error Catching
-* Testing
-* Flowchart
-* Overview
-
-
-
 ## Site Overview
 This project uses a mock terminal deployed in Heroku to host a computerised version of the classic board game Battleships.<br>
 
-Based on the original 1990 Milton Bradley game rules, each player has 5 ships in their fleet, and players take turns guessing the coordinates of their opponent's ships. If the player guesses correctly, a red X is placed in the cell, and if it is wrong it's filled with a yellow ⌀. The first player to sink all of their opponent's ship wins.<br>
+Based on the original [1990 Milton Bradley game rules](https://www.hasbro.com/common/instruct/Battleship.PDF), each player has 5 ships in their fleet, and players take turns guessing the coordinates of their opponent's ships. If the player guesses correctly, a red X is placed in the cell, and if it is wrong it's filled with a yellow ⌀. The first player to sink all of their opponent's ship wins.<br>
 
 This app is a simple, fast-paced app which you can play against the computer in a short-duration. Do you have what it takes to beat the computer?
 
@@ -87,9 +60,6 @@ As a user, I want:
 * To easily view the outcome of each guess.
 * To easily reset the game to play again as many times as desired.
 
-
-### Game Brief
-* 1990 Milton Bradley rules: https://en.wikipedia.org/wiki/Battleship_(game)
 
 ### Data Model
 This project used Object Oriented programming, consisting of two main classes - Ship and Board. There are 5 different instances of the Ship class and 2 instances of the Board class (one for each player). Each player board receives all five ship instances to be assigned locations on the grid.
@@ -166,7 +136,7 @@ Upon loading the page, the user is provided with an overview of the game, includ
     1. Inputting target coordinates
     1. Inputting if the user would like to play again
 
-### User Name Input (With Error Handling)
+### User Name Input
 The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and to inform the user of the error in their submission:
 1. The user name cannot be left blank.
     * A ValueError is returned when the submitted string length is zero - <code>len(user_name) == 0</code>
@@ -268,11 +238,11 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
     * **Verdict ✅** - This test passed, proving that the ship placement was operating correctly and consistently.
 
 * **Test 🧪** - Testing all user name input error handling cases.
-    * **Result 🏆** - Input values were submitted as blank, strings of 11 characters and of "computer" and "Computer" and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. See image in **Features** section for error messages.
+    * **Result 🏆** - Input values were submitted as blank, strings of 11 characters and of "computer" and "Computer" and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. See image in [Features](#features) section for error messages.
     * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail.
 
 * **Test 🧪** - Testing all valid target coordinate input error handling cases.
-    * **Result 🏆** - Input values were submitted for each case outlined in **Hyperlink** as blank and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. See image in **Features** section for error messages.
+    * **Result 🏆** - Input values were submitted for each case outlined in [Valid User Guess](#valid-user-guess) section as blank and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. See image in [Features](#features) section for error messages.
     * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail. As this is the most frequent input for the user, extra care was given to ensure that the code was not broken at this poin.
 
 * **Test 🧪** - Test hit/miss cases.
@@ -280,7 +250,7 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
     * **Verdict ✅** - This test passed, as relevant symbol was printed to each cell every time.
 
 * **Test 🧪** - Testing all Y/N input error handling cases.
-    * **Result 🏆** - Input values were submitted as blank, strings of 2 characters and of non- Y/N characters such as "m", "X", "1" and ".". The predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. The game successfully restarted upon the submission of "Y" and ended with the submission of "N". See image in **Features** section for error messages.
+    * **Result 🏆** - Input values were submitted as blank, strings of 2 characters and of non- Y/N characters such as "m", "X", "1" and ".". The predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. The game successfully restarted upon the submission of "Y" and ended with the submission of "N". See image in [Features](#features) section for error messages.
     * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail.
 
 * **Test 🧪** - Test for user winning the battle.
@@ -382,3 +352,4 @@ You can clone this repository to view, edit and run the code. The steps to clone
 * Flowcharts were created using [diagrams.net](https://app.diagrams.net/).
 * Python code was vallidated using [PEP8 online validator](http://pep8online.com/).
 * [python essentials template](https://github.com/Code-Institute-Org/python-essentials-template) for mock terminal was provided by [Code Institute](https://codeinstitute.net/)
+* Game rules were obtained from [1990 Milton Bradley game rules](https://www.hasbro.com/common/instruct/Battleship.PDF)
