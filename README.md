@@ -15,12 +15,12 @@ TO DO
 * Future Enhancements
 * Unfinished bugs
 * Intro
-* Styling
 * Contents
 
 COMPLETEd
 * User stories
 * Target audience
+* Styling
 
 
 
@@ -78,6 +78,8 @@ Site Aims
 
 ### Flowcharts
 * Flowcharts were created to plan the logic and feature paths of the game, and to organise the content into actionable sections.
+
+[View image in new tab:](https://raw.githubusercontent.com/bens6477/battleships/main/assets/images/logic-flowchart.png)
 
 ![Logic Flowchart](assets/images/logic-flowchart.png)
 
@@ -141,10 +143,14 @@ Upon loading the page, the user is provided with an overview of the game, includ
 * Whenever the user is requested to input information, it is passed through several error handling cases to ensure that the data is valid. This is to ensure that the user does not unintentionally (or intentionally) break the game by inserting improper information.
 * A defensive design approach was used to predict and catch the potential cases which could break the program or which would result in poorer user experience. 
 * try-except-else statements were used to run test cases, catch and return errors, and run code where no exceptions were present.
-* Customised error messages were created for each case, informing the user of what caused the error. 
+* Customised error messages were created for each case, informing the user of what caused the error.
+* Exception handling is used at 3 sections in the program:
+    1. Inputting user name
+    1. Inputting target coordinates
+    1. Inputting if the user would like to play again
 
 ### User Name Input (With Error Handling)
-The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and inform the user of the error in their submission:
+The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and to inform the user of the error in their submission:
 1. The user name cannot be left blank.
     * A custom error is returned when the submitted string length is zero - <code>len(user_name) == 0</code>
 1. The user name cannot be longer than 10 characters.
@@ -152,7 +158,7 @@ The user is prompted to input their chosen user name. The program will only prog
 1. The user name cannot be the same as the Computer.
     * A custom error is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
 
-![Ship Instructions](assets/images/user-name.png)
+![User Name](assets/images/user-name.png)
 
 ### Ship Placement
 * Each ship is placed by randomly selecting a starting coordinate and randomly selecting a direction of either "right" or "down". From the starting point, The divisions of the ship are printed to adjacent cells from the starting point in the specified direction.
@@ -161,6 +167,7 @@ The user is prompted to input their chosen user name. The program will only prog
 
 ### Gameboard
 #### Valid User Guess
+
 
 
 #### Randomised Computer Guess
@@ -173,11 +180,27 @@ The user is prompted to input their chosen user name. The program will only prog
 #### Miss Result
 
 ### Game Winner
+Once either player has no ships left the winner is declared. A colour-coded message is printed stating whether the user won, lost or drew.
+
+ returning a trophy image to the victor's game area and a red cross to the loser's game area. All selector buttons are prevented from triggering from this point onwards, until the user selects to reset the game and play again. Should a selector be pressed, a Sweet Alert message will appear to reiterate this to the user.
+
+
 #### Player Win Result
 
 #### Computer Win Result
 
 
+### Play Again
+* After the battle has finished and the winner is declared, the user is asked if they would like to play again. The user  A simple Y/N is 
+* The program will only progress when a valid response has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid response and to inform the user of the error in their submission:
+1. The Y/N response cannot be left blank.
+    * A custom error is returned when the submitted string length is zero - <code>len(another_game) == 0</code>
+1. The Y/N response cannot be longer than 1 character.
+    * A custom error is returned when the submitted string length is greater than 1 character - <code>len(another_game) > 1</code>
+1. The Y/N response must only be either a "Y" or an "N", upper- or lowercase.
+    * A custom error is returned when the unicode of the submitted string is not equal to "Y" or "N" - <code>ord(another_game.lower())</code>.
+
+![Play Again](assets/images/play-again.png)
 
 ### Game Area **EDIT**
 The game area consists of two player areas - the user and the computer - containing their current score, and their current active image. Images vary dynamically between the attack selection figure, the player's chosen attack, and finally the winner/loser images after the game finishes.
