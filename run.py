@@ -319,15 +319,15 @@ def check_remaining_ships():
         print(f"{user_name}'s ships remaining: ", len(user_ships))
         print("Computer's ships remaining: ", len(computer_ships), "\n")
 
-        if len(user_ships) < 5 and len(computer_ships) < 5:
+        if len(user_ships) < 1 and len(computer_ships) < 1:
             print(colour_text("""Its a draw! You both destroyed your
 opponent's last ship on this round!\n""", "yellow"))
             ships_remaining = False
-        elif len(computer_ships) < 5:
+        elif len(computer_ships) < 1:
             print(colour_text("""Congratulations! You destroyed all of the computer's
 ships, you win!\n""", "green"))
             ships_remaining = False
-        elif len(user_ships) < 5:
+        elif len(user_ships) < 1:
             print(colour_text("""Unlucky! All of your ships have been destroyed, you lose.
 \n, you win!\n""", "red"))
             ships_remaining = False
