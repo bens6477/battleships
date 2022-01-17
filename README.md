@@ -112,7 +112,18 @@ Styling of
 ### Game Introduction
 Upon loading the page, the user is provided with an overview of the game, including the different ship types and the key for hit/miss symbols on the game board. This is shown upon loading and every time a new game starts.
 
-![Instruction Page](assets/images/readme/instructions.PNG)
+![Ship Instructions](assets/images/rules-ships.png)
+![Outcome Instructions](assets/images/rules-outcome.png)
+
+### User Name Input (With Error Handling)
+The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and inform the user of the error in their submission:
+1. The user name cannot be left blank.
+    * A custom error is returned when the submitted string length is zero - <code>len(user_name) == 0</code>
+1. The user name cannot be longer than 10 characters.
+    * A custom error is returned when the submitted string length is greater than 10 characters - <code>len(user_name) > 10</code>
+1. The user name cannot be the same as the Computer.
+    * A custom error is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
+
 
 ### Game Area **EDIT**
 The game area consists of two player areas - the user and the computer - containing their current score, and their current active image. Images vary dynamically between the attack selection figure, the player's chosen attack, and finally the winner/loser images after the game finishes.

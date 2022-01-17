@@ -80,9 +80,13 @@ def get_user_name():
                 raise ValueError(
                     "Name cannot be blank"
                 )
-            elif len(name_input) > 8:
+            elif len(name_input) > 10:
                 raise ValueError(
                     "Name too long. Provide a shorter name"
+                )
+            elif name_input.lower() == "computer":
+                raise ValueError(
+                    "Name cannot be the same as the Computer"
                 )
         except ValueError as e:
             print(f"Invalid data: {e}, please try again.\n")
