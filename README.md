@@ -287,14 +287,6 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
 
 
 ### Bugs
-
-* Nested list not copying - import copy - <code>copy.deepcopy(list)</code>
-* Two letters throwing uncaught error
-* Not catching duplicate guesses - create list of previous guesses and check list before accepting subsequent guesses as valid
-* Checking validation of letter-row coordinate range - convert to unicode number
-
-
-
 * **Problem 🐞** - Colorama library not supported in deployed Heroku terminal. <code>ModuleNotFoundError: No module named 'colorama'</code>
     * **Resolution ✅** - The code was refactored to incorporate escape characters, which withdrew the need to import an additional library for colour alteration. The <code>colour_text(text, colour)</code> function was created to wrap colour-dependent escape characters around the inputted text, with the syntax <code>colour_code + text + reset_colour</code>. Since many different colours were frequently printed in the terminal, this function significantly improved the efficiency, readability and troubleshooting of this process.
 
