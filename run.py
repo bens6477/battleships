@@ -140,7 +140,7 @@ def print_boards():
     Displays both player board in a clean and formatted structure.
     """
     clear_console()
-    board_str = " " * 10 + f"{user_name}'s Board"
+    board_str = "\n" + " " * 10 + f"{user_name}'s Board"
     board_str += " " * (24 - len(user_name))
     board_str += "Computer's Board\n\n"
     board_str += " " * 14

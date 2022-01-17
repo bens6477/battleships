@@ -100,12 +100,15 @@ The game area consists of two player board - the user and the computer - contain
 * <span style="color:red">X</span> - Hit
 * <span style="color:yellow">~</span> - Miss
 
-
 * The user can see the locations of each of their ships, however the locations of the computer's ships are hidden. The player's aim is to successfully guess the locations all of their opponent's ships.
+
+![Eight Shapes Color Grid](assets/images/readme/color-contrast.PNG)
 
 
 #### Text Colouring
 * Specific phrases and characters are assigned different colours depending on the data they represent.
+* User input requests are printed in green to emphasise the required action to the user.
+* "Enter to continue" messages are printed in blue to also draw attention, however to differentiate between inputting data and simply pressing Enter.
 * This improves the readability of the game and improves the user experience as the player can differentiate between data quickly and it is much more pleasing to look at.
 
 Colour dependent data is as follows:
@@ -114,7 +117,6 @@ Colour dependent data is as follows:
 * <span style="color:red">Hit cases and messages</span>
 * <span style="color:yellow">Miss cases and messages</span> 
 
-![Eight Shapes Color Grid](assets/images/readme/color-contrast.PNG)
 
 
 ## Features
