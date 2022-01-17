@@ -7,25 +7,32 @@
 <br><br>
 
 TO DO
-* Game Features
-* Error Catching
-* Testing
+
 * Bugs
-* Flowchart
 * Future Enhancements
 * Unfinished bugs
-* Overview
-* Contents
+
+
 
 COMPLETEd
 * User stories
 * Target audience
 * Styling
+* Contents
+* Game Features
+* Error Catching
+* Testing
+* Flowchart
+* Overview
 
 
 
 ## Site Overview
+This project uses a mock terminal deployed in Heroku to host a computerised version of the classic board game Battleships.<br>
 
+Based on the original 1990 Milton Bradley game rules, each player has 5 ships in their fleet, and players take turns guessing the coordinates of their opponent's ships. If the player guesses correctly, a red X is placed in the cell, and if it is wrong it's filled with a yellow ⌀. The first player to sink all of their opponent's ship wins.<br>
+
+This app is a simple, fast-paced app which you can play against the computer in a short-duration. Do you have what it takes to beat the computer?
 
 ![Site Overview](assets/images/site-overview.png)
 
