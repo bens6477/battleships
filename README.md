@@ -175,19 +175,18 @@ The user is prompted to input their chosen user name. The program will only prog
 * random.randint() was used to randomly obtain an index from 0 to the board width and random.choice() were used to randomly select elements from lists.
 * These were used in functions for generating the direction and coordinates when placing the ships and for generating computer guesses.
 
-#### Hit Result
+#### Shot Outcome
+* After each shot the user is informed about the outcome of their selection - hit or miss. Colour-coded messages are printed to easily identify the outcome and the relevant symbol is printed to the board. 
+* Before the computer takes its shot, the user must press Enter to acknowledge the passing of play and to draw attention to only one player's shot at a time.
 
 #### Miss Result
 
 ### Game Winner
 Once either player has no ships left the winner is declared. A colour-coded message is printed stating whether the user won, lost or drew.
 
- returning a trophy image to the victor's game area and a red cross to the loser's game area. All selector buttons are prevented from triggering from this point onwards, until the user selects to reset the game and play again. Should a selector be pressed, a Sweet Alert message will appear to reiterate this to the user.
-
-
-#### Player Win Result
-
-#### Computer Win Result
+![Win](assets/images/win.png)
+![Loss](assets/images/loss.png)
+![Draw](assets/images/draw.png)
 
 
 ### Play Again

@@ -21,22 +21,6 @@ def colour_text(text, colour):
     return string
 
 
-print(colour_text("""Its a draw! You both destroyed your
-opponent's last ship on this round!\n""", "yellow"))
-
-print("\n\n\n\n")
-
-print(colour_text("""Congratulations! You destroyed all of the computer's
-ships, you win!\n""", "green"))
-
-print("\n\n\n\n")
-
-print(colour_text("""Unlucky! All of your ships have been destroyed, you lose.
-\n, you win!\n""", "red"))
-
-input()
-
-
 # Code taken from https://www.delftstack.com/howto/python/python-clear-console/
 def clear_console():
     """
