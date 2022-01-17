@@ -160,6 +160,7 @@ Upon loading the page, the user is provided with an overview of the game, includ
 * A defensive design approach was used to predict and catch the potential cases which could break the program or which would result in poorer user experience. 
 * try-except-else statements were used to run test cases, catch and return errors, and run code where no exceptions were present.
 * Customised error messages were created for each case, informing the user of what caused the error.
+* This is used to check that only one error is throwing at a a time and to check that errors are not overwriting each other.
 * Exception handling is used at 3 sections in the program:
     1. Inputting user name
     1. Inputting target coordinates
@@ -233,11 +234,11 @@ Once either player has no ships left the winner is declared. A colour-coded mess
 
 ## Future Enhancements
 Various additional features would bring a greater user experience to the website:
+* The addition of multiplayer functionality where two people can play against each other on the same device. Players take turns to select coordinates, and after each turn there is a pause and handover screen to prevent the opponents from seeing ship locations.
 * Allow the user to manually place their ships by selecting the coordinates for the front of the ship and dictating whether it the remaining divisions of the ship trail right or downward.
-* The addition of feature selecting coordinates for the computer in cells adjacent to a direct hit. 
+* The addition of feature selecting coordinates for the computer in cells adjacent to a direct hit. This would make the computer guesses smarter and harder to beat.
 * Refactor code for printing the player boards to the console
-* Multiplayer **EDIT**
-* Audio **EDIT**
+
 
 
 ## Technology Used
@@ -310,10 +311,6 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
     * **Result 🏆** - The deployed Heroku site was successfully tested using Google Chrome, Mozilla Firefox and Microsoft Edge to verify full functionality of the game.
     * **Verdict ✅** - This test passed as, the site functioned successfully accress all browsers.
 
-* **Test 🧪** - 
-    * **Result 🏆** - 
-    * **Verdict ✅** - 
-
 
 ### Validator Testing
 * No errors were found when running the Python code through the [PEP8 online validator](http://pep8online.com/).
@@ -332,30 +329,21 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
     * **Resolution ✅** - The code was refactored to incorporate escape characters, which withdrew the need to import an additional library for colour alteration. The <code>colour_text(text, colour)</code> function was created to wrap colour-dependent escape characters around the inputted text, with the syntax <code>colour_code + text + reset_colour</code>. Since many different colours were frequently printed in the terminal, this function significantly improved the efficiency, readability and troubleshooting of this process.
 
 * **Problem 🐞** - Nested lists not copying to new variable correctly.
-    * **Resolution ✅** - copy.deepcopy() was used to create duplicate nested lists which had no dependencies on the original list. Other conventional techniques for copying lists such as old_list.copy() and old_list[:] modified the original list when manipulating the duplicated nested list and therefore were not sufficient for the feature. [Adapted from Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
-
+    * **Resolution ✅** - <code>copy.deepcopy()</code> was used to create duplicate nested lists which had no dependencies on the original list. Other conventional techniques for copying lists such as <code>old_list.copy()</code> and <code>old_list[:]</code> modified the original list when manipulating the duplicated nested list and therefore were not sufficient for the feature. [Adapted from Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
 
 * **Problem 🐞** - Continual printing of data leading to over-crowded terminal and poor user experience
     * **Resolution ✅** - The terminal was cleared frequently to ensure that the game board was consistently at the top of the terminal. The <code>clear_console()</code> function utilised the <code>os.system('clear')</code> was used to wipe the terminal of data, enabling the presentation of the game to be controlled and styled. [Adapted from DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
 
 * **Problem 🐞** - Hiding and revealing computer's ships.
-    * **Resolution ✅** - 
+    * **Resolution ✅** - Since the computer's fleet was to be hidden during gameplay, the <code>hidden_board</code> Board attribute was created to remove all instances of ship symbols from the board, while keeping the hit, miss and blank cells. <code>hidden_board</code> used <code>copy.deepcopy()</code> to create a full copy of the player board to complete this procedure.
 
 * **Problem 🐞** - Resetting board
-    * **Resolution ✅** - 
-
-* **Problem 🐞** - 
-    * **Resolution ✅** - 
-
-
-
-
-* **Issue** - Resetting the board after each outcome was declared.
-    * **Resolution** - To keep a fast paced flow to the game, after declaring the winner of each point the images of each player's attack were shown for two seconds before returning to the selection image. The <code>setTimeout()</code>, meaning the user did not need to press a button to acknowledge the result. The result text, however, remained unchanged in the center, should the player have missed the combination from the images.
+    * **Resolution ✅** - Calling the player boards again did not result in the re-initialisation of the boards. Therefore, a copy of a each player board was created and this was used to reset both player boards when creating a new game.
 
 
 ### Unfixed Bugs
 * The use of global variableswas required for username and player boards to function. Removing the global variable required the players to be passed through each function they were used in.
+* The <code>print_board()</code> function is inefficiently writtent. A cleaner, more precise function would improve readability and troubleshooting.
 
 
 ## Deployment
