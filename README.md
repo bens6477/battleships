@@ -14,7 +14,7 @@ TO DO
 * Flowchart
 * Future Enhancements
 * Unfinished bugs
-* Intro
+* Overview
 * Contents
 
 COMPLETEd
@@ -152,11 +152,11 @@ Upon loading the page, the user is provided with an overview of the game, includ
 ### User Name Input (With Error Handling)
 The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and to inform the user of the error in their submission:
 1. The user name cannot be left blank.
-    * A custom error is returned when the submitted string length is zero - <code>len(user_name) == 0</code>
+    * A ValueError is returned when the submitted string length is zero - <code>len(user_name) == 0</code>
 1. The user name cannot be longer than 10 characters.
-    * A custom error is returned when the submitted string length is greater than 10 characters - <code>len(user_name) > 10</code>
+    * A ValueError is returned when the submitted string length is greater than 10 characters - <code>len(user_name) > 10</code>
 1. The user name cannot be the same as the Computer.
-    * A custom error is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
+    * A ValueError is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
 
 ![User Name](assets/images/user-name.png)
 
@@ -167,6 +167,20 @@ The user is prompted to input their chosen user name. The program will only prog
 
 ### Gameboard
 #### Valid User Guess
+* The user is requested to input target coordinates in the form of "A4" (letter then number). The program will only progress when valid target coordinates has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and to inform the user of the error in their submission:
+1. The coordinates must contain 2 characters.
+    * A ValueError is returned when <code>len(guess) != 2</code>
+1. The first character must be a letter.
+    * A ValueError is returned when <code>not guess[0].isalpha()</code>
+1. The second character must be a decimal number.
+    * A ValueError is returned when <code>not guess[1].isdigit()</code>
+1. The first character must be a letter between "A" and the letter of the last row.
+    * A ValueError is returned when <code>(ord(guess[0].lower()) < 97 or ord(guess[0].lower()) > (96 + BOARD_SIZE))</code>
+1. The second character must be a number between0 and the number of the last column
+    * A ValueError is returned when <code>(int(guess[1]) > BOARD_SIZE - 1)</code>
+1. The coordinates must not have already been guessed.
+    * A ValueError is returned when <code>num_guess in player.previous_guesses</code>
+
 
 
 
@@ -193,11 +207,11 @@ Once either player has no ships left the winner is declared. A colour-coded mess
 * After the battle has finished and the winner is declared, the user is asked if they would like to play again. The user  A simple Y/N is 
 * The program will only progress when a valid response has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid response and to inform the user of the error in their submission:
 1. The Y/N response cannot be left blank.
-    * A custom error is returned when the submitted string length is zero - <code>len(another_game) == 0</code>
+    * A ValueError is returned when the submitted string length is zero - <code>len(another_game) == 0</code>
 1. The Y/N response cannot be longer than 1 character.
-    * A custom error is returned when the submitted string length is greater than 1 character - <code>len(another_game) > 1</code>
+    * A ValueError is returned when the submitted string length is greater than 1 character - <code>len(another_game) > 1</code>
 1. The Y/N response must only be either a "Y" or an "N", upper- or lowercase.
-    * A custom error is returned when the unicode of the submitted string is not equal to "Y" or "N" - <code>ord(another_game.lower())</code>.
+    * A ValueError is returned when the unicode of the submitted string is not equal to "Y" or "N" - <code>ord(another_game.lower())</code>.
 
 ![Play Again](assets/images/play-again.png)
 
@@ -268,45 +282,72 @@ random.randint() was used to randomly obtain an index from 0 to the board width 
 
 ## Testing
 
+* User name input
+* Target coordinates input
+* Play again input
+* User win
 * Letting computer win - show board
+* Draw
 
-#### Robustness Testing
- * Frequency testing - testing over and over again.
- * Test the random positioning of ships over 100 times
+
+
 
 
 ### Functionality Testing
-* **Test 🧪** - 
-    * **Result 🏆** - 
-    * **Verdict ✅** - 
+* **Test 🧪** - Testing all user name input error handling cases.
+    * **Result 🏆** - Input values were submitted as blank, strings of 11 characters and of "computer" and "Computer" and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code.
+    * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail.
+
+**EDIT**
+* **Test 🧪** - Testing all user name input error handling cases.
+    * **Result 🏆** - Input values were submitted as blank, strings of 11 characters and of "computer" and "Computer" and the predicted error messages were printed every time. This accounted for all cases which could cause an error in the code.
+    * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail.
+
+* **Test 🧪** - Test hit/miss cases.
+    * **Result 🏆** - Once valid coordinates were passed, if a ship was present in the cell a red "X" was printed to that cell, and if there was no ship a yellow "⌀" was printed. The computer's ships were un-hidden temporarily to verify this procedure was working on both boards.
+    * **Verdict ✅** - This test passed, as relevant symbol was printed to each cell every time.
+
+* **Test 🧪** - Testing all Y/N input error handling cases.
+    * **Result 🏆** - Input values were submitted as blank, strings of 2 characters and of non- Y/N characters such as "m", "X", "1" and ".". The predicted error messages were printed every time. This accounted for all cases which could cause an error in the code. The game successfully restarted upon the submission of "Y" and ended with the submission of "N".
+    * **Verdict ✅** - This test passed, as no situation was recorded which caused the code to fail.
+
+* **Test 🧪** - Test for user winning the battle.
+    * **Result 🏆** - Target coordinates were inputted to until all of the copmputer's ships were hit. The user 'win' game outcome message was then printed to the console.
+    * **Verdict ✅** - This test passed as the user was successfully informed of their win.
+
+* **Test 🧪** - Test for user losing the battle.
+    * **Result 🏆** - For this test the computer's ships were revealed (un-hidden) from the user in order to deliberately miss the computer's ships. After the computer has destroyed all of the user's ships the user 'loss' game outcome message was printed to the console.
+    * **Verdict ✅** - Since the showing and hidin of the computer's ships has no impact on the outcome of each shot or of the battle, this test was valid for checking the case where the user loses. This approach significanlty reduced the required time to complete the test as unintentional hitting of ships could be avoided.
+
+* **Test 🧪** - Test for user and computer drawing the battle.
+    * **Result 🏆** - As this case is highly unlikey to occur, the program environment was altered in order to complete this test. Only one destroyer of length 2 divisions was placed in a 2x2 grid. The user and computer made guesses and when the last division of the destroyer was hit by both players on the same round, the 'draw' battle outcome message was printed to teh console.
+    * **Verdict ✅** - Since the test passed on a smaller scale, the outcome would be identical on a larger board with more ships. This approach significanlty reduced the required time to complete the test as only 4 cells were present instead of 36, and since the computer's guesses were unpredictable.
+
+* **Test 🧪** - Checking the score bar updated correctly.
+    * **Result 🏆** - After each ship was destroyed the corresponding player's ship-count decreased by 1 until 0 ships were remaining. At this point the game over sequence was initiated.
+    * **Verdict ✅** - This test passed as each players' ships remaining were printed accurately after each round.
 
 * **Test 🧪** - 
     * **Result 🏆** - 
-    * **Verdict ✅** - 
+    * **Verdict ✅** -
 
 * **Test 🧪** - 
     * **Result 🏆** - 
-    * **Verdict ✅** - 
+    * **Verdict ✅** -
 
 * **Test 🧪** - 
     * **Result 🏆** - 
-    * **Verdict ✅** - 
+    * **Verdict ✅** -
 
-* **Test 🧪** - 
-    * **Result 🏆** - 
-    * **Verdict ✅** - 
 
-* **Test** - All buttons were clicked to check they performed the desired outcome.
-    * **Outcome** - All 5 attack selector buttons sent the appropriate data-type attribute when clicked, triggering the correct event listener code. The 'Reset Game' button correctly executed the resetBoard() function, the 'Instructions' button overlaid the instructions content, and the 'Play' button resumed the game from the last recorded since (0-0 upon loading). The GitHub button previously contained an anchor tag linking to the GitHub page, though the user was only redirected when clicking on the text, and the button body triggered an unknown data-type issue in the event listener logic. Consequently, the anchor tag was removed and the user was redirected to the site via JavaScript when clicking on any part of the button. 
 
-* **Test** - Checked all keyboard shortcut commands operated correctly, 
-    * **Outcome** - Pressing the 1-5 keys on the keyboards correctly triggered the attacks from rock through to spock respectively. Pressing the 'R', 'I' and 'P' keys on the keyboard executed the same code as the 'Reset Game', 'Instructions' and 'Play' buttons respectively, as explained above.
+
+
 
 * **Test** - All images on the website displayed correctly.
     * **Outcome** - All user attacks were selected to check that the correct images were displayed in the user area upon revealing the result. This was also checked for the computer's selection by ensuring the returned image matched the output of <code>console.log(cpuSelection)</code>. Similarly, the images for the winner and loser of the game were checked using <code>console.log(victor))</code> within the <code>declareWinner()</code> function. It was also verified that the main selection was re-displayed after 3 seconds of revealing the result for all attack options.
 
-* **Test** - Testing errors were caught correctly.
-    * **Outcome** - After the winner was declared, all the selector buttons and 1-5 keys were pressed to check if the countdown sequence was triggered. For all cases the Sweet Alert function intervened to inform the user to reset the game to continue playing, ensuring that the user could not continuously play the game with no end.
+
 
 * **Test** - Checking the score bar for the computer moved below the image on smaller screens.
     * **Outcome** - <code>console.log('threshold crossed')</code> was used to check that the  <code>moveScore()</code> function was executing correctly. This message is displayed in the console every time the window size crossed the stacking threshold of 800px. The window was dragged to small and large widths several times, and the score bar moved appropriately to optimise the viewing of the content.
