@@ -115,6 +115,12 @@ Upon loading the page, the user is provided with an overview of the game, includ
 ![Ship Instructions](assets/images/rules-ships.png)
 ![Outcome Instructions](assets/images/rules-outcome.png)
 
+### Defensive Design
+* Whenever the user is requested to input information, it is passed through several error handling cases to ensure that the data is valid. This is to ensure that the user does not unintentionally (or intentionally) break the game by inserting improper information.
+* A defensive design approach was used to predict and catch the potential cases which could break the program or which would result in poorer user experience. 
+* try-except-else statements were used to run test cases, catch and return errors, and run code where no exceptions were present.
+* Customised error messages were created for each case, informing the user of what caused the error. 
+
 ### User Name Input (With Error Handling)
 The user is prompted to input their chosen user name. The program will only progress when a valid user name has been submitted. Built in error handling cases were created to prevent the user from inserting an invalid user name and inform the user of the error in their submission:
 1. The user name cannot be left blank.
@@ -123,6 +129,23 @@ The user is prompted to input their chosen user name. The program will only prog
     * A custom error is returned when the submitted string length is greater than 10 characters - <code>len(user_name) > 10</code>
 1. The user name cannot be the same as the Computer.
     * A custom error is returned when the lowercase of the submitted string length equal to "computer" - <code>user_name.lower() == "computer"</code>.
+
+
+### Ship Placement
+
+
+### Gameboard
+#### Valid Guess
+
+#### Hit Result
+
+#### Miss Result
+
+### Game Winner
+#### Player Win Result
+
+#### Computer Win Result
+
 
 
 ### Game Area **EDIT**
