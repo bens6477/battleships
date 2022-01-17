@@ -69,8 +69,7 @@ This app is a simple, fast-paced app which you can play against the computer in 
     * [Heroku](#heroku)
     * [Cloning Repository](#cloning-repository)
 1. [Credits](#credits)
-    * [Content](#content)
-    * [Media](#media)
+
 
 ## Planning
 ### Target Audience
@@ -387,11 +386,11 @@ You can clone this repository to view, edit and run the code. The steps to clone
 
 
 ## Credits
-### Content
 * Providing alternative colours for text in the terminal using escape characters - [Stack Overflow](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal)
 * Function to clear console - [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/)
 * Deep-copying nested lists - [Stack Overflow](https://stackoverflow.com/questions/2541865/copying-nested-lists-in-python)
+* Arrow unicode values - [Unicode Table](https://unicode-table.com/en/sets/arrow-symbols/)
 * In-context code credits are provided in the [Bugs](#bugs) section.
-
-### Media
 * Flowcharts were created using [diagrams.net](https://app.diagrams.net/).
+* Python code was vallidated using [PEP8 online validator](http://pep8online.com/).
+* [python essentials template](https://github.com/Code-Institute-Org/python-essentials-template) for mock terminal was provided by [Code Institute](https://codeinstitute.net/)

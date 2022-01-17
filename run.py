@@ -1,6 +1,7 @@
 import random
 import os
-from classes.ship import BOARD_SIZE, aircraft_carrier, battleship, cruiser, destroyer, submarine
+from classes.ship import (BOARD_SIZE, aircraft_carrier, battleship, cruiser,
+                          destroyer, submarine)
 from classes.board import Board
 
 
@@ -92,7 +93,7 @@ def get_user_name():
             print(f"Invalid data: {e}, please try again.\n")
         else:
             valid_name = True
-        
+
     return name_input
 
 
@@ -309,7 +310,7 @@ def check_remaining_ships():
     Checks the number of ships remaining for each player
     and determines if the game is finished or still active.
     """
-    
+
     ships_remaining = True
     while ships_remaining:
         clear_console()
