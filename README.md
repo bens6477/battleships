@@ -11,8 +11,9 @@ TO DO
 * Error Catching
 * Testing
 * Bugs
-* Flow chart
+* Flowchart
 * Future Enhancements
+* Unfinished bugs
 * Intro
 * Styling
 * Contents
@@ -26,7 +27,7 @@ COMPLETEd
 ## Site Overview
 
 
-![Am I Responsive website]()
+![Site Overview](assets/images/site-overview.png)
 
 ## Contents
 1. [Site Overview](#site-overview)
@@ -54,12 +55,12 @@ COMPLETEd
     * [Media](#media)
 
 ## Planning
-### Target Audience **EDIT**
+### Target Audience
 * Users who wish to play and enjoyable game of Battleships.
 * Users who are looking to design and code interactive games themselves.
 * Users who are looking to play a simple, engaging game with a short duration.
 
-### User Stories **EDIT**
+### User Stories
 As a user, I want:
 * A simple, clean layout, providing everything I need for smooth gameplay.
 * To view instructions on how to play the game.
@@ -78,7 +79,7 @@ Site Aims
 ### Flowcharts
 * Flowcharts were created to plan the logic and feature paths of the game, and to organise the content into actionable sections.
 
-![Flowchart](assets/images/readme/)
+![Logic Flowchart](assets/images/logic-flowchart.png)
 
 ## Data Model
 ### Classes

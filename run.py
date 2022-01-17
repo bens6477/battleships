@@ -115,9 +115,9 @@ number of cell blocks, as shown below.""")
 opponent's ship.""")
     print("""The symbols below indicate whether the cannonball hits or misses a
 ship.\n""")
-    print(colour_text("X", "red") + " - Direct hit")
-    print(colour_text("\u2300", "yellow") + " - Shot missed")
-    print(colour_text("~", "blue") + " - Blank/hidden cell")
+    print(colour_text(" X", "red") + " - Direct hit")
+    print(colour_text(" \u2300", "yellow") + " - Shot missed")
+    print(colour_text(" ~", "blue") + " - Blank/hidden cell")
     print("""\nDestroy the computer's fleet before your ships are
 destroyed to win the battle.\n""")
     input(colour_text("Press Enter to continue.\n", "blue"))
@@ -167,7 +167,7 @@ def print_boards():
                 column_str += "\n"
             row_str += column_str
         board_str += row_str
-    print(board_str)
+    print(board_str + "\n")
 
 
 def get_valid_guess():
